@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\LocalInformationSystem.Services\LocalInformationSystem.Services.csproj" />
+  </ItemGroup>
+
 </Project>
