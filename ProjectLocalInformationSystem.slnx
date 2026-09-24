@@ -3,5 +3,7 @@
     <File Path=".gitignore" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="LocalInformationSystem/LocalInformationSystem.csproj" />
+  <Project Path="LocalInformationSystem.Data/LocalInformationSystem.Data.csproj" Id="6c69ef04-369d-4905-8e76-1768660d6e5c" />
+  <Project Path="LocalInformationSystem.Services/LocalInformationSystem.Services.csproj" Id="b0115b63-a02d-43ad-b11c-d3888826e13e" />
+  <Project Path="LocalInformationSystem/LocalInformationSystem.Web.csproj" />
 </Solution>
