@@ -2,11 +2,14 @@
  * Entry point.
  */
 
+using LocalInformationSystem.Data.DatabaseContext;
+
 #region Application Building And IoC Container Configuration
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<BgDatabaseContext>();
 
 var app = builder.Build();
 
