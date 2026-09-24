@@ -10,9 +10,6 @@ namespace LocalInformationSystem.Controllers
         public IActionResult Index()
             => View();
 
-        public IActionResult Privacy()
-            => View();
-
         [HttpGet]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
