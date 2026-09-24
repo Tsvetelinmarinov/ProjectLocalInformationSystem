@@ -1,8 +1,21 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Начало";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Custom CSS за Hero секцията -->
+<link rel="stylesheet" href="~/css/homePage.css"/>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center justify-content-between g-5">
+            
+            <!-- Лява колона: Основно послание -->
+           <partial name="_HomePageLeftSectionPartial"/>
+
+            <!-- Дясна колона: Модерни информационни карета (Glassmorphic Cards) -->
+            <partial name="_HomePageRightSectionPartial"/>
+
+        </div>
+    </div>
 </div>
