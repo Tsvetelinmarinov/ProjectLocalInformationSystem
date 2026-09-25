@@ -1,7 +1,7 @@
 ﻿using LocalInformationSystem.Data.DatabaseRepository;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
-using static LocalInformationSystem.Data.Common.Constants;
+using static LocalInformationSystem.Services.Common.Constants;
 
 
 using AutoMapper;

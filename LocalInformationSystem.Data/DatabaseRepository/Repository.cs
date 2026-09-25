@@ -54,6 +54,25 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Retrieves all the cities from the database.
+        /// </summary>
+        /// <returns>Collection of the cities.</returns>
+        public IEnumerable<City> GetAllCities()
+        {
+            var cities = this._dbContext
+                .Cities
+                .AsNoTracking()
+                .Include((city) => city.Landmarks)
+                .Include((city) => city.Province)
+                .OrderBy((city) => city.Name)
+                .ThenBy((city) => city.Province.Name)
+                .ThenBy((city) => city.ProvinceId)
+                ?? throw new InvalidOperationException(NoCitiesFromDb);
+
+            return cities;
+        }
+
+        /// <summary>
         ///  Releases the resources used by the DbContext instance.
         /// </summary>
         public void Dispose()
@@ -61,6 +80,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             GC.SuppressFinalize(this);
             this._dbContext.Dispose();
         }
+
 
         #endregion
     }
