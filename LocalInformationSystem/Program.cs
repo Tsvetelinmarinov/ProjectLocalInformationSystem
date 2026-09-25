@@ -4,6 +4,8 @@
 
 using LocalInformationSystem.Data.DatabaseContext;
 using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Services.Mappers;
+using LocalInformationSystem.Web.Mappers;
 
 #region Application Building And IoC Container Configuration
 
@@ -12,6 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BgDatabaseContext>();
 builder.Services.AddScoped<IRepository, Repository>();
+
+builder.Services.AddAutoMapper(
+    (config) => config.AddMaps(
+        typeof(DTOAutoMapper), typeof(ViewModelAutoMapper)
+    )
+);
 
 var app = builder.Build();
 
