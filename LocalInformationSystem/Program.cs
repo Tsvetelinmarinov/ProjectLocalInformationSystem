@@ -4,23 +4,33 @@
 
 using LocalInformationSystem.Data.DatabaseContext;
 using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Services.BusinessServices;
 using LocalInformationSystem.Services.Mappers;
+using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.Mappers;
 
 #region Application Building And IoC Container Configuration
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Controllers and views services.
 builder.Services.AddControllersWithViews();
+
+// DbContext and repository services.
 builder.Services.AddDbContext<BgDatabaseContext>();
 builder.Services.AddScoped<IRepository, Repository>();
 
+// Services(Service Layer).
+builder.Services.AddScoped<IProvinceService, ProvinceService>();
+
+// AutoMapper services.
 builder.Services.AddAutoMapper(
     (config) => config.AddMaps(
         typeof(DTOAutoMapper), typeof(ViewModelAutoMapper)
     )
 );
 
+// Construct the application.
 var app = builder.Build();
 
 #endregion
