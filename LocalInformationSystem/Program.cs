@@ -22,6 +22,7 @@ builder.Services.AddScoped<IRepository, Repository>();
 
 // Services(Service Layer).
 builder.Services.AddScoped<IProvinceService, ProvinceService>();
+builder.Services.AddScoped<ICitiesService, CitiesService>();
 
 // AutoMapper services.
 builder.Services.AddAutoMapper(

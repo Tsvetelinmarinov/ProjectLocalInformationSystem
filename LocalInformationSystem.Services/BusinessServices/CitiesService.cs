@@ -42,15 +42,22 @@ namespace LocalInformationSystem.Services.BusinessServices
         public IEnumerable<CityDTO> GetAllCities()
         {
             var result = this._database
-                .GetAllCities()
-                .ProjectTo<CityDTO>(); //=> Since the repository provides IQueryable here, we can project with AutoMapper.
-                
+                .GetAllCities();
+
             if (result is null || result.Any() is false)
             {
                 throw new InvalidOperationException(NoCitiesFromDb);
             }
 
-            return result;
+            //=> Since the repository provides IQueryable here, we can project with AutoMapper.
+            var citiesDTOs = this._mapper.Map<IEnumerable<CityDTO>>(result);
+                
+            if (citiesDTOs is null || citiesDTOs.Any() is false)
+            {
+                throw new InvalidOperationException(NoCitiesFromDb);
+            }
+
+            return citiesDTOs;
         }
     }
 }

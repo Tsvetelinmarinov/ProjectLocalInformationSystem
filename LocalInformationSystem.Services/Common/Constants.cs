@@ -3,6 +3,7 @@
     internal static class Constants
     {
         // ProvincesService constants.
+        internal const string ProvinceError = "Error while retrieving the provinces from the database.";
         internal const string UnsuccessfullyMappingOfProvince = "AutoMapper could not map Province to ProvinceDTO.";
 
         // CitiesService constants.
