@@ -1,6 +1,6 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-        <!-- Име на сайта / Бранда (Смени "Моят Сайт" с твоето име) -->
+    <div class="container">
+        <!-- Име на сайта -->
         <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
             <i class="bi bi-flag-fill text-danger me-2"></i>Explore Bulgaria
         </a>
@@ -13,13 +13,24 @@
         <!-- Менюта и Опции -->
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <!-- Меню / Опция 1 -->
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">
-                <i class="bi bi-house-door me-1"></i> Home
-                </a>
-            </li>
+                <!-- Бутон Home -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">
+                        <i class="bi bi-house-door me-1"></i> Home
+                    </a>
+                </li>
+
+                <!-- Dropdown меню за Provinces -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="provincesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Explore
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="provincesDropdown">
+                        <li><a class="dropdown-item" asp-controller="Province" asp-action="Index">Provinces</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                       </ul>
+                </li>
             </ul>
         </div>
-        </div>
+    </div>
 </nav>

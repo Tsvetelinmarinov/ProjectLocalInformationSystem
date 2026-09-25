@@ -1,0 +1,20 @@
+﻿@model IEnumerable<ProvinceViewModel>
+
+@{
+    ViewData["Title"] = "Provinces";
+}
+
+<div class="container my-4">
+    <!-- Header Section -->
+    <partial name="_ProvincesPageHeaderPartial"/>
+
+    <!-- Summary / Statistics Cards -->
+    <partial name="_ProvincesPageStatisticCardsPartial" model="@Model"/>
+
+    <!-- Main Data Table -->
+    <partial name="_ProvincesPageTablePartial" model="@Model"/>
+</div>
+
+@section Design {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+}
