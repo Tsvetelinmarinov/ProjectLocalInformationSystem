@@ -1,4 +1,7 @@
 ﻿using LocalInformationSystem.Data.DatabaseContext;
+using LocalInformationSystem.Data.Entities;
+using Microsoft.EntityFrameworkCore;
+using static LocalInformationSystem.Data.Common.RepositoryConstants;
 
 namespace LocalInformationSystem.Data.DatabaseRepository
 {
@@ -28,6 +31,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 
         #endregion
         #region Functionality
+
+        /// <summary>
+        ///  Retrieves all the provinces from the database.
+        /// </summary>
+        /// <returns>Collection of provinces.</returns>
+        public IEnumerable<Province> GetAllProvinces()
+        {
+            var allProvinces = this._dbContext
+                .Provinces
+                .AsNoTracking()
+                .Include((province) => province.Cities) //=> Need to get the total count of the cities per province.
+                .OrderBy((province) => province.ProvinceId)
+                .ThenBy((province) => province.Name);
+
+            if (allProvinces.Any() is false)
+            {
+                throw new InvalidOperationException(ProvinceError);
+            }
+
+            return allProvinces;
+        }
 
         /// <summary>
         ///  Releases the resources used by the DbContext instance.
