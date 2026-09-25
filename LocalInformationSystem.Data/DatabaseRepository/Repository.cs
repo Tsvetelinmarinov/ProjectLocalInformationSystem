@@ -57,7 +57,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         ///  Retrieves all the cities from the database.
         /// </summary>
         /// <returns>Collection of the cities.</returns>
-        public IEnumerable<City> GetAllCities()
+        public IQueryable<City> GetAllCities()
         {
             var cities = this._dbContext
                 .Cities

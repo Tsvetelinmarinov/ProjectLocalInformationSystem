@@ -23,6 +23,12 @@ namespace LocalInformationSystem.Services.Mappers
                 .ReverseMap();
 
             #endregion
+            #region Landmark -> LandmarkDTO Mapping
+
+            CreateMap<Landmark, LandmarkDTO>()
+                .ReverseMap();
+
+            #endregion
         }
     }
 }
