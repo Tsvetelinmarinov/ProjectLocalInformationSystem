@@ -17,6 +17,12 @@ namespace LocalInformationSystem.Services.Mappers
                 .ReverseMap();
 
             #endregion
+            #region City -> CityDTO Mapping
+
+            CreateMap<City, CityDTO>()
+                .ReverseMap();
+
+            #endregion
         }
     }
 }

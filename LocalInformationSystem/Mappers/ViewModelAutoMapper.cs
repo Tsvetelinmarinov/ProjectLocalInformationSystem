@@ -11,9 +11,15 @@ namespace LocalInformationSystem.Web.Mappers
     {
         public ViewModelAutoMapper()
         {
-            #region Province -> ProvinceDTO Mapping
+            #region ProvinceDTO -> ProvinceViewModel Mapping
 
             CreateMap<ProvinceDTO, ProvinceViewModel>()
+                .ReverseMap();
+
+            #endregion
+            #region CityDTO -> CityViewMode Mapping
+
+            CreateMap<CityDTO, CityViewModel>()
                 .ReverseMap();
 
             #endregion

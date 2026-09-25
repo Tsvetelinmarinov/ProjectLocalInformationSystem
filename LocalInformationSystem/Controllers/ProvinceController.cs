@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 
 using LocalInformationSystem.Services.ServicesInterfaces;
+using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
+
+using static LocalInformationSystem.Web.Common.Constants;
 
 namespace LocalInformationSystem.Web.Controllers
 {
@@ -34,7 +37,22 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return NotFound();
+            var provinceDTOs = this._service.GetAllProvinces();
+
+            if (provinceDTOs is null || provinceDTOs.Any() is false)
+            {
+                throw new InvalidOperationException(NoProvincesFromService);
+            }
+
+            var provinceModels 
+                = this._mapper.Map<IEnumerable<ProvinceViewModel>>(provinceDTOs);
+
+            if (provinceModels is null || provinceModels.Any() is false)
+            {
+                throw new InvalidOperationException(UnsuccessfullyMappingOfProvincesViewModels);
+            }
+
+            return View(provinceModels);
         }
 
         #endregion
