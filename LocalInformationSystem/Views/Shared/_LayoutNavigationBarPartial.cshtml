@@ -1,6 +1,6 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container">
-        <!-- Име на сайта / Бранда (Смени "Моят Сайт" с твоето име) -->
+        <!-- Име на сайта -->
         <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
             <i class="bi bi-flag-fill text-danger me-2"></i>Explore Bulgaria
         </a>
@@ -16,7 +16,10 @@
             <!-- Меню / Опция 1 -->
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">
-                <i class="bi bi-house-door me-1"></i> Home
+                    <i class="bi bi-house-door me-1"></i> Home
+                </a>
+                <a class="nav-link active" aria-current="page" asp-controller="Province" asp-action="Index">
+                    Provinces
                 </a>
             </li>
             </ul>
