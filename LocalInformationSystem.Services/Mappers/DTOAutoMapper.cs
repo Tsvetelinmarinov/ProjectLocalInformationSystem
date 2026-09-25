@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 
-namespace LocalInformationSystem.Services.Mapper
+namespace LocalInformationSystem.Services.Mappers
 {
     /// <summary>
-    ///  Maps Entity -> ViewModel. 
+    ///  Maps Entity -> EntityDTO. 
     /// </summary>
     public class DTOAutoMapper : Profile
     {
