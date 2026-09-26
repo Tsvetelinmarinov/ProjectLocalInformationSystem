@@ -14,5 +14,6 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         int SaveChanges();
 
         TEntity FindEntityById<TEntity>(int id) where TEntity : class;
+        void Delete<TEntity>(int id) where TEntity : class;
     }
 }

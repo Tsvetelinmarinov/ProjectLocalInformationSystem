@@ -144,6 +144,17 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return entity;
         }
 
+        public void Delete<TEntity>(int id)
+            where TEntity : class
+        {
+            var entity 
+                = this._dbContext.Find<TEntity>([id])
+                  ?? throw new InvalidOperationException(NoSuchEntityInDb);
+
+            _ = this._dbContext.Remove(entity);
+            _ = this.SaveChanges();
+        }
+
         /// <summary>
         ///  Releases the resources used by the DbContext instance.
         /// </summary>
