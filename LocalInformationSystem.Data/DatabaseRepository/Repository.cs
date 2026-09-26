@@ -73,6 +73,26 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Retrieves all the mountains from the database.
+        /// </summary>
+        /// <returns>
+        ///  Collection with the mountains.
+        /// </returns>
+        public IEnumerable<Mountain> GetAllMountains()
+        {
+            var mountainEntities = this._dbContext
+                .Mountains
+                .AsNoTracking()
+                .Include((mountain) => mountain.Parks) //=> Needed to get the count of the parks per mountain.
+                .OrderByDescending((mountain) => mountain.ElevationMeters)
+                .ThenBy((mountain) => mountain.Name)
+                .ThenBy((mountain) => mountain.MountainId) 
+                  ?? throw new InvalidOperationException(NoMountainsFromDb);
+
+            return mountainEntities;
+        }
+
+        /// <summary>
         ///  Releases the resources used by the DbContext instance.
         /// </summary>
         public void Dispose()

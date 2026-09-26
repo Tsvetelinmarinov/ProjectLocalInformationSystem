@@ -5,6 +5,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
     public interface IRepository : IDisposable
     {
         IEnumerable<Province> GetAllProvinces(); //=> For ProvincesService.
-        IQueryable<City> GetAllCities(); //=> For CitiesService.
+        IQueryable<City> GetAllCities();         //=> For CitiesService.
+        IEnumerable<Mountain> GetAllMountains(); //=> For MountainsService.
     }
 }
