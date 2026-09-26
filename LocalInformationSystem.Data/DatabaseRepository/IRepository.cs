@@ -4,15 +4,20 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 {
     public interface IRepository : IDisposable
     {
-        IEnumerable<Province> GetAllProvinces(); // For ProvincesService.
-        Province FindProvinceById(int id);       // For ProvinceService.
-        
-        IQueryable<City> GetAllCities();         // For CitiesService.
+        // For ProvincesService.
+        IEnumerable<Province> GetAllProvinces(); 
 
-        IEnumerable<Mountain> GetAllMountains(); // For MountainsService.
+        // For ProvinceService.
+        Province FindProvinceById(int id);       
 
+        // For CitiesService.
+        IQueryable<City> GetAllCities();
+
+        // For MountainsService.
+        IEnumerable<Mountain> GetAllMountains(); 
+
+        // Common.
         int SaveChanges();
-
         TEntity FindEntityById<TEntity>(int id) where TEntity : class;
         void Delete<TEntity>(TEntity entity) where TEntity : class;
     }
