@@ -59,6 +59,37 @@ namespace LocalInformationSystem.Services.BusinessServices
             return provinceDTOs;
         }
 
+        /// <summary>
+        ///  Retrieves province with the specified ID from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the province.
+        /// </param>
+        /// <returns>
+        ///  The province with the specified ID.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///  Thrown when the AutoMapper counld not map Province to ProvinceDTO.
+        /// </exception>
+        /// <exception cref="InvalidDataException">
+        ///  Thrown when the ID of the province is invalid.
+        /// </exception>
+        public ProvinceDTO FindProvinceById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidDataException(InvalidProvinceID);
+            }
+
+            var provinceEntity = this._base.FindProvinceById(int);
+
+            var provinceDTO 
+                = this._mapper.Map<ProvinceDTO>(provinceEntity)
+                  ?? throw new InvalidOperationException(UnsuccessfullyMappingOfProvince);
+           
+            return provinceDTO;
+        }
+
         #endregion
     }
 }
