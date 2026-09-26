@@ -12,5 +12,11 @@
             = "Unsuccessfully mapping of ProvinceDTO to ProvinceViewModel!";
 
         #endregion
+        #region CitiesController
+
+        internal const string NoCitiesFromService = "Something went wrong while retrieving the cities from the service!";
+        internal const string UnableToMapCityDTOToViewModel = "Something went wrong while mapping the cities DTOs to ViewModels!";
+
+        #endregion
     }
 }
