@@ -118,10 +118,10 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// <param name="provinceDTO">
         ///  The DTO instance.
         /// </param>
-        public void Delete(ProvinceDTO provinceDTO)
+        public void Delete(int id)
         {
-            var provinceEntity = this._mapper.Map<Province>(provinceDTO);
-            this._base.Delete(provinceEntity);
+            var entity = this._base.FindEntityById<Province>(id);
+            this._base.Delete(entity);
         }
 
         #endregion
