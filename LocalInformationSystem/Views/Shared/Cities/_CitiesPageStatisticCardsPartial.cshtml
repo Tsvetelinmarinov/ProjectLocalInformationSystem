@@ -1,0 +1,28 @@
+﻿@model IEnumerable<CityViewModel>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h6 class="text-muted text-uppercase fw-normal mb-2">Total Cities</h6>
+                <h3 class="fw-bold mb-0 text-dark">@Model.Count()</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h6 class="text-muted text-uppercase fw-normal mb-2">Capitals / Administrative Center</h6>
+                <h3 class="fw-bold mb-0 text-success">@Model.Count(c => c.IsCapital == true)</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h6 class="text-muted text-uppercase fw-normal mb-2">Total Population</h6>
+                <h3 class="fw-bold mb-0 text-info">@Model.Sum(c => c.Population ?? 0).ToString("N0")</h3>
+            </div>
+        </div>
+    </div>
+</div>

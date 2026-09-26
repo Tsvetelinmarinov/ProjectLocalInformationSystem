@@ -1,0 +1,18 @@
+﻿@model IEnumerable<CityViewModel>
+@{
+    ViewData["Title"] = "Cities";
+}
+
+
+<div class="container my-4">
+    <!-- Header -->
+    <partial name="Cities/_CitiesPageHeaderPartial"/>
+    <!-- Statistic Cards -->
+    <partial name="Cities/_CitiesPageStatisticCardsPartial" />
+    <!-- Table -->
+    <partial name="Cities/_CitiesPageTablePartial" />
+</div>
+
+@section Design {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+}
