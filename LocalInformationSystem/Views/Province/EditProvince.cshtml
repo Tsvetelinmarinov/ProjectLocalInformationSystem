@@ -6,89 +6,16 @@
 
 <div class="container py-4">
     <!-- Breadcrumb Navigation -->
-    <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a asp-controller="Province" asp-action="Index" class="text-decoration-none">Provinces</a></li>
-            <li class="breadcrumb-item"><a asp-controller="Province" asp-action="ConcreteProvince" asp-route-id="@Model.ProvinceId" class="text-decoration-none">@Model.Name</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Edit</li>
-        </ol>
-    </nav>
+    <partial name="EditProvince/_EditProvincePageNavigationPartial" model="@this.Model"/>
 
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <div class="card border-0 shadow-sm rounded-4">
                 <!-- Card Header -->
-                <div class="card-header bg-white py-3 px-4 border-bottom-0">
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3 text-primary">
-                            <i class="bi bi-pencil-square fs-4"></i>
-                        </div>
-                        <div>
-                            <h4 class="fw-bold mb-0 text-dark">Edit Province Information</h4>
-                            <p class="text-muted small mb-0">Update the details for @Model.Name province.</p>
-                        </div>
-                    </div>
-                </div>
+                <partial name="EditProvince/_EditProvincePageHeaderPartial" model="@this.Model" />
 
                 <!-- Form Start -->
-                <form asp-controller="Province" asp-action="EditProvince" method="post">
-                    <div class="card-body p-4">
-                        <!-- Validation Summary -->
-                        <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 mb-4" role="alert"></div>
-
-                        <!-- Hidden Field for ID -->
-                        <input type="hidden" asp-for="ProvinceId" />
-
-                        <div class="row g-3">
-                            <!-- Province Name -->
-                            <div class="col-md-6">
-                                <label asp-for="Name" class="form-label fw-semibold">Province Name</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-muted"><i class="bi bi-geo"></i></span>
-                                    <input asp-for="Name" class="form-control" placeholder="Enter province name" />
-                                </div>
-                                <span asp-validation-for="Name" class="text-danger small"></span>
-                            </div>
-
-                            <!-- Administrative Center -->
-                            <div class="col-md-6">
-                                <label asp-for="AdministrativeCenter" class="form-label fw-semibold">Administrative Center</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-muted"><i class="bi bi-building"></i></span>
-                                    <input asp-for="AdministrativeCenter" class="form-control" placeholder="Enter administrative center" />
-                                </div>
-                                <span asp-validation-for="AdministrativeCenter" class="text-danger small"></span>
-                            </div>
-
-                            <!-- Area (Sq Km) -->
-                            <div class="col-md-6">
-                                <label asp-for="AreaSqKm" class="form-label fw-semibold">Area (sq km)</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-muted"><i class="bi bi-aspect-ratio"></i></span>
-                                    <input asp-for="AreaSqKm" type="number" step="0.01" class="form-control" placeholder="e.g. 5056.30" />
-                                </div>
-                                <span asp-validation-for="AreaSqKm" class="text-danger small"></span>
-                            </div>
-
-                            <!-- Population -->
-                            <div class="col-md-6">
-                                <label asp-for="Population" class="form-label fw-semibold">Population</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-light text-muted"><i class="bi bi-people"></i></span>
-                                    <input asp-for="Population" type="number" class="form-control" placeholder="e.g. 120000" />
-                                </div>
-                                <span asp-validation-for="Population" class="text-danger small"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card Footer Actions -->
-                    <div class="card-footer bg-light px-4 py-3 d-flex justify-content-end gap-2 border-top-0 rounded-bottom-4">
-                        <button type="submit" class="btn btn-primary rounded-pill px-4">
-                            <i class="bi bi-check-lg me-1"></i> Save Changes
-                        </button>
-                    </div>
-                </form>
+                <partial name="EditProvince/_EditProvincePageFormPartial" model="@this.Model" />
             </div>
         </div>
     </div>

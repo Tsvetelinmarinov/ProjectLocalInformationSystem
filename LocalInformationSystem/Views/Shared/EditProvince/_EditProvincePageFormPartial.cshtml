@@ -1,0 +1,60 @@
+﻿@model ProvinceViewModel
+
+<form asp-controller="" asp-action="" method="">
+    <div class="card-body p-4">
+        <!-- Validation Summary -->
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 mb-4" role="alert"></div>
+
+        <!-- Hidden Field for ID -->
+        <input type="hidden" asp-for="ProvinceId" />
+
+        <div class="row g-3">
+            <!-- Province Name -->
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Province Name</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-geo"></i></span>
+                    <input asp-for="Name" class="form-control" placeholder="Enter province name" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <!-- Administrative Center -->
+            <div class="col-md-6">
+                <label asp-for="AdministrativeCenter" class="form-label fw-semibold">Administrative Center</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-building"></i></span>
+                    <input asp-for="AdministrativeCenter" class="form-control" placeholder="Enter administrative center" />
+                </div>
+                <span asp-validation-for="AdministrativeCenter" class="text-danger small"></span>
+            </div>
+
+            <!-- Area (Sq Km) -->
+            <div class="col-md-6">
+                <label asp-for="AreaSqKm" class="form-label fw-semibold">Area (sq km)</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-aspect-ratio"></i></span>
+                    <input asp-for="AreaSqKm" type="number" step="0.01" class="form-control" placeholder="e.g. 5056.30" />
+                </div>
+                <span asp-validation-for="AreaSqKm" class="text-danger small"></span>
+            </div>
+
+            <!-- Population -->
+            <div class="col-md-6">
+                <label asp-for="Population" class="form-label fw-semibold">Population</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-people"></i></span>
+                    <input asp-for="Population" type="number" class="form-control" placeholder="e.g. 120000" />
+                </div>
+                <span asp-validation-for="Population" class="text-danger small"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Footer Actions -->
+    <div class="card-footer bg-light px-4 py-3 d-flex justify-content-end gap-2 border-top-0 rounded-bottom-4">
+        <button type="submit" class="btn btn-primary rounded-pill px-4">
+            <i class="bi bi-check-lg me-1"></i> Save Changes
+        </button>
+    </div>
+</form>
