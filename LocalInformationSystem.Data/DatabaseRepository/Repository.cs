@@ -54,6 +54,28 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Finds specific province by its ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the province.
+        /// </param>
+        /// <returns>
+        ///  The province with the specified ID.
+        ///  If there are no found province, InvalidOperationException is thrown.
+        /// </returns>
+        public Province FindProvinceById(int id)
+        {
+            var province = this._dbContext
+                .Provinces
+                .AsNoTracking()
+                .Include((province) => province.Cities)
+                .FirstOrDefault((province) => province.ProvinceId == id) 
+                  ?? throw new InvalidOperationException(ProvinceNotFound);
+
+            return province;
+        }
+
+        /// <summary>
         ///  Retrieves all the cities from the database.
         /// </summary>
         /// <returns>Collection of the cities.</returns>
@@ -90,6 +112,43 @@ namespace LocalInformationSystem.Data.DatabaseRepository
                   ?? throw new InvalidOperationException(NoMountainsFromDb);
 
             return mountainEntities;
+        }
+
+        /// <summary>
+        ///  Saves changes made to the entities.
+        /// </summary>
+        /// <returns>
+        ///  Total changes saved(total record affected).
+        /// </returns>
+        public int SaveChanges()
+            => this._dbContext.SaveChanges();
+
+        /// <summary>
+        ///  Retrieves entity in from the database by its ID.
+        /// </summary>
+        /// <typeparam name="TEntity">
+        ///  The type of the entity.
+        /// </typeparam>
+        /// <param name="id">
+        ///  The ID of the entity.
+        /// </param>
+        /// <returns>
+        ///  The entity that is found. If not found any - throws InvalidOperationException().
+        /// </returns>
+        public TEntity FindEntityById<TEntity>(int id)
+            where TEntity : class
+        {
+            var entity = this._dbContext.Find<TEntity>([id])
+                ?? throw new InvalidOperationException(NoSuchEntityInDb);
+
+            return entity;
+        }
+
+        public void Delete<TEntity>(TEntity entity)
+            where TEntity : class
+        {
+            _ = this._dbContext.Remove(entity);
+            _ = this.SaveChanges();
         }
 
         /// <summary>

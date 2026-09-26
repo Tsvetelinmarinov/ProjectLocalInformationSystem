@@ -1,0 +1,16 @@
+﻿@model ProvinceViewModel
+
+@{
+    this.ViewData["Title"] = "Province Information";
+}
+
+<div class="container py-4">
+    <!-- Breadcrumb Navigation -->
+    <partial name="ConcreteProvince/_ConcreteProvincePageNavigationPartial" model="this.Model"/>
+    <!-- Header Card -->
+    <partial name="ConcreteProvince/_ConcreteProvincePageTopHeaderPartial" model="this.Model" />
+    <!-- Key Metrics Cards -->
+    <partial name="ConcreteProvince/_ConcreteProvincePageCardsPartial" model="this.Model"/>
+    <!-- Cities List Card -->
+    <partial name="ConcreteProvince/_ConcreteProvincePageCitiesListPartial" model="@this.Model" />
+</div>

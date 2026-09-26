@@ -1,0 +1,9 @@
+﻿@model ProvinceViewModel
+
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Province" asp-action="Index" class="text-decoration-none">Provinces</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Province" asp-action="ConcreteProvince" asp-route-id="@Model.ProvinceId" class="text-decoration-none">@Model.Name</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+</nav>

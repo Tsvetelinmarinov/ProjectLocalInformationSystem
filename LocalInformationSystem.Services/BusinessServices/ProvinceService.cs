@@ -6,6 +6,9 @@ using static LocalInformationSystem.Services.Common.Constants;
 
 using AutoMapper;
 
+using System.Runtime.CompilerServices;
+using LocalInformationSystem.Data.Entities;
+
 namespace LocalInformationSystem.Services.BusinessServices
 {
     /// <summary>
@@ -57,6 +60,56 @@ namespace LocalInformationSystem.Services.BusinessServices
             }
 
             return provinceDTOs;
+        }
+
+        /// <summary>
+        ///  Retrieves province with the specified ID from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the province.
+        /// </param>
+        /// <returns>
+        ///  The province with the specified ID.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///  Thrown when the AutoMapper counld not map Province to ProvinceDTO.
+        /// </exception>
+        /// <exception cref="InvalidDataException">
+        ///  Thrown when the ID of the province is invalid.
+        /// </exception>
+        public ProvinceDTO FindProvinceById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidDataException(InvalidProvinceID);
+            }
+
+            var provinceEntity = this._base.FindProvinceById(id);
+
+            var provinceDTO 
+                = this._mapper.Map<ProvinceDTO>(provinceEntity)
+                  ?? throw new InvalidOperationException(UnsuccessfullyMappingOfProvince);
+           
+            return provinceDTO;
+        }
+
+        /// <summary>
+        ///  Updates entity in the database with information form the specified DTO.
+        /// </summary>
+        /// <param name="provinceDTO">
+        ///  The DTO instance.
+        /// </param>
+        public void Update(ProvinceDTO provinceDTO)
+        {
+            var currentProvince = this._base.FindEntityById<Province>(provinceDTO.ProvinceId);
+
+            currentProvince.Name = provinceDTO.Name;
+            currentProvince.Population = provinceDTO.Population;
+            currentProvince.Cities = (ICollection<City>)this._mapper.Map<IEnumerable<City>>(provinceDTO.Cities);
+            currentProvince.AdministrativeCenter = provinceDTO.AdministrativeCenter;
+            currentProvince.AreaSqKm = provinceDTO.AreaSqKm;
+
+            /* IDGF for the result. */ _ = this._base.SaveChanges();
         }
 
         #endregion

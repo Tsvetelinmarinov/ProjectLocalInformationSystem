@@ -1,0 +1,26 @@
+﻿@model ProvinceViewModel
+
+@{
+    ViewData["Title"] = $"Edit Province - {Model.Name}";
+}
+
+<div class="container py-4">
+    <!-- Breadcrumb Navigation -->
+    <partial name="EditProvince/_EditProvincePageNavigationPartial" model="@this.Model"/>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm rounded-4">
+                <!-- Card Header -->
+                <partial name="EditProvince/_EditProvincePageHeaderPartial" model="@this.Model" />
+
+                <!-- Form Start -->
+                <partial name="EditProvince/_EditProvincePageFormPartial" model="@this.Model" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
