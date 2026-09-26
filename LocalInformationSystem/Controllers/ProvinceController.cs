@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
@@ -77,6 +78,26 @@ namespace LocalInformationSystem.Web.Controllers
                   ?? throw new InvalidOperationException(UnsuccessfullyMappingOfProvincesViewModels);
 
             return View(provinceModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditProvince(
+            [FromRoute] int id, 
+            [FromForm] ProvinceViewModel province
+        ){
+            if (id != province.ProvinceId)
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid is false)
+            {
+                return RedirectToAction(nameof(EditProvince), new { id = province.ProvinceId });
+            }
+
+            this._service.Update(this._mapper.Map<ProvinceDTO>(province));
+
+            return RedirectToAction(nameof(Index));
         }
 
         #endregion

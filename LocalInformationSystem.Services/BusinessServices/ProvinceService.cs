@@ -6,6 +6,9 @@ using static LocalInformationSystem.Services.Common.Constants;
 
 using AutoMapper;
 
+using System.Runtime.CompilerServices;
+using LocalInformationSystem.Data.Entities;
+
 namespace LocalInformationSystem.Services.BusinessServices
 {
     /// <summary>
@@ -88,6 +91,28 @@ namespace LocalInformationSystem.Services.BusinessServices
                   ?? throw new InvalidOperationException(UnsuccessfullyMappingOfProvince);
            
             return provinceDTO;
+        }
+
+        /// <summary>
+        ///  Updates entity in the database with information form the specified DTO.
+        /// </summary>
+        /// <typeparam name="TEntityDTO">
+        ///  The type of the DTO.
+        /// </typeparam>
+        /// <param name="entityDTO">
+        ///  The DTO instance.
+        /// </param>
+        public void Update(ProvinceDTO provinceDTO)
+        {
+            var currentProvince = this._base.FindEntityById<Province>(provinceDTO.ProvinceId);
+
+            currentProvince.Name = provinceDTO.Name;
+            currentProvince.Population = provinceDTO.Population;
+            currentProvince.Cities = (ICollection<City>)this._mapper.Map<IEnumerable<City>>(provinceDTO.Cities);
+            currentProvince.AdministrativeCenter = provinceDTO.AdministrativeCenter;
+            currentProvince.AreaSqKm = provinceDTO.AreaSqKm;
+
+            /* IDGF for the result. */ _ = this._base.SaveChanges();
         }
 
         #endregion

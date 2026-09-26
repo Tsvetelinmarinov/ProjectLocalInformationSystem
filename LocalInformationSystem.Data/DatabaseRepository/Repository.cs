@@ -115,6 +115,36 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Saves changes made to the entities.
+        /// </summary>
+        /// <returns>
+        ///  Total changes saved(total record affected).
+        /// </returns>
+        public int SaveChanges()
+            => this._dbContext.SaveChanges();
+
+        /// <summary>
+        ///  Retrieves entity in from the database by its ID.
+        /// </summary>
+        /// <typeparam name="TEntity">
+        ///  The type of the entity.
+        /// </typeparam>
+        /// <param name="id">
+        ///  The ID of the entity.
+        /// </param>
+        /// <returns>
+        ///  The entity that is found. If not found any - throws InvalidOperationException().
+        /// </returns>
+        public TEntity FindEntityById<TEntity>(int id)
+            where TEntity : class
+        {
+            var entity = this._dbContext.Find<TEntity>([id])
+                ?? throw new InvalidOperationException(NoSuchEntityInDb);
+
+            return entity;
+        }
+
+        /// <summary>
         ///  Releases the resources used by the DbContext instance.
         /// </summary>
         public void Dispose()
