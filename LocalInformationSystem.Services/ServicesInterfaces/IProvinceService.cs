@@ -7,6 +7,5 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         IEnumerable<ProvinceDTO> GetAllProvinces();
         ProvinceDTO FindProvinceById(int id);
         void Update(ProvinceDTO provinceDTO);
-        void Delete(int id);
     }
 }

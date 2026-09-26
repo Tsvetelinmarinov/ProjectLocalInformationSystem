@@ -100,13 +100,6 @@ namespace LocalInformationSystem.Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        public IActionResult DeleteProvince(int id)
-        {
-            this._service.Delete(id);
-            return RedirectToAction(nameof(Index));
-        }
-
         #endregion
     }
 }

@@ -112,18 +112,6 @@ namespace LocalInformationSystem.Services.BusinessServices
             /* IDGF for the result. */ _ = this._base.SaveChanges();
         }
 
-        /// <summary>
-        ///  Deletes the entity in the database tha match the ID of the specific DTO.
-        /// </summary>
-        /// <param name="provinceDTO">
-        ///  The DTO instance.
-        /// </param>
-        public void Delete(int id)
-        {
-            var entity = this._base.FindEntityById<Province>(id);
-            this._base.Delete(entity);
-        }
-
         #endregion
     }
 }
