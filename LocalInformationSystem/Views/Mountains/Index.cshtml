@@ -6,7 +6,14 @@
 
 <!-- Main Page -->
 <div class="container my-4">
-    
+    <!-- Header -->
+    <partial name="_MountainsPageHeaderPartial" />
+
+    <!-- Statistic Cards -->
+    <partial name="Mountains/_MountainsPageStatisticCardsPartial" model="@this.Model"/>
+
+    <!-- Table -->
+    <partial name="Mountains/_MountainsPageTablePartial" model="@this.Model"/>
 </div>
 
 <!-- link to Bootstrap icons -->
