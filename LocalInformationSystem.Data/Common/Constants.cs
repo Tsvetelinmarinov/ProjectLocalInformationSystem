@@ -7,6 +7,7 @@
     {
         // Province methods constants.
         internal const string ProvinceError = "No provinces available! Something went wrong with the database server!";
+        internal const string ProvinceNotFound = "Province with that ID was not found in the database!";
 
         // Cities methods constants
         internal const string NoCitiesFromDb = "Error while retrieving information about the cities from the database!";

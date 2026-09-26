@@ -54,6 +54,28 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Finds specific province by its ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the province.
+        /// </param>
+        /// <returns>
+        ///  The province with the specified ID.
+        ///  If there are no found province, InvalidOperationException is thrown.
+        /// </returns>
+        public Province FindProvinceById(int id)
+        {
+            var province = this._dbContext
+                .Provinces
+                .AsNoTracking()
+                .Include((province) => province.Cities)
+                .FirstOrDefault((province) => province.ProvinceId == id) 
+                  ?? throw new InvalidOperationException(ProvinceNotFound);
+
+            return province;
+        }
+
+        /// <summary>
         ///  Retrieves all the cities from the database.
         /// </summary>
         /// <returns>Collection of the cities.</returns>
