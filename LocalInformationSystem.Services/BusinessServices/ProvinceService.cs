@@ -96,10 +96,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// <summary>
         ///  Updates entity in the database with information form the specified DTO.
         /// </summary>
-        /// <typeparam name="TEntityDTO">
-        ///  The type of the DTO.
-        /// </typeparam>
-        /// <param name="entityDTO">
+        /// <param name="provinceDTO">
         ///  The DTO instance.
         /// </param>
         public void Update(ProvinceDTO provinceDTO)
@@ -113,6 +110,18 @@ namespace LocalInformationSystem.Services.BusinessServices
             currentProvince.AreaSqKm = provinceDTO.AreaSqKm;
 
             /* IDGF for the result. */ _ = this._base.SaveChanges();
+        }
+
+        /// <summary>
+        ///  Deletes the entity in the database tha match the ID of the specific DTO.
+        /// </summary>
+        /// <param name="provinceDTO">
+        ///  The DTO instance.
+        /// </param>
+        public void Delete(ProvinceDTO provinceDTO)
+        {
+            var provinceEntity = this._mapper.Map<Province>(provinceDTO);
+            this._base.Delete(provinceEntity);
         }
 
         #endregion
