@@ -1,0 +1,47 @@
+﻿@model ProvinceViewModel
+
+<div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+    <div class="card-header bg-white py-3 px-4 d-flex justify-content-between align-items-center border-bottom-0">
+        <h5 class="fw-bold mb-0 text-dark">
+            <i class="bi bi-building me-2 text-primary"></i>Cities & Settlements
+        </h5>
+        <span class="badge bg-secondary rounded-pill px-3 py-2">Total: @Model.Cities.Count</span>
+    </div>
+
+    @if (Model.Cities != null && Model.Cities.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col" class="ps-4">City Name</th>
+                        <th scope="col" class="text-end pe-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var city in Model.Cities)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-medium text-dark">
+                                <i class="bi bi-dot text-primary fs-4 me-1"></i>
+                                @city.Name
+                            </td>
+                            <td class="text-end pe-4">
+                                <a asp-controller="" asp-action="" asp-route-id="" class="btn btn-sm btn-light rounded-pill border px-3">
+                                    View Details
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="card-body text-center py-5">
+            <i class="bi bi-building-x fs-1 text-muted d-block mb-2"></i>
+            <p class="text-muted mb-0">No settlements found for this province.</p>
+        </div>
+    }
+</div>

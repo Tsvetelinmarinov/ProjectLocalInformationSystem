@@ -67,6 +67,18 @@ namespace LocalInformationSystem.Web.Controllers
             return View(provinceModel);
         }
 
+        [HttpGet]
+        public IActionResult EditProvince([FromRoute]int id)
+        {
+            var provinceDTO = this._service.FindProvinceById(id);
+
+            var provinceModel
+                = this._mapper.Map<ProvinceViewModel>(provinceDTO)
+                  ?? throw new InvalidOperationException(UnsuccessfullyMappingOfProvincesViewModels);
+
+            return View(provinceModel);
+        }
+
         #endregion
     }
 }
