@@ -81,7 +81,7 @@ namespace LocalInformationSystem.Services.BusinessServices
                 throw new InvalidDataException(InvalidProvinceID);
             }
 
-            var provinceEntity = this._base.FindProvinceById(int);
+            var provinceEntity = this._base.FindProvinceById(id);
 
             var provinceDTO 
                 = this._mapper.Map<ProvinceDTO>(provinceEntity)
