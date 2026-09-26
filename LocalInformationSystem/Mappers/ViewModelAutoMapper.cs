@@ -17,7 +17,7 @@ namespace LocalInformationSystem.Web.Mappers
                 .ReverseMap();
 
             #endregion
-            #region CityDTO -> CityViewMode Mapping
+            #region CityDTO -> CityViewModel Mapping
 
             CreateMap<CityDTO, CityViewModel>()
                 .ReverseMap();
@@ -26,6 +26,18 @@ namespace LocalInformationSystem.Web.Mappers
             #region LandmarkDTO -> LandmarkViewModel Mapping
 
             CreateMap<LandmarkDTO, LandmarkViewModel>()
+                .ReverseMap();
+
+            #endregion
+            #region MountainDTO -> MountainViewModel Mapping
+
+            CreateMap<MountainDTO, MountainViewModel>()
+                .ReverseMap();
+
+            #endregion
+            #region ParkDTO -> ParkViewModel Mapping
+
+            CreateMap<ParkDTO, ParkViewModel>()
                 .ReverseMap();
 
             #endregion
