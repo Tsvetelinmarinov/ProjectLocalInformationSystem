@@ -15,7 +15,12 @@
         #region CitiesController
 
         internal const string NoCitiesFromService = "Something went wrong while retrieving the cities from the service!";
-        internal const string UnableToMapCityDTOToViewModel = "Something went wrong while mapping the cities DTOs to ViewModels!";
+        internal const string UnableToMapCityDTOToViewModel = "Something went wrong while mapping the cities DTO`s to ViewModels!";
+
+        #endregion
+        #region MountainsController
+
+        internal const string UnableToMapMountainDTOToViewModel = "Something went wrong while mapping the mountain DTO`s to ViewModels!";
 
         #endregion
     }

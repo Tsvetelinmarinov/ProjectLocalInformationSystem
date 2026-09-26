@@ -1,0 +1,22 @@
+﻿@model IEnumerable<MountainViewModel>
+
+@{
+    this.ViewData["Title"] = "Mountains";
+}
+
+<!-- Main Page -->
+<div class="container my-4">
+    <!-- Header -->
+    <partial name="Mountains/_MountainsPageHeaderPartial" />
+
+    <!-- Statistic Cards -->
+    <partial name="Mountains/_MountainsPageStatisticCardsPartial" model="@this.Model"/>
+
+    <!-- Table -->
+    <partial name="Mountains/_MountainsPageTablePartial" model="@this.Model"/>
+</div>
+
+<!-- link to Bootstrap icons -->
+@section Design {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+}

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<MountainViewModel>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Highest Peak</th>
+                        <th>Elevation</th>
+                        <th>Area</th>
+                        <th class="text-center">Parks</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-4 text-muted">
+                                No mountain records found.
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var mountain in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-dark">@mountain.Name</td>
+                                <td>@mountain.HighestPeak</td>
+                                <td>@mountain.ElevationMeters m</td>
+                                <td>
+                                    @(mountain.AreaSqKm.HasValue ? $"{mountain.AreaSqKm.Value:N2} km²" : "-")
+                                </td>
+                                <td class="text-center">
+                                    <span class="badge bg-info text-dark">
+                                        @mountain.Parks.Count
+                                    </span>
+                                </td>
+                                <td class="text-end">
+                                    <a asp-action="Details" asp-route-id="@mountain.MountainId" class="btn btn-sm btn-outline-info me-1" title="Details">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@mountain.MountainId" class="btn btn-sm btn-outline-warning me-1" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@mountain.MountainId" class="btn btn-sm btn-outline-danger" title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

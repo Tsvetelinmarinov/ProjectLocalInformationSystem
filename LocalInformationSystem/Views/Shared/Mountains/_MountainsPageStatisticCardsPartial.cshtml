@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MountainViewModel>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h6 class="text-muted text-uppercase fw-normal mb-2">Total Mountains</h6>
+                <h3 class="fw-bold mb-0 text-dark">@Model.Count()</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h6 class="text-muted text-uppercase fw-normal mb-2">Highest Peak Elevation</h6>
+                <h3 class="fw-bold mb-0 text-success">
+                    @(Model.Any() ? $"{Model.Max(m => m.ElevationMeters)} m" : "-")
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body text-center">
+                <h6 class="text-muted text-uppercase fw-normal mb-2">Total Area</h6>
+                <h3 class="fw-bold mb-0 text-info">
+                    @Model.Sum(m => m.AreaSqKm ?? 0).ToString("N2") km²
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>

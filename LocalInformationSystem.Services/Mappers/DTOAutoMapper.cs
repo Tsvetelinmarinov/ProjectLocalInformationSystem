@@ -29,6 +29,18 @@ namespace LocalInformationSystem.Services.Mappers
                 .ReverseMap();
 
             #endregion
+            #region Mountain -> MountainDTO Mapping
+
+            CreateMap<Mountain, MountainDTO>()
+                .ReverseMap();
+
+            #endregion
+            #region Park -> ParkDTO Mapping
+
+            CreateMap<Park, ParkDTO>()
+                .ReverseMap();
+
+            #endregion
         }
     }
 }

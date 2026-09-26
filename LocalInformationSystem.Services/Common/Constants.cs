@@ -8,5 +8,9 @@
 
         // CitiesService constants.
         internal const string NoCitiesFromDb = "Error while retrieving the cities from the database.";
+
+        // MountainsService constants.
+        internal const string UnableToMapMountainDTO = "Unable to map Mountain to MountainDTO.";
+
     }
 }
