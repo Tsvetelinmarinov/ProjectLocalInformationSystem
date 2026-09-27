@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 
 using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 
@@ -58,6 +58,25 @@ namespace LocalInformationSystem.Services.BusinessServices
             }
 
             return citiesDTOs;
+        }
+
+        /// <summary>
+        ///  Retrieves City from the database by its ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the city.
+        /// </param>
+        /// <returns>
+        ///  The City with the specified ID.
+        /// </returns>
+        public CityDTO FindCityById(int id)
+        {
+            var entity = this._database.FindEntityById<City>(id);
+
+            var cityDTO = this._mapper.Map<CityDTO>(entity)
+                  ?? throw new InvalidOperationException(CannotMapCityToCityDTO);
+
+            return cityDTO;
         }
     }
 }
