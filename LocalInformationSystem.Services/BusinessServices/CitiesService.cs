@@ -25,11 +25,13 @@ namespace LocalInformationSystem.Services.BusinessServices
         #endregion
         #region Constructor
 
+#pragma warning disable IDE0290 // Use primary constructor
         public CitiesService(IRepository database, IMapper autoMapper)
         {
             this._database = database;
             this._mapper = autoMapper;
         }
+#pragma warning restore IDE0290
 
         #endregion
 
@@ -82,6 +84,29 @@ namespace LocalInformationSystem.Services.BusinessServices
                   ?? throw new InvalidOperationException(CannotMapCityToCityDTO);
 
             return cityDTO;
+        }
+
+        /// <summary>
+        ///  Updates city.
+        /// </summary>
+        /// <param name="newCity">
+        ///  The new CityDTO with the information.
+        /// </param>
+        public void UpdateCity(CityDTO newCity)
+        {
+            var cityEntity
+                = this._database.FindEntityById<City>(newCity.CityId)
+                  ?? throw new InvalidOperationException(NoSuchCityInDb);
+
+            cityEntity.Name = newCity.Name;
+            cityEntity.Population = newCity.Population;
+            cityEntity.Province = this._mapper.Map<Province>(newCity.Province);
+            cityEntity.IsCapital = newCity.IsCapital;
+            cityEntity.Landmarks = (ICollection<Landmark>)this._mapper.Map<IEnumerable<Landmark>>(newCity.Landmarks);
+            cityEntity.ElevationMeters = newCity.ElevationMeters;
+            cityEntity.ProvinceId = newCity.ProvinceId;
+
+            /* Ignored affected rows */_ = this._database.SaveChanges();
         }
     }
 }
