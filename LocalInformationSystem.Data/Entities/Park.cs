@@ -31,4 +31,6 @@ public partial class Park
     [ForeignKey("MountainId")]
     [InverseProperty("Parks")]
     public virtual Mountain? Mountain { get; set; }
+
+    public bool IsDeleted { get; set; }
 }

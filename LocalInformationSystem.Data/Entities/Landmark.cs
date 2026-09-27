@@ -26,4 +26,6 @@ public partial class Landmark
     [ForeignKey("CityId")]
     [InverseProperty("Landmarks")]
     public virtual City? City { get; set; }
+
+    public bool IsDeleted { get; set; }
 }
