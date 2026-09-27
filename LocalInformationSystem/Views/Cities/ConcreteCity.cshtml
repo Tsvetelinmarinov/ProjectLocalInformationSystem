@@ -1,0 +1,16 @@
+﻿@model CityViewModel
+
+@{
+    this.ViewData["Title"] = "Cities";
+}
+
+<div class="container py-4">
+    <!-- Top Navigation -->
+    <partial name="ConcreteCity/_ConcreteCityPageNavigationPartial" model="@this.Model"/>
+    <!-- Top Header -->
+    <partial name="ConcreteCity/_ConcreteCityPageTopHeaderPartial" model="@this.Model"/>
+    <!-- Statistic Cards -->
+    <partial name="ConcreteCity/_ConcreteCityPageStatisticCardsPartial" model="@this.Model"/>
+    <!-- Landmarks List -->
+    <partial name="ConcreteCity/_ConcreteCityPageLandmarksListPartial" model="@this.Model"/>
+</div>

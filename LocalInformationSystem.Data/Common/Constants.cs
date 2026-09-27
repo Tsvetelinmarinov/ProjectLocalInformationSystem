@@ -11,6 +11,7 @@
 
         // Cities methods constants
         internal const string NoCitiesFromDb = "Error while retrieving information about the cities from the database!";
+        internal const string NoSuchCityInDb = "No city with specified ID was found in the database.";
 
         // Mountains methods constants.
         internal const string NoMountainsFromDb = "No mountains available! Something went wrong with the database!";

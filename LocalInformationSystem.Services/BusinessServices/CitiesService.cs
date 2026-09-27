@@ -71,7 +71,12 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// </returns>
         public CityDTO FindCityById(int id)
         {
-            var entity = this._database.FindEntityById<City>(id);
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidCityID);
+            }
+
+            var entity = this._database.FindCityById(id);
 
             var cityDTO = this._mapper.Map<CityDTO>(entity)
                   ?? throw new InvalidOperationException(CannotMapCityToCityDTO);

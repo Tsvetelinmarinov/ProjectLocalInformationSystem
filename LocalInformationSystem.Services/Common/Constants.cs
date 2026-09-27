@@ -11,6 +11,7 @@
         // CitiesService constants.
         internal const string NoCitiesFromDb = "Error while retrieving the cities from the database.";
         internal const string CannotMapCityToCityDTO = "Unable to map City to CityDTO.";
+        internal const string InvalidCityID = "The ID of the city should not be negative or zero.";
 
         // MountainsService constants.
         internal const string UnableToMapMountainDTO = "Unable to map Mountain to MountainDTO.";

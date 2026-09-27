@@ -57,5 +57,16 @@ namespace LocalInformationSystem.Web.Controllers
 
             return View(citiesModels);
         }
+
+        [HttpGet]
+        public IActionResult ConcreteCity([FromRoute] int id)
+        {
+            var cityDTO = this._service.FindCityById(id);
+
+            var cityModel = this._mapper.Map<CityViewModel>(cityDTO)
+               ?? throw new InvalidOperationException(UnableToMapCityDTOToViewModel);
+
+            return View(cityModel);
+        }
     }
 }

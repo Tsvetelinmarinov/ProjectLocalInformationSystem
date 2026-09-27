@@ -12,6 +12,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 
         // For CitiesService.
         IQueryable<City> GetAllCities();
+        City FindCityById(int id);
 
         // For MountainsService.
         IEnumerable<Mountain> GetAllMountains(); 
