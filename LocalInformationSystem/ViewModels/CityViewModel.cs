@@ -16,11 +16,11 @@ public class CityViewModel
 
     public int? Population { get; set; }
 
-    public bool? IsCapital { get; set; }
+    public bool IsCapital { get; set; }
 
     public int? ElevationMeters { get; set; }
 
-    public virtual ICollection<LandmarkViewModel> Landmarks { get; set; } = new List<LandmarkViewModel>();
+    public virtual ICollection<LandmarkViewModel>? Landmarks { get; set; } = new List<LandmarkViewModel>();
 
-    public virtual ProvinceViewModel Province { get; set; } = null!;
+    public virtual ProvinceViewModel? Province { get; set; } = null!;
 }

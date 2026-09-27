@@ -184,7 +184,6 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             this._dbContext.Dispose();
         }
 
-
         #endregion
     }
 }
