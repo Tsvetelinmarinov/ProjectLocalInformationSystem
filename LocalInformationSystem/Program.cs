@@ -27,6 +27,9 @@ builder.Services.AddDbContext<BgDatabaseContext>((dbContextOptionsBuilder) =>
             sqlServerOptBuilder.UseParameterizedCollectionMode(
                 ParameterTranslationMode.MultipleParameters
             );
+
+            // For future integration of new technologies like SqlVector etc...
+            sqlServerOptBuilder.UseCompatibilityLevel(170);
         }
     );
 });
