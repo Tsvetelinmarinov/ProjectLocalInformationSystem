@@ -9,6 +9,8 @@ using LocalInformationSystem.Services.Mappers;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.Mappers;
 
+using Microsoft.EntityFrameworkCore;
+
 #region Application Building And IoC Container Configuration
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +19,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // DbContext and repository services.
-builder.Services.AddDbContext<BgDatabaseContext>();
+builder.Services.AddDbContext<BgDatabaseContext>((dbContextOptionsBuilder) =>
+{
+    dbContextOptionsBuilder.UseSqlServer(
+        (sqlServerOptBuilder) =>
+        {
+            sqlServerOptBuilder.UseParameterizedCollectionMode(
+                ParameterTranslationMode.MultipleParameters
+            );
+
+            // For future integration of new technologies like SqlVector etc...
+            sqlServerOptBuilder.UseCompatibilityLevel(170);
+        }
+    );
+});
 builder.Services.AddScoped<IRepository, Repository>();
 
 // Services(Service Layer).

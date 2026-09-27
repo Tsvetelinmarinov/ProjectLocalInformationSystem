@@ -53,6 +53,7 @@ public partial class BgDatabaseContext : DbContext
             entity.HasKey(e => e.LandmarkId).HasName("PK__Landmark__3195B57F7409FDD7");
             entity.Property(e => e.UnescoSite).HasDefaultValue(false);
             entity.HasOne(d => d.City).WithMany(p => p.Landmarks).HasConstraintName("FK__Landmarks__CityI__76969D2E");
+            entity.HasQueryFilter("SoftDelete", (landmark) => landmark.IsDeleted == false);
         });
         modelBuilder.Entity<Mountain>(entity =>
         {
@@ -63,6 +64,7 @@ public partial class BgDatabaseContext : DbContext
             entity.HasKey(e => e.ParkId).HasName("PK__Parks__7D67D36C69D85A03");
             entity.Property(e => e.UnescoSite).HasDefaultValue(false);
             entity.HasOne(d => d.Mountain).WithMany(p => p.Parks).HasConstraintName("FK__Parks__MountainI__00200768");
+            entity.HasQueryFilter("SoftDelete", (park) => park.IsDeleted == false);
         });
         modelBuilder.Entity<Province>(entity =>
         {
