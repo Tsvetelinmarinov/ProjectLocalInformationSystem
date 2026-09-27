@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using static LocalInformationSystem.Web.Common.Constants;
+
+
 namespace LocalInformationSystem.Web.ViewModels;
 
 /// <summary>
@@ -9,9 +12,12 @@ public class CityViewModel
 {
     public int CityId { get; set; }
 
-    [StringLength(100)] 
+    [Required(ErrorMessage = CityNameIsRequired)]
+    [StringLength(100, MinimumLength = 2, ErrorMessage = InvalidCityName)] 
     public string Name { get; set; } = null!;
 
+    [Required(ErrorMessage = CityProvinceIdIsRequired)]
+    [Range(1, 100, ErrorMessage = InvalidProvinceId)]
     public int ProvinceId { get; set; }
 
     public int? Population { get; set; }

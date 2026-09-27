@@ -5,7 +5,7 @@
     /// </summary>
     internal static class Constants
     {
-        #region Provinces Controller
+        #region ProvincesController
 
         internal const string NoProvincesFromService = "No provinces provided from the service!";
         internal const string UnsuccessfullyMappingOfProvincesViewModels 
@@ -22,6 +22,14 @@
         #region MountainsController
 
         internal const string UnableToMapMountainDTOToViewModel = "Something went wrong while mapping the mountain DTO`s to ViewModels!";
+
+        #endregion
+        #region Validation Constants
+
+        internal const string InvalidCityName = "The name of the city should be at least {2} character long";
+        internal const string CityNameIsRequired = "The name of the city is required";
+        internal const string CityProvinceIdIsRequired = "The province ID is required";
+        internal const string InvalidProvinceId = "The province ID should be between {1} and {2}";
 
         #endregion
     }

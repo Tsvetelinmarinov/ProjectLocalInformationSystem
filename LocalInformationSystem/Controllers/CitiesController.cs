@@ -99,7 +99,7 @@ namespace LocalInformationSystem.Web.Controllers
 
             if (this.ModelState.IsValid is false)
             {
-                return View(newCity.CityId);
+                return View(newCity);
             }
 
             this._service.UpdateCity(this._mapper.Map<CityDTO>(newCity));
