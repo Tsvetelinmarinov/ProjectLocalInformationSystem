@@ -1,0 +1,12 @@
+﻿@model CityViewModel
+
+<nav class="mb-4" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a class="text-decoration-none" asp-controller="Cities" asp-action="Index">Cities</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @Model.Name
+        </li>
+    </ol>
+</nav>

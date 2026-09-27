@@ -1,6 +1,9 @@
 ﻿using LocalInformationSystem.Data.DatabaseContext;
 using LocalInformationSystem.Data.Entities;
 using Microsoft.EntityFrameworkCore;
+
+using System.Globalization;
+
 using static LocalInformationSystem.Data.Common.Constants;
 
 namespace LocalInformationSystem.Data.DatabaseRepository
@@ -95,6 +98,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Retrieves specific city from the database by its ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the city
+        /// </param>
+        /// <returns>
+        ///  The city with the specified ID.
+        /// </returns>
+        public City FindCityById(int id)
+        {
+            var city = this._dbContext
+                .Cities
+                .AsNoTracking()
+                .Include((city) => city.Landmarks)
+                .FirstOrDefault((city) => city.CityId == id)
+                  ?? throw new InvalidOperationException(NoSuchCityInDb);
+
+            return city;
+        }
+
+        /// <summary>
         ///  Retrieves all the mountains from the database.
         /// </summary>
         /// <returns>
@@ -159,7 +183,6 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             GC.SuppressFinalize(this);
             this._dbContext.Dispose();
         }
-
 
         #endregion
     }

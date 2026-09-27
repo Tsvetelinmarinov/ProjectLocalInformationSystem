@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 
+using LocalInformationSystem.Data.Entities;
+using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
+
+using System.Reflection.Metadata.Ecma335;
 
 using static LocalInformationSystem.Web.Common.Constants;
 
@@ -56,6 +60,50 @@ namespace LocalInformationSystem.Web.Controllers
             }
 
             return View(citiesModels);
+        }
+
+        [HttpGet]
+        public IActionResult ConcreteCity([FromRoute] int id)
+        {
+            var cityDTO = this._service.FindCityById(id);
+
+            var cityModel = this._mapper.Map<CityViewModel>(cityDTO)
+               ?? throw new InvalidOperationException(UnableToMapCityDTOToViewModel);
+
+            return View(cityModel);
+        }
+
+        [HttpGet]
+        public IActionResult EditCity([FromRoute] int id)
+        {
+            var cityDTO = this._service.FindCityById(id);
+            var cityModel = this._mapper.Map<CityViewModel>(cityDTO);
+            
+            if (cityModel is null)
+            {
+                return BadRequest();
+            }
+
+            return View(cityModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditCity(
+            [FromRoute] int id, 
+            [FromForm] CityViewModel newCity
+        ){
+            if (id != newCity.CityId)
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid is false)
+            {
+                return View(newCity.CityId);
+            }
+
+            this._service.UpdateCity(this._mapper.Map<CityDTO>(newCity));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

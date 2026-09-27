@@ -5,5 +5,7 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
     public interface ICitiesService
     {
         IEnumerable<CityDTO> GetAllCities();
+        CityDTO FindCityById(int id);
+        void UpdateCity(CityDTO newCity);
     }
 }

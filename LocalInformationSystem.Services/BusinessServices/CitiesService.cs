@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
 
 using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 
@@ -25,11 +25,13 @@ namespace LocalInformationSystem.Services.BusinessServices
         #endregion
         #region Constructor
 
+#pragma warning disable IDE0290 // Use primary constructor
         public CitiesService(IRepository database, IMapper autoMapper)
         {
             this._database = database;
             this._mapper = autoMapper;
         }
+#pragma warning restore IDE0290
 
         #endregion
 
@@ -58,6 +60,53 @@ namespace LocalInformationSystem.Services.BusinessServices
             }
 
             return citiesDTOs;
+        }
+
+        /// <summary>
+        ///  Retrieves City from the database by its ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the city.
+        /// </param>
+        /// <returns>
+        ///  The City with the specified ID.
+        /// </returns>
+        public CityDTO FindCityById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidCityID);
+            }
+
+            var entity = this._database.FindCityById(id);
+
+            var cityDTO = this._mapper.Map<CityDTO>(entity)
+                  ?? throw new InvalidOperationException(CannotMapCityToCityDTO);
+
+            return cityDTO;
+        }
+
+        /// <summary>
+        ///  Updates city.
+        /// </summary>
+        /// <param name="newCity">
+        ///  The new CityDTO with the information.
+        /// </param>
+        public void UpdateCity(CityDTO newCity)
+        {
+            var cityEntity
+                = this._database.FindEntityById<City>(newCity.CityId)
+                  ?? throw new InvalidOperationException(NoSuchCityInDb);
+
+            cityEntity.Name = newCity.Name;
+            cityEntity.Population = newCity.Population;
+            cityEntity.Province = this._mapper.Map<Province>(newCity.Province);
+            cityEntity.IsCapital = newCity.IsCapital;
+            cityEntity.Landmarks = (ICollection<Landmark>)this._mapper.Map<IEnumerable<Landmark>>(newCity.Landmarks);
+            cityEntity.ElevationMeters = newCity.ElevationMeters;
+            cityEntity.ProvinceId = newCity.ProvinceId;
+
+            /* Ignored affected rows */_ = this._database.SaveChanges();
         }
     }
 }
