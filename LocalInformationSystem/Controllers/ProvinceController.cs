@@ -92,7 +92,7 @@ namespace LocalInformationSystem.Web.Controllers
 
             if (this.ModelState.IsValid is false)
             {
-                return RedirectToAction(nameof(EditProvince), new { id = province.ProvinceId });
+                return View(province);
             }
 
             this._service.Update(this._mapper.Map<ProvinceDTO>(province));
