@@ -13,6 +13,8 @@
         internal const string CannotMapCityToCityDTO = "Unable to map City to CityDTO.";
         internal const string InvalidCityID = "The ID of the city should not be negative or zero.";
         internal const string NoSuchCityInDb = "There is no city with the specified ID in the database.";
+        internal const string CannotMapLandmarkToLandmarkDTO = "Unable to map Landmark to LandmarkDTO.";
+        internal const string InvalidLandmarkId = "The landmark ID should not be negative or zero.";
 
         // MountainsService constants.
         internal const string UnableToMapMountainDTO = "Unable to map Mountain to MountainDTO.";

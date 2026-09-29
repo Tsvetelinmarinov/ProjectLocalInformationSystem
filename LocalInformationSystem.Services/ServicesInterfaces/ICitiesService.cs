@@ -7,5 +7,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         IEnumerable<CityDTO> GetAllCities();
         CityDTO FindCityById(int id);
         void UpdateCity(CityDTO newCity);
+        LandmarkDTO FindLandmarkById(int id);
     }
 }
