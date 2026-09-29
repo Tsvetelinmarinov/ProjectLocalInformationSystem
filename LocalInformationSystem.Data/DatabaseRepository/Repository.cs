@@ -139,6 +139,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Retrieves concrete landmark with its city from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the landmark.
+        /// </param>
+        /// <returns>
+        ///  The landmark with the specified ID.
+        /// </returns>
+        public Landmark FindLandmarkById(int id)
+        {
+            var landmark = this._dbContext
+                .Landmarks
+                .AsNoTracking()
+                .Include((lm) => lm.City)
+                .FirstOrDefault((lm) => lm.LandmarkId == id)
+                  ?? throw new InvalidOperationException(NoSuchLandmarkInDb);
+
+            return landmark;
+        }
+
+        /// <summary>
         ///  Saves changes made to the entities.
         /// </summary>
         /// <returns>

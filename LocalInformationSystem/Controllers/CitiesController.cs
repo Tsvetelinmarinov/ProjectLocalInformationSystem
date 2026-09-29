@@ -7,6 +7,7 @@ using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
 
+using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
 
 using static LocalInformationSystem.Web.Common.Constants;
@@ -104,6 +105,17 @@ namespace LocalInformationSystem.Web.Controllers
 
             this._service.UpdateCity(this._mapper.Map<CityDTO>(newCity));
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult LandmarkDetails([FromRoute]int id)
+        {
+            var landmarkDto = this._service.FindLandmarkById(id);
+
+            var landmarkModel = this._mapper.Map<LandmarkViewModel>(landmarkDto)
+                ?? throw new InvalidOperationException(CannotMapLandmarkDtoToViewModel);
+
+            return View(landmarkModel);
         }
     }
 }

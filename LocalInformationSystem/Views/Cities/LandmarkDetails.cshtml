@@ -1,0 +1,14 @@
+﻿@model LandmarkViewModel
+
+@{
+    this.ViewData["Title"] = $"Landmarks - {this.Model.City!.Name}";
+}
+
+<div class="container py-4">
+    <!-- Navigation -->
+    <partial name="LandmarkDetails/_LandmarkDetailsPageNavigationPartial" model="this.Model"/>
+    <!-- Header -->
+    <partial name="LandmarkDetails/_LandmarkDetailsPageTopHeaderPartial" model="this.Model"/>
+    <!-- Cards -->
+    <partial name="LandmarkDetails/_LandmarkDetailsPageStatisticCardsPartial" model="this.Model"/>
+</div>

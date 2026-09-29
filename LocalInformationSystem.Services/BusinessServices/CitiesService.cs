@@ -108,5 +108,30 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             /* Ignored affected rows */_ = this._database.SaveChanges();
         }
+
+        /// <summary>
+        ///  Retrieves concrete landmark with its city from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the landmark.
+        /// </param>
+        /// <returns>
+        ///  The landmark with the specified ID.
+        /// </returns>
+        public LandmarkDTO FindLandmarkById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidLandmarkId);
+            }
+
+            var landmarkEntity = this._database.FindLandmarkById(id);
+
+            var landmarkDto 
+                = this._mapper.Map<LandmarkDTO>(landmarkEntity)
+                  ?? throw new InvalidOperationException(CannotMapLandmarkToLandmarkDTO);
+
+            return landmarkDto;
+        }
     }
 }
