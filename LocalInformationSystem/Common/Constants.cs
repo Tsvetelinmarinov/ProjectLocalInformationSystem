@@ -39,7 +39,7 @@
         internal const double ProvincePopulationMax = 10_000_000;
 
         internal const string InvalidProvinceNameLength = "The province name should be between {2} and {1} characters long";
-        internal const string ProvinceNameRegExValidator = @"^[\p{Lu}][\p{L}]*$";
+        internal const string ProvinceNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([- ]?[\p{L}]*)$";
         internal const string ProvinceShouldStartWithUppercase = "The name of the province should start with uppercase letter";
         internal const string ProvinceNameIsRequired = "The name of the province is required";
         internal const string ProvinceAdminCentreIsRequired = "The province administrative centre name is required";
@@ -67,7 +67,7 @@
         internal const string InvalidCityPopulation = "The population of the city should be between {1} and {2} people";
         internal const string InvalidCityElevationRange = "The elevation should be between {1} and {2} metres";
         internal const string CityElevationRequired = "The elevation of the city is required";
-        internal const string CityNameRegExValidator = @"^[\p{Lu}][\p{L}]*$";
+        internal const string CityNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([- ]?[\p{L}]*)$";
 
         #endregion
 
