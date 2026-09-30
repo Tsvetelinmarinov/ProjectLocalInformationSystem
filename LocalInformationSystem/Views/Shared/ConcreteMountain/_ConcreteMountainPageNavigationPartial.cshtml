@@ -1,0 +1,12 @@
+﻿@model MountainViewModel
+
+<nav class="mb-4" aria-label="breadcrumb">
+    <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a asp-controller="Mountains" asp-action="Index">Mountains</a>
+        </li>
+        <li class="breadcrumb-item active">
+            @this.Model.Name
+        </li>
+    </ul>
+</nav>

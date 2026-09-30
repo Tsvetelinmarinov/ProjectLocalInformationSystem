@@ -1,8 +1,7 @@
 ﻿using LocalInformationSystem.Data.DatabaseContext;
 using LocalInformationSystem.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 
-using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 
 using static LocalInformationSystem.Data.Common.Constants;
 
@@ -157,6 +156,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
                   ?? throw new InvalidOperationException(NoSuchLandmarkInDb);
 
             return landmark;
+        }
+
+        /// <summary>
+        ///  Retrieves concrete mountain from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the mountain.
+        /// </param>
+        /// <returns>
+        ///  The mountain with the specified ID.
+        /// </returns>
+        public Mountain FindMountainById(int id)
+        {
+            var mountain = this._dbContext
+                .Mountains
+                .AsNoTracking()
+                .Include((mountain) => mountain.Parks)
+                .FirstOrDefault((mountain) => mountain.MountainId == id)
+                  ?? throw new InvalidOperationException(NoSuchEntityInDb);
+
+            return mountain;
         }
 
         /// <summary>

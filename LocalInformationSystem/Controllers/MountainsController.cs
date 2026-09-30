@@ -21,9 +21,27 @@ namespace LocalInformationSystem.Web.Controllers
 
             var mountainModels
                 = mapper.Map<IEnumerable<MountainViewModel>>(mountainDTOs)
-                  ?? throw new InvalidOperationException(UnableToMapMountainDTOToViewModel);
+                  ?? throw new InvalidOperationException(UnableToMapMountainDTOsToViewModel);
 
             return View(mountainModels);
+        }
+
+        [HttpGet]
+        public IActionResult ConcreteMountain(int id)
+        {
+            var mountainDTO = service.FindMountainById(id);
+
+            var mountainModel
+                = mapper.Map<MountainViewModel>(mountainDTO)
+                 ?? throw new InvalidOperationException(UnableToMapMountainDTOToViewModel);
+
+            return View(mountainModel);
+        }
+
+        [HttpGet]
+        public IActionResult EditMountain(int id)
+        {
+            return StatusCode(666);
         }
     }
 }

@@ -16,7 +16,8 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         Landmark FindLandmarkById(int id);
 
         // For MountainsService.
-        IEnumerable<Mountain> GetAllMountains(); 
+        IEnumerable<Mountain> GetAllMountains();
+        Mountain FindMountainById(int id);
 
         // Common.
         int SaveChanges();

@@ -5,5 +5,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
     public interface IMountainsService
     {
         IEnumerable<MountainDTO> GetAllMountains();
+        MountainDTO FindMountainById(int id);
     }
 }

@@ -75,7 +75,7 @@ namespace LocalInformationSystem.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditCity([FromRoute] int id)
+        public IActionResult EditCity(int id)
         {
             var cityDTO = this._service.FindCityById(id);
             var cityModel = this._mapper.Map<CityViewModel>(cityDTO);

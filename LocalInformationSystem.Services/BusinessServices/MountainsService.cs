@@ -29,5 +29,30 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             return mountainDTOs;
         }
+
+        /// <summary>
+        ///  Retrieves concrete mountain from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the mountain.
+        /// </param>
+        /// <returns>
+        ///  The mountain with the specified ID.
+        /// </returns>
+        public MountainDTO FindMountainById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidMountainId);
+            }
+
+            var mountainEntity = repository.FindMountainById(id);
+
+            var mountainDTO 
+                = mapper.Map<MountainDTO>(mountainEntity)
+                   ?? throw new InvalidOperationException(UnableToMapMountainDTO);
+
+            return mountainDTO;
+        }
     }
 }
