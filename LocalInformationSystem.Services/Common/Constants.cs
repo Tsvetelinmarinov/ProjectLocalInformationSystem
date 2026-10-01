@@ -19,6 +19,9 @@
         // MountainsService constants.
         internal const string UnableToMapMountainDTO = "Unable to map Mountain to MountainDTO.";
         internal const string InvalidMountainId = "The ID of the mountain should not be negative or zero.";
+        internal const string UnableToMapMountainToMountainDTO = "Unable to map Mountain to MountainDTO.";
+        internal const string UnableToMapParkToParkDTO = "Unable to map Park to ParkDTO.";
+        internal const string InavlidParkId = "The ID of the park should not be negative or zero.";
 
     }
 }

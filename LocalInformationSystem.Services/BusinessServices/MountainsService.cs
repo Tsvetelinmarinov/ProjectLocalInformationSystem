@@ -73,5 +73,30 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             _ = repository.SaveChanges();
         }
+
+        /// <summary>
+        ///  Retrieves concrete park from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the park.
+        /// </param>
+        /// <returns>
+        ///  The park with the specified ID.
+        /// </returns>
+        public ParkDTO FindParkById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InavlidParkId);
+            }
+
+            var parkEntity = repository.FindParkById(id);
+
+            var parkDTO
+                = mapper.Map<ParkDTO>(parkEntity)
+                   ?? throw new InvalidOperationException(UnableToMapParkToParkDTO);
+
+            return parkDTO;
+        }
     }
 }

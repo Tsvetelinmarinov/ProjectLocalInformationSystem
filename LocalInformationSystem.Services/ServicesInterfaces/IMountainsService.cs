@@ -7,5 +7,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         IEnumerable<MountainDTO> GetAllMountains();
         MountainDTO FindMountainById(int id);
         void UpdateMountain(MountainDTO mountainDTO);
+        ParkDTO FindParkById(int id);
     }
 }

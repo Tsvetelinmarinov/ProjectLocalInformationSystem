@@ -180,6 +180,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Retrieves concrete park from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the park.
+        /// </param>
+        /// <returns>
+        ///  The park with the specified ID.
+        /// </returns>
+        public Park FindParkById(int id)
+        {
+            var parkEntity = this._dbContext
+                .Parks
+                .AsNoTracking()
+                .Include((park) => park.Mountain)
+                .FirstOrDefault((park) => park.ParkId == id)
+                  ?? throw new InvalidOperationException(NoSuchEntityInDb);
+
+            return parkEntity;
+        }
+
+        /// <summary>
         ///  Saves changes made to the entities.
         /// </summary>
         /// <returns>

@@ -73,7 +73,13 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpGet]
         public IActionResult ParkDetails([FromRoute] int id)
         {
-            return NotFound();
+            var parkDTO = service.FindParkById(id);
+
+            var parkModel
+                = mapper.Map<ParkViewModel>(parkDTO)
+                   ?? throw new InvalidOperationException(UnableToMapParkDTOToParkViewModel);
+
+            return View(parkModel);
         }
     }
 }
