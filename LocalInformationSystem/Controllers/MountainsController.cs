@@ -41,7 +41,7 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpGet]
         public IActionResult EditMountain(int id)
         {
-            return StatusCode(666);
+            return NotFound();
         }
     }
 }

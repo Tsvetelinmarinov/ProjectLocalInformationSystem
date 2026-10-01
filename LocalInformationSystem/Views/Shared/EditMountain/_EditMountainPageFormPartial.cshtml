@@ -1,0 +1,58 @@
+﻿@model MountainViewModel
+
+<form asp-controller="Mountains" asp-action="EditMountain" method="post">
+    <div class="card-body p-4">
+
+        <!-- Hidden Field for ID -->
+        <input type="hidden" asp-for="MountainId" />
+
+        <div class="row g-3">
+            <!-- Mountain Name -->
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Mountain Name</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-geo"></i></span>
+                    <input asp-for="Name" class="form-control" placeholder="Enter mountain name" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <!-- Highest Peak -->
+            <div class="col-md-6">
+                <label asp-for="HighestPeak" class="form-label fw-semibold">Highest Peak</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-building"></i></span>
+                    <input asp-for="HighestPeak" type="number" class="form-control" placeholder="Enter highest peak elevation" />
+                </div>
+                <span asp-validation-for="HighestPeak" class="text-danger small"></span>
+            </div>
+
+            <!-- Elevation (Meters) -->
+            <div class="col-md-6">
+                <label asp-for="ElevationMeters" class="form-label fw-semibold">Elevation (meters)</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-mountain"></i></span>
+                    <input asp-for="ElevationMeters" type="number" class="form-control" placeholder="e.g. 550" />
+                </div>
+                <span asp-validation-for="ElevationMeters" class="text-danger small"></span>
+            </div>
+
+            <!-- Area (Square Kilometers) -->
+            <div class="col-md-6">
+                <label asp-for="AreaSqKm" class="form-label fw-semibold">Area (Square Kilometres)</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-area"></i></span>
+                    <input asp-for="AreaSqKm" type="number" class="form-control" placeholder="e.g. 550" />
+                </div>
+                <span asp-validation-for="AreaSqKm" class="text-danger small"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Footer Actions -->
+    <div class="card-footer bg-light px-4 py-3 d-flex justify-content-end gap-2 border-top-0 rounded-bottom-4">
+        <button type="submit" class="btn btn-primary rounded-pill px-4">
+            <i class="bi bi-check-lg me-1"></i> Save Changes
+        </button>
+    </div>
+</form>

@@ -1,0 +1,9 @@
+﻿@model MountainViewModel
+
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Mountains" asp-action="Index" class="text-decoration-none">Mountains</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Mountains" asp-action="ConcreteMountain" asp-route-id="@Model.MountainId" class="text-decoration-none">@Model.Name</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+</nav>
