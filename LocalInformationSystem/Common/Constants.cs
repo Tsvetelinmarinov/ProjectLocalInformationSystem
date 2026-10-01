@@ -71,6 +71,27 @@
         internal const string CityNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([- ]?[\p{L}]*)$";
 
         #endregion
+        #region MountainViewModel
+        
+        internal const int MountainNameMaxLen = 100;
+        internal const int MountainHighestPeakMaxLen = 100;
+        internal const double MountainElevationMin = 1;
+        internal const double MountainElevationMax = 9000;
+        internal const double MountainAreaMin = 0.01;
+        internal const double MountainAreaMax = 100_000;
+
+        internal const string MountainNameIsRequired = "The name of the mountain is required";
+        internal const string MountainNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([ ]?[\p{L}]*)$";
+        internal const string MountainNameShouldStartWithUppercase = "The name of the mountain should start with uppercase letter";
+        internal const string MountainHighestPeakRegExValidator = @"^([\p{Lu}][\p{L}]*)([ ]?[\p{L}]*)$";
+        internal const string MountainHighestPeakShouldStartWithUppercase = "The highest peak of the mountain should start with uppercase letter";
+        internal const string MountainHighestPeakIsRequired = "The highest peak of the mountain is required";
+        internal const string MountainElevationIsRequired = "The elevation of the mountain is required";
+        internal const string InvalidMountainElevation = "The elevation of the mountain should be between {1} and {2} metres";
+        internal const string MountainAreaIsRequired = "The area of the mountain is required";
+        internal const string MountainAreaInvalidRange = "The area of the mountain should be between {1} and {2} square kilometres";
+
+        #endregion
 
         #endregion
     }
