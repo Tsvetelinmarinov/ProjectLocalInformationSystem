@@ -41,7 +41,13 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpGet]
         public IActionResult EditMountain(int id)
         {
-            return NotFound();
+            var mountainDTO = service.FindMountainById(id);
+
+            var mountainModel
+                = mapper.Map<MountainViewModel>(mountainDTO)
+                 ?? throw new InvalidOperationException(UnableToMapMountainDTOToViewModel);
+
+            return View(mountainModel);
         }
     }
 }
