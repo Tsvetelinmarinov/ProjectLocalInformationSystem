@@ -69,5 +69,11 @@ namespace LocalInformationSystem.Web.Controllers
             service.UpdateMountain(mapper.Map<MountainDTO>(mountainViewModel));
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult ParkDetails([FromRoute] int id)
+        {
+            return NotFound();
+        }
     }
 }
