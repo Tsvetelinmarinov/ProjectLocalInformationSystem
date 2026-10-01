@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
@@ -27,7 +28,7 @@ namespace LocalInformationSystem.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult ConcreteMountain(int id)
+        public IActionResult ConcreteMountain([FromRoute] int id)
         {
             var mountainDTO = service.FindMountainById(id);
 
@@ -39,7 +40,7 @@ namespace LocalInformationSystem.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditMountain(int id)
+        public IActionResult EditMountain([FromRoute] int id)
         {
             var mountainDTO = service.FindMountainById(id);
 
@@ -48,6 +49,25 @@ namespace LocalInformationSystem.Web.Controllers
                  ?? throw new InvalidOperationException(UnableToMapMountainDTOToViewModel);
 
             return View(mountainModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditMountain(
+            [FromRoute] int id,
+            [FromForm] MountainViewModel mountainViewModel
+        ){
+            if (id != mountainViewModel.MountainId)
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid is false)
+            {
+                return View(mountainViewModel);
+            }
+
+            service.UpdateMountain(mapper.Map<MountainDTO>(mountainViewModel));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

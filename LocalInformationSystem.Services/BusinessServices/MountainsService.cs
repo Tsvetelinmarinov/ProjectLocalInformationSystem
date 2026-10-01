@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 
 using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 
@@ -53,6 +54,24 @@ namespace LocalInformationSystem.Services.BusinessServices
                    ?? throw new InvalidOperationException(UnableToMapMountainDTO);
 
             return mountainDTO;
+        }
+
+        /// <summary>
+        ///  Updates the mountain in the database.
+        /// </summary>
+        /// <param name="mountainDTO">
+        ///  The mountain DTO to be updated.
+        /// </param>
+        public void UpdateMountain(MountainDTO mountainDTO)
+        {
+            var mountainEntity = repository.FindEntityById<Mountain>(mountainDTO.MountainId);
+
+            mountainEntity.Name = mountainDTO.Name;
+            mountainEntity.HighestPeak = mountainDTO.HighestPeak;
+            mountainEntity.ElevationMeters = mountainDTO.ElevationMeters;
+            mountainEntity.AreaSqKm = mountainDTO.AreaSqKm;
+
+            _ = repository.SaveChanges();
         }
     }
 }
