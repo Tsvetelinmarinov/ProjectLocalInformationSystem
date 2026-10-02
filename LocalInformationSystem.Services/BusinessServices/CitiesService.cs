@@ -133,5 +133,23 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             return landmarkDto;
         }
+
+        /// <summary>
+        ///  Updates landmark.
+        /// </summary>
+        /// <param name="landmarkDTO">
+        ///  The new LandmarkDTO with the information.
+        /// </param>
+        public void UpdateLandmark(LandmarkDTO landmarkDTO)
+        {
+            var landmarkEntity = this._database.FindEntityById<Landmark>(landmarkDTO.LandmarkId);
+
+            landmarkEntity.Name = landmarkDTO.Name;
+            landmarkEntity.Category = landmarkDTO.Category;
+            landmarkEntity.CityId = landmarkDTO.CityId;
+            landmarkEntity.UnescoSite = landmarkDTO.UnescoSite;
+
+            _ = this._database.SaveChanges();
+        }
     }
 }

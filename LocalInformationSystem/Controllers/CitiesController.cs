@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 
-using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
-
-using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
 
 using static LocalInformationSystem.Web.Common.Constants;
 
@@ -130,6 +126,30 @@ namespace LocalInformationSystem.Web.Controllers
                   ?? throw new InvalidOperationException(CannotMapLandmarkDtoToViewModel);
 
             return View(landmarkModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditLandmark(
+            [FromRoute] int id,
+            [FromForm] LandmarkViewModel landmark
+        ){
+            if (id != landmark.LandmarkId)
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid is false)
+            {
+                return View(landmark);
+            }
+
+            this._service.UpdateLandmark(
+                this._mapper.Map<LandmarkDTO>(landmark) 
+                    ?? throw new InvalidOperationException(CannotMapLandmarkViewModelToDTO)
+            );
+
+            // Redirect to the ConcreteCity action with the city ID of the updated landmark
+            return RedirectToAction(nameof(LandmarkDetails), new { id = landmark.LandmarkId });
         }
     }
 }
