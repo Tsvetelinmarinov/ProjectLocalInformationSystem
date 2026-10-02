@@ -73,8 +73,24 @@
         internal const string CityNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([- ]?[\p{L}]*)$";
 
         #endregion
+        #region LandmarkViewModel
+
+        internal const int LandmarkNameMinLen = 2;
+        internal const int LandmarkNameMaxLen = 100;
+        internal const int LandmarkCategoryMinLen = 2;
+        internal const int LandmarkCategoryMaxLen = 100;
+
+        internal const string LandmarkNameIsRequired = "The name of the landmark is required";
+        internal const string InvalidLandmarkNameLength = "The name of the landmark should be between {2} and {1} characters long";
+        internal const string LandmarkNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([- ]?[\p{L}]*)*$";
+        internal const string LandmarkNameShouldStartWithUppercase = "The name of the landmark should start with uppercase letter";
+        internal const string LandmarkCategoryIsRequired = "The category of the landmark is required";
+        internal const string InvalidLandmarkCategoryLength = "The category should be between {2} and {1} characters long";
+        internal const string LandmarkCityIdIsRequired = "The city ID is required";
+
+        #endregion
         #region MountainViewModel
-        
+
         internal const int MountainNameMaxLen = 100;
         internal const int MountainHighestPeakMaxLen = 100;
         internal const double MountainElevationMin = 1;

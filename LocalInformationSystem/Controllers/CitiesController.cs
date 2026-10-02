@@ -140,6 +140,7 @@ namespace LocalInformationSystem.Web.Controllers
 
             if (this.ModelState.IsValid is false)
             {
+                this.TempData["Cities"] = this._service.GetAllCities();
                 return View(landmark);
             }
 

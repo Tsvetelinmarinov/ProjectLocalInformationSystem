@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using LocalInformationSystem.Web.Common;
 
 namespace LocalInformationSystem.Web.ViewModels;
 
@@ -9,12 +10,27 @@ public class LandmarkViewModel
 {
     public int LandmarkId { get; set; }
 
-    [StringLength(150)]
+    [Required(ErrorMessage = Constants.LandmarkNameIsRequired)]
+    [StringLength(
+        Constants.LandmarkNameMaxLen, 
+        MinimumLength = Constants.LandmarkNameMinLen,
+        ErrorMessage = Constants.InvalidLandmarkNameLength
+    )]
+    [RegularExpression(pattern: 
+        Constants.LandmarkNameRegExValidator, 
+        ErrorMessage = Constants.LandmarkNameShouldStartWithUppercase
+    )]
     public string Name { get; set; } = null!;
 
-    [StringLength(50)]
+    [Required(ErrorMessage = Constants.LandmarkCategoryIsRequired)]
+    [StringLength(
+        Constants.LandmarkCategoryMaxLen, 
+        MinimumLength = Constants.LandmarkCategoryMinLen,
+        ErrorMessage = Constants.InvalidLandmarkCategoryLength
+    )]
     public string Category { get; set; } = null!;
 
+    [Required(ErrorMessage = Constants.LandmarkCityIdIsRequired)]
     public int? CityId { get; set; }
 
     public bool? UnescoSite { get; set; }
