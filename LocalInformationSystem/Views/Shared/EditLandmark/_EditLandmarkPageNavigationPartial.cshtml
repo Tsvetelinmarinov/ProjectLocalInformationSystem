@@ -1,0 +1,9 @@
+﻿@model LandmarkViewModel
+
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Cities" asp-action="Index" class="text-decoration-none">Cities</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Cities" asp-action="LandmarkDetails" asp-route-id="@Model.LandmarkId" class="text-decoration-none">@Model.Name</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit</li>
+    </ol>
+</nav>

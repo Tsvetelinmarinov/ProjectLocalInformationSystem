@@ -117,5 +117,19 @@ namespace LocalInformationSystem.Web.Controllers
 
             return View(landmarkModel);
         }
+
+        [HttpGet]
+        public IActionResult EditLandmark(int id)
+        {
+            var landmarkDTO = this._service.FindLandmarkById(id);
+            var citiesDTOs = this._service.GetAllCities();
+            this.ViewBag.Cities = citiesDTOs;
+
+            var landmarkModel
+                = this._mapper.Map<LandmarkViewModel>(landmarkDTO)
+                  ?? throw new InvalidOperationException(CannotMapLandmarkDtoToViewModel);
+
+            return View(landmarkModel);
+        }
     }
 }
