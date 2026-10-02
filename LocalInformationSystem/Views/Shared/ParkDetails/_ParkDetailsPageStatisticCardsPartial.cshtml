@@ -1,11 +1,12 @@
 ﻿@model ParkViewModel
 
 <div class="row g-3 mb-4">
+    <!-- Име / Име на парка -->
     <div class="col-md-4">
         <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
             <div class="card-body d-flex align-items-center">
                 <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3 text-primary">
-                    <i class="bi bi-geo-alt fs-2"></i>
+                    <i class="bi bi-tree fs-2"></i>
                 </div>
                 <div>
                     <div class="text-muted small text-uppercase fw-semibold">Name</div>
@@ -15,11 +16,12 @@
         </div>
     </div>
 
+    <!-- Тип -->
     <div class="col-md-4">
         <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
             <div class="card-body d-flex align-items-center">
                 <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3 text-primary">
-                    <i class="bi bi-geo-alt fs-2"></i>
+                    <i class="bi bi-tags fs-2"></i>
                 </div>
                 <div>
                     <div class="text-muted small text-uppercase fw-semibold">Type</div>
@@ -29,11 +31,12 @@
         </div>
     </div>
 
+    <!-- Година на създаване -->
     <div class="col-md-4">
         <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
             <div class="card-body d-flex align-items-center">
                 <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3 text-primary">
-                    <i class="bi bi-geo-alt fs-2"></i>
+                    <i class="bi bi-calendar-event fs-2"></i>
                 </div>
                 <div>
                     <div class="text-muted small text-uppercase fw-semibold">Established Year</div>
@@ -43,11 +46,12 @@
         </div>
     </div>
 
+    <!-- Площ -->
     <div class="col-md-4">
         <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
             <div class="card-body d-flex align-items-center">
                 <div class="rounded-circle bg-primary bg-opacity-10 p-3 me-3 text-primary">
-                    <i class="bi bi-geo-alt fs-2"></i>
+                    <i class="bi bi-aspect-ratio fs-2"></i>
                 </div>
                 <div>
                     <div class="text-muted small text-uppercase fw-semibold">Area</div>
@@ -57,11 +61,12 @@
         </div>
     </div>
 
+    <!-- ЮНЕСКО обект -->
     <div class="col-md-4">
         <div class="card border-0 shadow-sm rounded-4 h-100 p-3">
             <div class="card-body d-flex align-items-center">
                 <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3 text-success">
-                    <i class="bi bi-aspect-ratio fs-2"></i>
+                    <i class="bi bi-bank fs-2"></i>
                 </div>
                 <div>
                     <div class="text-muted small text-uppercase fw-semibold">UNESCO site</div>
@@ -69,11 +74,11 @@
                         @{
                             if (this.Model.UnescoSite is true)
                             {
-                                <p>Protected by UNESCO</p>
+                                <p class="mb-0">Protected by UNESCO</p>
                             }
                             else
                             {
-                                <p>Not protected by UNESCO</p>
+                                <p class="mb-0">Not protected by UNESCO</p>
                             }
                         }
                     </div>
