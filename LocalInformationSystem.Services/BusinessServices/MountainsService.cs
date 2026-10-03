@@ -5,7 +5,7 @@ using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 
-using static LocalInformationSystem.Services.Common.Constants;
+using static LocalInformationSystem.Services.Common.ServiceConstants;
 
 namespace LocalInformationSystem.Services.BusinessServices
 {

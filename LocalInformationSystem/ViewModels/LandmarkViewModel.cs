@@ -10,27 +10,27 @@ public class LandmarkViewModel
 {
     public int LandmarkId { get; set; }
 
-    [Required(ErrorMessage = Constants.LandmarkNameIsRequired)]
+    [Required(ErrorMessage = WebConstants.LandmarkNameIsRequired)]
     [StringLength(
-        Constants.LandmarkNameMaxLen, 
-        MinimumLength = Constants.LandmarkNameMinLen,
-        ErrorMessage = Constants.InvalidLandmarkNameLength
+        WebConstants.LandmarkNameMaxLen, 
+        MinimumLength = WebConstants.LandmarkNameMinLen,
+        ErrorMessage = WebConstants.InvalidLandmarkNameLength
     )]
     [RegularExpression(pattern: 
-        Constants.LandmarkNameRegExValidator, 
-        ErrorMessage = Constants.LandmarkNameShouldStartWithUppercase
+        WebConstants.LandmarkNameRegExValidator, 
+        ErrorMessage = WebConstants.LandmarkNameShouldStartWithUppercase
     )]
     public string Name { get; set; } = null!;
 
-    [Required(ErrorMessage = Constants.LandmarkCategoryIsRequired)]
+    [Required(ErrorMessage = WebConstants.LandmarkCategoryIsRequired)]
     [StringLength(
-        Constants.LandmarkCategoryMaxLen, 
-        MinimumLength = Constants.LandmarkCategoryMinLen,
-        ErrorMessage = Constants.InvalidLandmarkCategoryLength
+        WebConstants.LandmarkCategoryMaxLen, 
+        MinimumLength = WebConstants.LandmarkCategoryMinLen,
+        ErrorMessage = WebConstants.InvalidLandmarkCategoryLength
     )]
     public string Category { get; set; } = null!;
 
-    [Required(ErrorMessage = Constants.LandmarkCityIdIsRequired)]
+    [Required(ErrorMessage = WebConstants.LandmarkCityIdIsRequired)]
     public int? CityId { get; set; }
 
     public bool? UnescoSite { get; set; }

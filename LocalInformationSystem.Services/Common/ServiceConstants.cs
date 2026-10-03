@@ -1,6 +1,6 @@
 ﻿namespace LocalInformationSystem.Services.Common
 {
-    internal static class Constants
+    internal static class ServiceConstants
     {
         // ProvincesService constants.
         internal const string ProvinceError = "Error while retrieving the provinces from the database.";

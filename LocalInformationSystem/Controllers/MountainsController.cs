@@ -6,7 +6,7 @@ using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static LocalInformationSystem.Web.Common.Constants;
+using static LocalInformationSystem.Web.Common.WebConstants;
 
 namespace LocalInformationSystem.Web.Controllers
 {
@@ -80,6 +80,28 @@ namespace LocalInformationSystem.Web.Controllers
                    ?? throw new InvalidOperationException(UnableToMapParkDTOToParkViewModel);
 
             return View(parkModel);
+        }
+
+        [HttpGet]
+        public IActionResult EditPark([FromRoute] int id)
+        {
+            var parkDTO = service.FindParkById(id);
+
+            var parkModel
+                = mapper.Map<ParkViewModel>(parkDTO)
+                  ?? throw new InvalidOperationException(UnableToMapParkDTOToParkViewModel);
+
+            ViewBag.Mountains = service.GetAllMountains();
+
+            return View(parkModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditPark(
+            [FromRoute] int id,
+            [FromForm] ParkViewModel parkModel
+        ){
+            return StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }
