@@ -28,12 +28,6 @@ public partial class BgDatabaseContext : DbContext
     #endregion
     #region Fluent API
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer(
-            "Server=DESKTOP-SVT1AQQ\\SQLEXPRESS;Database=BgDatabase;Trusted_Connection=true;TrustServerCertificate=true;Encrypt=false;"
-        );
-    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<City>(entity =>
@@ -77,7 +71,6 @@ public partial class BgDatabaseContext : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
-
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
     #endregion

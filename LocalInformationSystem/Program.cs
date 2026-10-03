@@ -22,6 +22,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BgDatabaseContext>((dbContextOptionsBuilder) =>
 {
     dbContextOptionsBuilder.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
         (sqlServerOptBuilder) =>
         {
             sqlServerOptBuilder.UseParameterizedCollectionMode(
@@ -71,6 +72,21 @@ app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}")
 
 #endregion
 #region Startup
+
+// Ensure database is created and migrations are applied at startup.
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<BgDatabaseContext>();
+        db.Database.Migrate();
+    }
+    catch (Exception ex)
+    {
+        // If migration fails during startup we at least write to console. The app will still attempt to start.
+        Console.WriteLine($"Database migration failed: {ex.Message}");
+    }
+}
 
 app.Run();
 
