@@ -112,7 +112,9 @@ namespace LocalInformationSystem.Web.Controllers
                 return View(parkModel);
             }
 
-            service.UpdatePark(mapper.Map<ParkDTO>(parkModel));
+            var parkDTO = mapper.Map<ParkDTO>(parkModel);
+            service.UpdatePark(parkDTO);
+
             return RedirectToAction(nameof(ParkDetails), new[] { id = parkModel.ParkId });
         }
     }
