@@ -101,7 +101,19 @@ namespace LocalInformationSystem.Web.Controllers
             [FromRoute] int id,
             [FromForm] ParkViewModel parkModel
         ){
-            return StatusCode(StatusCodes.Status204NoContent);
+            if (id != parkModel.ParkId)
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid is false)
+            {
+                this.TempData["Mountains"] = service.GetAllMountains();
+                return View(parkModel);
+            }
+
+            service.UpdatePark(mapper.Map<ParkDTO>(parkModel));
+            return RedirectToAction(nameof(ParkDetails), new[] { id = parkModel.ParkId });
         }
     }
 }

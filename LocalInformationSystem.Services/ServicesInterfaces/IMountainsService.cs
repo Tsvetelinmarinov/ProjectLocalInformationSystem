@@ -8,5 +8,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         MountainDTO FindMountainById(int id);
         void UpdateMountain(MountainDTO mountainDTO);
         ParkDTO FindParkById(int id);
+        void UpdatePark(ParkDTO parkDTO);
     }
 }

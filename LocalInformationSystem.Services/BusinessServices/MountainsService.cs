@@ -98,5 +98,25 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             return parkDTO;
         }
+
+        /// <summary>
+        ///  Updates the park in the database.
+        /// </summary>
+        /// <param name="parkDTO">
+        ///  The park DTO to be updated.
+        /// </param>
+        public void UpdatePark(ParkDTO parkDTO)
+        {
+            var parkEntity = repository.FindEntityById<Park>(parkDTO.ParkId);
+
+            parkEntity.Name = parkDTO.Name;
+            parkEntity.Type = parkDTO.Type;
+            parkEntity.AreaSqKm = parkDTO.AreaSqKm;
+            parkEntity.EstablishedYear = parkDTO.EstablishedYear;
+            parkEntity.MountainId = parkDTO.MountainId;
+            parkEntity.UnescoSite = parkDTO.UnescoSite;
+
+            _ = repository.SaveChanges();
+        }
     }
 }
