@@ -17,6 +17,7 @@
         // Mountains methods constants.
         internal const string NoMountainsFromDb = "No mountains available! Something went wrong with the database!";
         internal const string UnableToMapCityToCityDTO = "Error while mapping City to CityDTO!";
+        internal const string NoSuchMountainInDb = "Mountain with specified ID was not found in the database.";
 
         // Common constants.
         internal const string NoSuchEntityInDb = "Specified entity not found in the database.";

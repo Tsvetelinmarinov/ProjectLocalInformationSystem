@@ -5,7 +5,7 @@ using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 
-using static LocalInformationSystem.Services.Common.Constants;
+using static LocalInformationSystem.Services.Common.ServiceConstants;
 
 namespace LocalInformationSystem.Services.BusinessServices
 {
@@ -132,6 +132,36 @@ namespace LocalInformationSystem.Services.BusinessServices
                   ?? throw new InvalidOperationException(CannotMapLandmarkToLandmarkDTO);
 
             return landmarkDto;
+        }
+
+        /// <summary>
+        ///  Updates landmark.
+        /// </summary>
+        /// <param name="landmarkDTO">
+        ///  The new LandmarkDTO with the information.
+        /// </param>
+        public void UpdateLandmark(LandmarkDTO landmarkDTO)
+        {
+            var landmarkEntity = this._database.FindEntityById<Landmark>(landmarkDTO.LandmarkId);
+
+            landmarkEntity.Name = landmarkDTO.Name;
+            landmarkEntity.Category = landmarkDTO.Category;
+            landmarkEntity.CityId = landmarkDTO.CityId;
+            landmarkEntity.UnescoSite = landmarkDTO.UnescoSite;
+
+            _ = this._database.SaveChanges();
+        }
+
+        /// <summary>
+        ///  Adds new landmark to the database.
+        /// </summary>
+        /// <param name="landmark">
+        ///  The landmark entity to be added to the database.
+        /// </param>
+        public void AddLandmark(LandmarkDTO landmarkDTO)
+        {
+            var landmarkEntity = this._mapper.Map<Landmark>(landmarkDTO);
+            this._database.AddLandmark(landmarkEntity);
         }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using LocalInformationSystem.Data.DatabaseContext;
 using LocalInformationSystem.Data.Entities;
-using Microsoft.EntityFrameworkCore;
 
-using System.Globalization;
+using Microsoft.EntityFrameworkCore;
 
 using static LocalInformationSystem.Data.Common.Constants;
 
@@ -34,6 +33,8 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 
         #endregion
         #region Functionality
+
+        #region Provinces Service
 
         /// <summary>
         ///  Retrieves all the provinces from the database.
@@ -78,6 +79,9 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return province;
         }
 
+        #endregion
+        #region Cities Service
+
         /// <summary>
         ///  Retrieves all the cities from the database.
         /// </summary>
@@ -117,6 +121,9 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 
             return city;
         }
+
+        #endregion
+        #region Mountains Service
 
         /// <summary>
         ///  Retrieves all the mountains from the database.
@@ -158,6 +165,63 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 
             return landmark;
         }
+
+        /// <summary>
+        ///  Retrieves concrete mountain from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the mountain.
+        /// </param>
+        /// <returns>
+        ///  The mountain with the specified ID.
+        /// </returns>
+        public Mountain FindMountainById(int id)
+        {
+            var mountain = this._dbContext
+                .Mountains
+                .AsNoTracking()
+                .Include((mountain) => mountain.Parks)
+                .FirstOrDefault((mountain) => mountain.MountainId == id)
+                  ?? throw new InvalidOperationException(NoSuchEntityInDb);
+
+            return mountain;
+        }
+
+        /// <summary>
+        ///  Retrieves concrete park from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the park.
+        /// </param>
+        /// <returns>
+        ///  The park with the specified ID.
+        /// </returns>
+        public Park FindParkById(int id)
+        {
+            var parkEntity = this._dbContext
+                .Parks
+                .AsNoTracking()
+                .Include((park) => park.Mountain)
+                .FirstOrDefault((park) => park.ParkId == id)
+                  ?? throw new InvalidOperationException(NoSuchEntityInDb);
+
+            return parkEntity;
+        }
+
+        /// <summary>
+        ///  Adds new landmark to the database.
+        /// </summary>
+        /// <param name="landmark">
+        ///  The landmark entity to be added to the database.
+        /// </param>
+        public void AddLandmark(Landmark landmark)
+        {
+            this._dbContext.Landmarks.Add(landmark);
+            this.SaveChanges();
+        }
+
+        #endregion
+        #region Common Functionality
 
         /// <summary>
         ///  Saves changes made to the entities.
@@ -204,6 +268,8 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             GC.SuppressFinalize(this);
             this._dbContext.Dispose();
         }
+
+        #endregion
 
         #endregion
     }

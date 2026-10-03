@@ -1,0 +1,81 @@
+﻿@using LocalInformationSystem.Services.DataTransferObjects
+@model LandmarkViewModel
+
+<form asp-controller="Cities" asp-action="EditLandmark" method="post">
+    <div class="card-body p-4">
+
+        <!-- Hidden Field for ID -->
+        <input type="hidden" asp-for="LandmarkId" />
+
+        <div class="row g-3">
+            <!-- Landmark Name -->
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Landmark Name</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-geo"></i></span>
+                    <input asp-for="Name" class="form-control" placeholder="Enter landmark name" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <!-- Category -->
+            <div class="col-md-6">
+                <label asp-for="Category" class="form-label fw-semibold">Category</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-tag"></i></span>
+                    <input asp-for="Category" class="form-control" placeholder="Enter landmark category" />
+                </div>
+                <span asp-validation-for="Category" class="text-danger small"></span>
+            </div>
+
+            <!-- City ID -->
+            <div class="col-md-6">
+                <label asp-for="CityId" class="form-label fw-semibold">City</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-buildings"></i></span>
+                    <select asp-for="CityId" class="form-control">
+                        <option value="">Select a city</option>
+                        @if (ViewBag.Cities != null)
+                        {
+                            @foreach (var city in ViewBag.Cities)
+                            {
+                                <option value="@city.CityId">@city.Name</option>
+                            }
+                        }
+                        else if (TempData["Cities"] != null)
+                        {
+                            @foreach (var city in (IEnumerable<CityDTO>)TempData["Cities"]!)
+                            {
+                                <option value="@city.CityId">@city.Name</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="">No cities available</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="CityId" class="text-danger small"></span>
+            </div>
+
+            <!-- UNESCO site -->
+            <div class="col-md-6">
+                <label asp-for="UnescoSite" class="form-label fw-semibold">UNESCO State</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-bank"></i></span>
+                    <select asp-for="UnescoSite" class="form-control">
+                        <option value="true">Protected by UNESCO</option>
+                        <option value="false">Not protected by UNESCO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Footer Actions -->
+    <div class="card-footer bg-light px-4 py-3 d-flex justify-content-end gap-2 border-top-0 rounded-bottom-4">
+        <button type="submit" class="btn btn-primary rounded-pill px-4">
+            <i class="bi bi-check-lg me-1"></i> Save Changes
+        </button>
+    </div>
+</form>

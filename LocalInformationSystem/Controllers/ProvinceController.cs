@@ -6,7 +6,7 @@ using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
 
-using static LocalInformationSystem.Web.Common.Constants;
+using static LocalInformationSystem.Web.Common.WebConstants;
 
 namespace LocalInformationSystem.Web.Controllers
 {

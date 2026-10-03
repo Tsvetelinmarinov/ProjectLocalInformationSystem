@@ -1,0 +1,20 @@
+﻿@model MountainViewModel
+
+@{
+    this.ViewData["Title"] = $"Mountain {this.Model.Name}";
+}
+
+<div class="container py-4">
+    <!-- Navigation --> 
+    <partial name="ConcreteMountain/_ConcreteMountainPageNavigationPartial" model="@this.Model"/>
+    <!-- Header --> 
+    <partial name="ConcreteMountain/_ConcreteMountainPageHeaderPartial" model="@this.Model"/>
+    <!-- StatisticCards --> 
+    <partial name="ConcreteMountain/_ConcreteMountainPageStatisticCardsPartial" model="@this.Model"/>
+    <!-- ParksList --> 
+    <partial name="ConcreteMountain/_ConcreteMountainPageParksListPartial" model="@this.Model"/>
+</div>
+
+@section Design {
+    <link rel="stylesheet" fref="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+}

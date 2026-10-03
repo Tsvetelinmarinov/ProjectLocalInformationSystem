@@ -1,16 +1,13 @@
 ﻿using AutoMapper;
 
-using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
-using System.Numerics;
-using System.Reflection.Metadata.Ecma335;
-
-using static LocalInformationSystem.Web.Common.Constants;
+using static LocalInformationSystem.Web.Common.WebConstants;
 
 namespace LocalInformationSystem.Web.Controllers
 {
@@ -75,7 +72,7 @@ namespace LocalInformationSystem.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult EditCity([FromRoute] int id)
+        public IActionResult EditCity(int id)
         {
             var cityDTO = this._service.FindCityById(id);
             var cityModel = this._mapper.Map<CityViewModel>(cityDTO);
@@ -116,6 +113,63 @@ namespace LocalInformationSystem.Web.Controllers
                 ?? throw new InvalidOperationException(CannotMapLandmarkDtoToViewModel);
 
             return View(landmarkModel);
+        }
+
+        [HttpGet]
+        public IActionResult EditLandmark(int id)
+        {
+            var landmarkDTO = this._service.FindLandmarkById(id);
+            var citiesDTOs = this._service.GetAllCities();
+            this.ViewBag.Cities = citiesDTOs;
+
+            var landmarkModel
+                = this._mapper.Map<LandmarkViewModel>(landmarkDTO)
+                  ?? throw new InvalidOperationException(CannotMapLandmarkDtoToViewModel);
+
+            return View(landmarkModel);
+        }
+
+        [HttpPost]
+        public IActionResult EditLandmark(
+            [FromRoute] int id,
+            [FromForm] LandmarkViewModel landmark
+        ){
+            if (id != landmark.LandmarkId)
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid is false)
+            {
+                this.TempData["Cities"] = this._service.GetAllCities();
+                return View(landmark);
+            }
+
+            this._service.UpdateLandmark(
+                this._mapper.Map<LandmarkDTO>(landmark) 
+                    ?? throw new InvalidOperationException(CannotMapLandmarkViewModelToDTO)
+            );
+
+            // Redirect to the ConcreteCity action with the city ID of the updated landmark
+            return RedirectToAction(nameof(LandmarkDetails), new { id = landmark.LandmarkId });
+        }
+
+        [HttpGet]
+        public IActionResult AddLandmark(int? cityId)
+        {
+            var viewModel = new LandmarkViewModel { CityId = cityId };
+            this.ViewBag.Cities = this._service.GetAllCities();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddLandmark([FromForm] LandmarkViewModel landmarkModel)
+        {
+            var landmarkDTO = this._mapper.Map<LandmarkDTO>(landmarkModel)
+                ?? throw new InvalidOperationException(CannotMapLandmarkViewModelToDTO);
+
+            this._service.AddLandmark(landmarkDTO);
+            return this.RedirectToAction(nameof(Index));
         }
     }
 }

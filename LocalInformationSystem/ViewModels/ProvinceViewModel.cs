@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-using static LocalInformationSystem.Web.Common.Constants;
+using static LocalInformationSystem.Web.Common.WebConstants;
 
 namespace LocalInformationSystem.Web.ViewModels;
 

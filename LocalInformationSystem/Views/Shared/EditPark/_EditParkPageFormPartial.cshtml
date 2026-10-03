@@ -1,0 +1,101 @@
+﻿@using LocalInformationSystem.Services.DataTransferObjects
+@model ParkViewModel
+
+<form asp-controller="Mountains" asp-action="EditPark" method="post">
+    <div class="card-body p-4">
+
+        <!-- Hidden Field for ID -->
+        <input type="hidden" asp-for="ParkId" />
+
+        <div class="row g-3">
+            <!-- Park Name -->
+            <div class="col-md-6">
+                <label asp-for="Name" class="form-label fw-semibold">Park Name</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-geo"></i></span>
+                    <input asp-for="Name" class="form-control" placeholder="Enter park name" />
+                </div>
+                <span asp-validation-for="Name" class="text-danger small"></span>
+            </div>
+
+            <!-- Park Type -->
+            <div class="col-md-6">
+                <label asp-for="Type" class="form-label fw-semibold">Park Type</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-building"></i></span>
+                    <input asp-for="Type" class="form-control" placeholder="Choose type of the park" />
+                </div>
+                <span asp-validation-for="Type" class="text-danger small"></span>
+            </div>
+
+            <!-- Established Year -->
+            <div class="col-md-6">
+                <label asp-for="EstablishedYear" class="form-label fw-semibold">Established Year</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-arrow-up-circle"></i></span>
+                    <input asp-for="EstablishedYear" type="number" class="form-control" placeholder="e.g. 1950" />
+                </div>
+                <span asp-validation-for="EstablishedYear" class="text-danger small"></span>
+            </div>
+
+            <!-- Area (Square Kilometers) -->
+            <div class="col-md-6">
+                <label asp-for="AreaSqKm" class="form-label fw-semibold">Area (Square Kilometres)</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-aspect-ratio"></i></span>
+                    <input asp-for="AreaSqKm" type="number" class="form-control" placeholder="e.g. 550" />
+                </div>
+                <span asp-validation-for="AreaSqKm" class="text-danger small"></span>
+            </div>
+
+            <!-- Mountain ID -->
+            <div class="col-md-6">
+                <label asp-for="MountainId" class="form-label fw-semibold">Mountain</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-geo"></i></span>
+                    <select asp-for="MountainId" class="form-control">
+                        <option value="">Select a mountain</option>
+                        @if (ViewBag.Mountains != null)
+                        {
+                            @foreach (var mountain in ViewBag.Mountains)
+                            {
+                                <option value="@mountain.MountainId">@mountain.Name</option>
+                            }
+                        }
+                        else if (TempData["Mountains"] != null)
+                        {
+                            @foreach (var mountain in (IEnumerable<MountainDTO>)TempData["Mountains"]!)
+                            {
+                                <option value="@mountain.MountainId">@mountain.Name</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="">No mountains available</option>
+                        }
+                    </select>
+                </div>
+                <span asp-validation-for="MountainId" class="text-danger small"></span>
+            </div>
+
+            <!-- UNESCO site -->
+            <div class="col-md-6">
+                <label asp-for="UnescoSite" class="form-label fw-semibold">UNESCO State</label>
+                <div class="input-group">
+                    <span class="input-group-text bg-light text-muted"><i class="bi bi-bank"></i></span>
+                    <select asp-for="UnescoSite" class="form-control">
+                        <option value="true">Protected by UNESCO</option>
+                        <option value="false">Not protected by UNESCO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card Footer Actions -->
+    <div class="card-footer bg-light px-4 py-3 d-flex justify-content-end gap-2 border-top-0 rounded-bottom-4">
+        <button type="submit" class="btn btn-primary rounded-pill px-4">
+            <i class="bi bi-check-lg me-1"></i> Save Changes
+        </button>
+    </div>
+</form>
