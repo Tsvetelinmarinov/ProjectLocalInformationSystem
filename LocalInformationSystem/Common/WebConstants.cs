@@ -42,7 +42,7 @@
         internal const double ProvincePopulationMax = 10_000_000;
 
         internal const string InvalidProvinceNameLength = "The province name should be between {2} and {1} characters long";
-        internal const string ProvinceNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([\s-][\p{L}]+)*$";
+        internal const string ProvinceNameRegExValidator = @"^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\s-]*$";
         internal const string ProvinceShouldStartWithUppercase = "The name of the province should start with uppercase letter";
         internal const string ProvinceNameIsRequired = "The name of the province is required";
         internal const string ProvinceAdminCentreIsRequired = "The province administrative centre name is required";
@@ -70,7 +70,7 @@
         internal const string InvalidCityPopulation = "The population of the city should be between {1} and {2} people";
         internal const string InvalidCityElevationRange = "The elevation should be between {1} and {2} metres";
         internal const string CityElevationRequired = "The elevation of the city is required";
-        internal const string CityNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([\s-][\p{L}]+)*$";
+        internal const string CityNameRegExValidator = @"^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\s-]*$";
 
         #endregion
         #region LandmarkViewModel
@@ -82,7 +82,7 @@
 
         internal const string LandmarkNameIsRequired = "The name of the landmark is required";
         internal const string InvalidLandmarkNameLength = "The name of the landmark should be between {2} and {1} characters long";
-        internal const string LandmarkNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([\s-][\p{L}]+)*$";
+        internal const string LandmarkNameRegExValidator = @"^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\s-]*$";
         internal const string LandmarkNameShouldStartWithUppercase = "The name of the landmark should start with uppercase letter";
         internal const string LandmarkCategoryIsRequired = "The category of the landmark is required";
         internal const string InvalidLandmarkCategoryLength = "The category should be between {2} and {1} characters long";
@@ -102,7 +102,7 @@
 
         internal const string ParkNameIsRequired = "The name of the park is required";
         internal const string InvalidParkNameLength = "The name of the park should be between {2} and {1} characters long";
-        internal const string ParkNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([\s-][\p{L}]+)*$";
+        internal const string ParkNameRegExValidator = @"^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\s-]*$";
         internal const string ParkNameShouldStartWithUppercase = "The name of the park should start with uppercase letter";
         internal const string ParkTypeIsRequired = "The type of the park is required";
         internal const string InvalidParkTypeLength = "The type should be between {2} and {1} characters long";
@@ -122,9 +122,9 @@
         internal const double MountainAreaMax = 100_000;
 
         internal const string MountainNameIsRequired = "The name of the mountain is required";
-        internal const string MountainNameRegExValidator = @"^([\p{Lu}][\p{L}]*)([\s-][\p{L}]+)*$";
+        internal const string MountainNameRegExValidator = @"^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\s-]*$";
         internal const string MountainNameShouldStartWithUppercase = "The name of the mountain should start with uppercase letter";
-        internal const string MountainHighestPeakRegExValidator = @"^([\p{Lu}][\p{L}]*)([\s-][\p{L}]+)*$";
+        internal const string MountainHighestPeakRegExValidator = @"^[A-Za-zА-Яа-яЁё][A-Za-zА-Яа-яЁё\s-]*$";
         internal const string MountainHighestPeakShouldStartWithUppercase = "The highest peak of the mountain should start with uppercase letter";
         internal const string MountainHighestPeakIsRequired = "The highest peak of the mountain is required";
         internal const string MountainElevationIsRequired = "The elevation of the mountain is required";

@@ -33,7 +33,7 @@ public class LandmarkViewModel
     [Required(ErrorMessage = WebConstants.LandmarkCityIdIsRequired)]
     public int? CityId { get; set; }
 
-    public bool? UnescoSite { get; set; }
+    public bool UnescoSite { get; set; }
 
     public virtual CityViewModel? City { get; set; }
 }

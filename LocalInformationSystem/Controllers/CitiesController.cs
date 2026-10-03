@@ -5,6 +5,7 @@ using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 using static LocalInformationSystem.Web.Common.WebConstants;
 
@@ -151,6 +152,19 @@ namespace LocalInformationSystem.Web.Controllers
 
             // Redirect to the ConcreteCity action with the city ID of the updated landmark
             return RedirectToAction(nameof(LandmarkDetails), new { id = landmark.LandmarkId });
+        }
+
+        [HttpGet]
+        public IActionResult AddLandmark()
+        {
+            this.ViewBag.Cities = this._service.GetAllCities();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddLandmark([FromForm] LandmarkViewModel landmarkModel)
+        {
+            return StatusCode(StatusCodes.Status204NoContent);
         }
     }
 }

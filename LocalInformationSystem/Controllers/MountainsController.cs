@@ -117,5 +117,18 @@ namespace LocalInformationSystem.Web.Controllers
 
             return RedirectToAction(nameof(ParkDetails), new[] { id = parkModel.ParkId });
         }
+
+        [HttpGet]
+        public IActionResult AddPark()
+        {
+            ViewBag.Mountains = service.GetAllMountains();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddPark([FromForm] ParkViewModel parkModel)
+        {
+            return StatusCode(StatusCodes.Status204NoContent);
+        }
     }
 }

@@ -48,7 +48,7 @@ namespace LocalInformationSystem.Web.ViewModels
         [Required(ErrorMessage = WebConstants.ParkMountainIdIsRequired)]
         public int? MountainId { get; set; }
 
-        public bool? UnescoSite { get; set; }
+        public bool UnescoSite { get; set; }
 
         public virtual MountainViewModel? Mountain { get; set; }
     }
