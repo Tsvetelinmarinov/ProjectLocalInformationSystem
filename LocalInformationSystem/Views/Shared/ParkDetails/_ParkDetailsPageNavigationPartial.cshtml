@@ -2,8 +2,8 @@
 
 <nav aria-label="breadcrumb" class="mb-4">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none">Cities</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Parks</li>
+        <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none">Mountains</a></li>
+        <li class="breadcrumb-item"><a asp-action="ConcreteMountain" asp-route-id="@Model.Mountain!.MountainId">@Model.Mountain!.Name</a></li>
         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
     </ol>
 </nav>
