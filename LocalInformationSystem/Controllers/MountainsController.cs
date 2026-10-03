@@ -119,10 +119,11 @@ namespace LocalInformationSystem.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddPark()
+        public IActionResult AddPark(int? mountainId)
         {
+            var viewModel = new ParkViewModel { MountainId = mountainId };
             ViewBag.Mountains = service.GetAllMountains();
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]

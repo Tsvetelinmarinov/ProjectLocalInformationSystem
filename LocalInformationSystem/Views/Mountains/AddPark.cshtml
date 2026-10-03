@@ -75,20 +75,9 @@
                                 <small class="form-text">Year range: 1700 - 2100</small>
                             </div>
 
-                            <!-- Mountain Field -->
-                            <div class="form-group">
-                                <label asp-for="MountainId" class="form-label">
-                                    <i class="bi bi-mountain2 me-2 text-primary"></i>Mountain
-                                </label>
-                                <select asp-for="MountainId" class="form-select">
-                                    <option value="">-- Select a Mountain --</option>
-                                    @foreach (var mountain in ViewBag.Mountains)
-                                    {
-                                        <option value="@mountain.MountainId">@mountain.Name</option>
-                                    }
-                                </select>
-                                <span asp-validation-for="MountainId" class="text-danger"></span>
-                            </div>
+                            <!-- Mountain Field - Hidden Input -->
+                            <input asp-for="MountainId" type="hidden" />
+                            <span asp-validation-for="MountainId" class="text-danger"></span>
 
                             <!-- UNESCO Field -->
                             <div class="form-group">

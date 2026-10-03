@@ -155,16 +155,21 @@ namespace LocalInformationSystem.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult AddLandmark()
+        public IActionResult AddLandmark(int? cityId)
         {
+            var viewModel = new LandmarkViewModel { CityId = cityId };
             this.ViewBag.Cities = this._service.GetAllCities();
-            return View();
+            return View(viewModel);
         }
 
         [HttpPost]
         public IActionResult AddLandmark([FromForm] LandmarkViewModel landmarkModel)
         {
-            return StatusCode(StatusCodes.Status204NoContent);
+            var landmarkDTO = this._mapper.Map<LandmarkDTO>(landmarkModel)
+                ?? throw new InvalidOperationException(CannotMapLandmarkViewModelToDTO);
+
+            this._service.AddLandmark(landmarkDTO);
+            return this.RedirectToAction(nameof(Index));
         }
     }
 }

@@ -56,20 +56,9 @@
                                 <span asp-validation-for="Category" class="text-danger"></span>
                             </div>
 
-                            <!-- City Field -->
-                            <div class="form-group">
-                                <label asp-for="CityId" class="form-label">
-                                    <i class="bi bi-geo-alt me-2 text-primary"></i>City
-                                </label>
-                                <select asp-for="CityId" class="form-select">
-                                    <option value="">-- Select a City --</option>
-                                    @foreach (var city in ViewBag.Cities)
-                                    {
-                                        <option value="@city.CityId">@city.Name</option>
-                                    }
-                                </select>
-                                <span asp-validation-for="CityId" class="text-danger"></span>
-                            </div>
+                            <!-- City Field - Hidden Input -->
+                            <input asp-for="CityId" type="hidden" />
+                            <span asp-validation-for="CityId" class="text-danger"></span>
 
                             <!-- UNESCO Field -->
                             <div class="form-group">

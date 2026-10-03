@@ -34,6 +34,8 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         #endregion
         #region Functionality
 
+        #region Provinces Service
+
         /// <summary>
         ///  Retrieves all the provinces from the database.
         /// </summary>
@@ -77,6 +79,9 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return province;
         }
 
+        #endregion
+        #region Cities Service
+
         /// <summary>
         ///  Retrieves all the cities from the database.
         /// </summary>
@@ -116,6 +121,9 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 
             return city;
         }
+
+        #endregion
+        #region Mountains Service
 
         /// <summary>
         ///  Retrieves all the mountains from the database.
@@ -201,6 +209,21 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
+        ///  Adds new landmark to the database.
+        /// </summary>
+        /// <param name="landmark">
+        ///  The landmark entity to be added to the database.
+        /// </param>
+        public void AddLandmark(Landmark landmark)
+        {
+            this._dbContext.Landmarks.Add(landmark);
+            this.SaveChanges();
+        }
+
+        #endregion
+        #region Common Functionality
+
+        /// <summary>
         ///  Saves changes made to the entities.
         /// </summary>
         /// <returns>
@@ -245,6 +268,8 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             GC.SuppressFinalize(this);
             this._dbContext.Dispose();
         }
+
+        #endregion
 
         #endregion
     }

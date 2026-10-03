@@ -9,11 +9,8 @@
             <span class="badge bg-secondary rounded-pill px-3 py-2">Total: @Model.Landmarks!.Count</span>
         </div>
         <div class="mt-3">
-            <a class="btn btn-sm btn-success rounded-pill px-3 me-2" asp-controller="Cities" asp-action="AddLandmark">
+            <a class="btn btn-sm btn-success rounded-pill px-3 me-2" asp-controller="Cities" asp-action="AddLandmark" asp-route-cityId="@Model.CityId">
                 <i class="bi bi-plus-lg me-1"></i>Add Landmark
-            </a>
-            <a class="btn btn-sm btn-danger rounded-pill px-3">
-                <i class="bi bi-trash me-1"></i>Delete
             </a>
         </div>
     </div>
@@ -37,8 +34,11 @@
                                 @landmark.Name
                             </td>
                             <td class="text-end pe-4">
-                                <a asp-controller="Cities" asp-action="LandmarkDetails" asp-route-id="@landmark.LandmarkId" class="btn btn-sm btn-light rounded-pill border px-3">
+                                <a asp-controller="Cities" asp-action="LandmarkDetails" asp-route-id="@landmark.LandmarkId" class="btn btn-sm btn-light rounded-pill border px-3 me-2">
                                     View Details
+                                </a>
+                                <a class="btn btn-sm btn-danger rounded-pill px-3" asp-controller="Cities" asp-action="DeleteLandmark" asp-route-id="@landmark.LandmarkId">
+                                    <i class="bi bi-trash me-1"></i>Delete
                                 </a>
                             </td>
                         </tr>

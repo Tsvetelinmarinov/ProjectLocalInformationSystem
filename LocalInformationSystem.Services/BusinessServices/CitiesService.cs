@@ -151,5 +151,17 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             _ = this._database.SaveChanges();
         }
+
+        /// <summary>
+        ///  Adds new landmark to the database.
+        /// </summary>
+        /// <param name="landmark">
+        ///  The landmark entity to be added to the database.
+        /// </param>
+        public void AddLandmark(LandmarkDTO landmarkDTO)
+        {
+            var landmarkEntity = this._mapper.Map<Landmark>(landmarkDTO);
+            this._database.AddLandmark(landmarkEntity);
+        }
     }
 }
