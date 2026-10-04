@@ -87,7 +87,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         {
             if (id <= 0)
             {
-                throw new InvalidOperationException(InavlidParkId);
+                throw new InvalidOperationException(InvalidParkId);
             }
 
             var parkEntity = repository.FindParkById(id);
