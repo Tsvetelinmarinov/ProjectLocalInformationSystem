@@ -245,6 +245,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         #endregion
+        #region Rivers Service
+
+        /// <summary>
+        ///  Retrieves all the rivers from the database.
+        /// </summary>
+        /// <returns>
+        ///  IEnumerable collection of rivers.
+        /// </returns>
+        public IEnumerable<River> GetAllRivers()
+        {
+            var rivers = this._dbContext
+                .Rivers
+                .AsNoTracking()
+                .OrderBy((river) => river.Name)
+                .ThenBy((river) => river.LengthKm)
+                  ?? throw new InvalidOperationException(NoRiversFromDb);
+
+            return rivers;
+        }
+
+        #endregion
         #region Common Functionality
 
         /// <summary>

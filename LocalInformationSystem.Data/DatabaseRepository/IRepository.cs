@@ -23,6 +23,9 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         Park FindParkById(int id);
         void AddPark(Park park);
 
+        // For RiversService.
+        IEnumerable<River> GetAllRivers();
+
         // Common.
         int SaveChanges();
         TEntity FindEntityById<TEntity>(int id) where TEntity : class;
