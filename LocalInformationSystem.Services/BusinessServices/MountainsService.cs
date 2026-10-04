@@ -118,5 +118,19 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             _ = repository.SaveChanges();
         }
+
+        /// <summary>
+        ///  Adds a new park to the database.
+        /// </summary>
+        /// <param name="parkDTO">
+        ///  The park DTO which corresponding entity will be added.
+        /// </param>
+        public void AddPark(ParkDTO parkDTO)
+        {
+            var parkEntity = mapper.Map<Park>(parkDTO)
+                ?? throw new InvalidOperationException(UnableToMapParkDTOToPark);
+
+            repository.AddPark(parkEntity);
+        }
     }
 }

@@ -23,9 +23,10 @@
         #endregion
         #region MountainsController
 
-        internal const string UnableToMapMountainDTOsToViewModel = "Something went wrong while mapping the mountain DTO`s to ViewModels!";
-        internal const string UnableToMapMountainDTOToViewModel = "Unable to map mountainDTO to MountainViewModel!";
-        internal const string UnableToMapParkDTOToParkViewModel = "Unable to map ParkDTO to ParkViewModel!";
+        internal const string UnableToMapMountainDTOsToViewModel = "Something went wrong while mapping the mountain DTO`s to ViewModels.";
+        internal const string UnableToMapMountainDTOToViewModel = "Unable to map mountainDTO to MountainViewModel.";
+        internal const string UnableToMapParkDTOToParkViewModel = "Unable to map ParkDTO to ParkViewModel.";
+        internal const string UnableToMapParkViewModelToParkDTO = "Unable to map ParkViewModel to ParkDTO.";
 
         #endregion
         #region Validation Constants For The View Models

@@ -37,7 +37,7 @@
                                 <a asp-controller="Mountains" asp-action="ParkDetails" asp-route-id="@park.ParkId" class="btn btn-sm btn-light rounded-pill border px-3 me-2">
                                     View Details
                                 </a>
-                                <a class="btn btn-sm btn-danger rounded-pill px-3">
+                                <a class="btn btn-sm btn-danger rounded-pill px-3" asp-controller="Mountains" asp-action="DeletePark" asp-route-id="@park.ParkId">
                                     <i class="bi bi-trash me-1"></i>Delete
                                 </a>
                             </td>

@@ -9,5 +9,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         void UpdateMountain(MountainDTO mountainDTO);
         ParkDTO FindParkById(int id);
         void UpdatePark(ParkDTO parkDTO);
+        void AddPark(ParkDTO parkDTO);
     }
 }
