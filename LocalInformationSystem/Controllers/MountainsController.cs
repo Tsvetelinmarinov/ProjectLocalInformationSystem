@@ -141,5 +141,12 @@ namespace LocalInformationSystem.Web.Controllers
             service.AddPark(parkDTO);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult DeletePark([FromRoute] int id)
+        {
+            service.DeletePark(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
