@@ -10,144 +10,61 @@
 
 <div class="container mb-5">
 
-    <!-- Section Header -->
-    <div class="row mb-4">
-        <div class="col-12">
-            <h2 class="fw-bold text-dark">Hydrological Network</h2>
-            <p class="text-muted">Detailed information about water bodies in the region.</p>
-        </div>
-    </div>
+<!-- Section Header -->
+<partial name="Rivers/_RiversPageHeaderPartial" />
 
-    <!-- Info Cards -->
-    <div class="row mb-5">
-        <!-- Card 1: Total Count -->
-        <div class="col-md-4 mb-3">
-            <div class="card info-card shadow-sm h-100 p-3">
-                <div class="d-flex align-items-center">
-                    <div class="card-icon-wrapper bg-gradient-blue me-3">
-                        🌊
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1">Total Rivers</h6>
-                        <h3 class="fw-bold mb-0">@totalRivers</h3>
-                    </div>
+<!-- Info Cards -->
+<div class="row mb-5">
+    <!-- Card 1: Total Count -->
+    <div class="col-md-4 mb-3">
+        <div class="card info-card shadow-sm h-100 p-3">
+            <div class="d-flex align-items-center">
+                <div class="card-icon-wrapper bg-gradient-blue me-3">
+                    🌊
                 </div>
-            </div>
-        </div>
-
-        <!-- Card 2: Longest River -->
-        <div class="col-md-4 mb-3">
-            <div class="card info-card shadow-sm h-100 p-3">
-                <div class="d-flex align-items-center">
-                    <div class="card-icon-wrapper bg-gradient-green me-3">
-                        📏
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1">Longest River</h6>
-                        <h3 class="fw-bold mb-0">@(longestRiver?.Name ?? "N/A")</h3>
-                        <small class="text-success">@(longestRiver?.LengthKm ?? 0) km</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Card 3: Total Length -->
-        <div class="col-md-4 mb-3">
-            <div class="card info-card shadow-sm h-100 p-3">
-                <div class="d-flex align-items-center">
-                    <div class="card-icon-wrapper bg-gradient-purple me-3">
-                        🗺️
-                    </div>
-                    <div>
-                        <h6 class="text-muted mb-1">Total Network Length</h6>
-                        <h3 class="fw-bold mb-0">@totalLength.ToString("N2") <span class="fs-6 text-muted">km</span></h3>
-                    </div>
+                <div>
+                    <h6 class="text-muted mb-1">Total Rivers</h6>
+                    <h3 class="fw-bold mb-0">@totalRivers</h3>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Data Table -->
-    <div class="row">
-        <div class="col-12">
-            <div class="table-container">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="fw-bold mb-0">Rivers List</h5>
-                    <button class="btn btn-primary btn-sm px-3 rounded-pill shadow-sm">
-                        + Add New River
-                    </button>
+    <!-- Card 2: Longest River -->
+    <div class="col-md-4 mb-3">
+        <div class="card info-card shadow-sm h-100 p-3">
+            <div class="d-flex align-items-center">
+                <div class="card-icon-wrapper bg-gradient-green me-3">
+                    📏
                 </div>
-
-                <div class="table-responsive">
-                    <table class="table custom-table table-borderless align-middle">
-                        <thead>
-                            <tr>
-                                <th scope="col" width="10%"># ID</th>
-                                <th scope="col" width="30%">Name</th>
-                                <th scope="col" width="20%">Length (km)</th>
-                                <th scope="col" width="25%">Outflow</th>
-                                <th scope="col" width="15%" class="text-end">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @if (Model != null && Model.Any())
-                            {
-                                foreach (var river in Model)
-                                {
-                                    <tr>
-                                        <td>
-                                            <span class="text-muted fw-bold">#@river.RiverId</span>
-                                        </td>
-                                        <td>
-                                            <span class="fw-bold text-dark">@river.Name</span>
-                                        </td>
-                                        <td>
-                                            @river.LengthKm.ToString("N2") km
-                                        </td>
-                                        <td>
-                                            @if (!string.IsNullOrWhiteSpace(river.Outflow))
-                                            {
-                                                <span class="badge-outflow">@river.Outflow</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="text-muted fst-italic">Unknown</span>
-                                            }
-                                        </td>
-                                        <td class="text-end">
-                                            <div class="d-inline-flex gap-2">
-                                                <!-- Edit Button -->
-                                                <a href="#" class="btn-action btn-action-edit" title="Edit River">
-                                                    <svg viewBox="0 0 24 24">
-                                                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-                                                    </svg>
-                                                </a>
-
-                                                <!-- Delete Button -->
-                                                <a href="#" class="btn-action btn-action-delete" title="Delete River">
-                                                    <svg viewBox="0 0 24 24">
-                                                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                                                    </svg>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                }
-                            }
-                            else
-                            {
-                                <tr>
-                                    <td colspan="5" class="text-center py-5 text-muted">
-                                        There are currently no rivers recorded in the system.
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
+                <div>
+                    <h6 class="text-muted mb-1">Longest River</h6>
+                    <h3 class="fw-bold mb-0">@(longestRiver?.Name ?? "N/A")</h3>
+                    <small class="text-success">@(longestRiver?.LengthKm ?? 0) km</small>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Card 3: Total Length -->
+    <div class="col-md-4 mb-3">
+        <div class="card info-card shadow-sm h-100 p-3">
+            <div class="d-flex align-items-center">
+                <div class="card-icon-wrapper bg-gradient-purple me-3">
+                    🗺️
+                </div>
+                <div>
+                    <h6 class="text-muted mb-1">Total Network Length</h6>
+                    <h3 class="fw-bold mb-0">@totalLength.ToString("N2") <span class="fs-6 text-muted">km</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Table -->
+<partial name="Rivers/_RiversPageTablePartial" model="@Model"/>
+    
 </div>
 
 @section Design {
