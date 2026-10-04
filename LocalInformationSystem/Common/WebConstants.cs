@@ -29,6 +29,11 @@
         internal const string UnableToMapParkViewModelToParkDTO = "Unable to map ParkViewModel to ParkDTO.";
 
         #endregion
+        #region RiversController
+
+        internal const string UnableToMapRiverDTOsToViewModels = "Something went wrong while mapping the river DTO`s to ViewModels.";
+
+        #endregion
         #region Validation Constants For The View Models
 
         #region ProvinceViewModel
