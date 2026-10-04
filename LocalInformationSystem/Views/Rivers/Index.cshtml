@@ -1,95 +1,12 @@
-﻿@model IEnumerable<RiverViewModel>
+﻿@model IEnumerable<LocalInformationSystem.Web.ViewModels.RiverViewModel>
 
 @{
-    ViewData["Title"] = "Rivers";
+    ViewData["Title"] = "Rivers Information";
     // Calculate basic statistics based on the provided model
     var totalRivers = Model.Count();
     var longestRiver = Model.OrderByDescending(r => r.LengthKm).FirstOrDefault();
     var totalLength = Model.Sum(r => r.LengthKm);
 }
-
-<style>
-    body {
-        background-color: #f4f7f6;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .custom-navbar {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .navbar-brand, .nav-link {
-        color: #ffffff !important;
-        font-weight: 500;
-    }
-
-    .info-card {
-        border: none;
-        border-radius: 15px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        background: #ffffff;
-        overflow: hidden;
-    }
-
-    .info-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    }
-
-    .card-icon-wrapper {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        color: white;
-    }
-
-    .bg-gradient-blue { background: linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%); }
-    .bg-gradient-green { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
-    .bg-gradient-purple { background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%); }
-
-    .table-container {
-        background: #ffffff;
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-
-    .custom-table thead th {
-        background-color: #f8f9fa;
-        color: #495057;
-        font-weight: 600;
-        border-bottom: 2px solid #e9ecef;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        letter-spacing: 0.5px;
-    }
-
-    .custom-table tbody tr {
-        transition: background-color 0.2s ease;
-    }
-
-    .custom-table tbody tr:hover {
-        background-color: #f1f4f8;
-    }
-
-    .custom-table td {
-        vertical-align: middle;
-        color: #555;
-    }
-
-    .badge-outflow {
-        background-color: #e0f3ff;
-        color: #007bff;
-        font-weight: 500;
-        padding: 6px 12px;
-        border-radius: 20px;
-    }
-</style>
 
 <div class="container mb-5">
 
@@ -156,8 +73,8 @@
             <div class="table-container">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="fw-bold mb-0">Rivers List</h5>
-                    <button class="btn btn-outline-primary btn-sm px-3 rounded-pill">
-                        Add New River
+                    <button class="btn btn-primary btn-sm px-3 rounded-pill shadow-sm">
+                        + Add New River
                     </button>
                 </div>
 
@@ -168,8 +85,8 @@
                                 <th scope="col" width="10%"># ID</th>
                                 <th scope="col" width="30%">Name</th>
                                 <th scope="col" width="20%">Length (km)</th>
-                                <th scope="col" width="30%">Outflow</th>
-                                <th scope="col" width="10%" class="text-end">Actions</th>
+                                <th scope="col" width="25%">Outflow</th>
+                                <th scope="col" width="15%" class="text-end">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -198,9 +115,20 @@
                                             }
                                         </td>
                                         <td class="text-end">
-                                            <div class="btn-group">
-                                                <a href="#" class="btn btn-sm btn-light text-primary" title="Edit">✏️</a>
-                                                <a href="#" class="btn btn-sm btn-light text-danger" title="Delete">🗑️</a>
+                                            <div class="d-inline-flex gap-2">
+                                                <!-- Edit Button -->
+                                                <a href="#" class="btn-action btn-action-edit" title="Edit River">
+                                                    <svg viewBox="0 0 24 24">
+                                                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+                                                    </svg>
+                                                </a>
+
+                                                <!-- Delete Button -->
+                                                <a href="#" class="btn-action btn-action-delete" title="Delete River">
+                                                    <svg viewBox="0 0 24 24">
+                                                        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                                    </svg>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>
@@ -221,3 +149,7 @@
         </div>
     </div>
 </div>
+
+@section Design {
+    <link rel="stylesheet" href="~/css/riversPage.css"/>
+}

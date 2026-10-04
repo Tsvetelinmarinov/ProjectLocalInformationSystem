@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LocalInformationSystem.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LocalInformationSystem.Web.Controllers
 {
@@ -7,7 +8,18 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(
+                new[] 
+                { 
+                    new RiverViewModel 
+                    {
+                        Name = "River 1" ,
+                        LengthKm = 100, 
+                        Outflow = "Sea" ,
+                        RiverId = 1 
+                    } 
+                }
+            );
         }
     }
 }
