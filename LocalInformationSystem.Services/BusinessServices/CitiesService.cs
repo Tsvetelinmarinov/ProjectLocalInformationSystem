@@ -170,12 +170,15 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// <param name="landmark">
         ///  The landmark entity to be deleted from the database.
         /// </param>
-        public void DeleteLandmark(LandmarkDTO landmarkDTO)
+        public void DeleteLandmark(int id)
         {
-            var landmarkEntity 
-                = this._mapper.Map<Landmark>(landmarkDTO)
-                  ?? throw new InvalidOperationException(CannotMapLandmarkToLandmarkDTO);
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidLandmarkId);
+            }
 
+            // FindEntityById<T>(int) garantees that the entity is not null, otherwise it throws an exception.
+            var landmarkEntity = this._database.FindEntityById<Landmark>(id);
             this._database.DeleteLandmark(landmarkEntity);
         }
     }

@@ -5,7 +5,6 @@ using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 using static LocalInformationSystem.Web.Common.WebConstants;
 
@@ -170,6 +169,13 @@ namespace LocalInformationSystem.Web.Controllers
 
             this._service.AddLandmark(landmarkDTO);
             return this.RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult DeleteLandmark(int id)
+        {
+            this._service.DeleteLandmark(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
