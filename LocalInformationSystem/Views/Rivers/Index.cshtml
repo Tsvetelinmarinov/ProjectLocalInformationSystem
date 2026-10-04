@@ -1,0 +1,223 @@
+﻿@model IEnumerable<RiverViewModel>
+
+@{
+    ViewData["Title"] = "Rivers";
+    // Calculate basic statistics based on the provided model
+    var totalRivers = Model.Count();
+    var longestRiver = Model.OrderByDescending(r => r.LengthKm).FirstOrDefault();
+    var totalLength = Model.Sum(r => r.LengthKm);
+}
+
+<style>
+    body {
+        background-color: #f4f7f6;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .custom-navbar {
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .navbar-brand, .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+    }
+
+    .info-card {
+        border: none;
+        border-radius: 15px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: #ffffff;
+        overflow: hidden;
+    }
+
+    .info-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    .card-icon-wrapper {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+    }
+
+    .bg-gradient-blue { background: linear-gradient(135deg, #36D1DC 0%, #5B86E5 100%); }
+    .bg-gradient-green { background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+    .bg-gradient-purple { background: linear-gradient(135deg, #8E2DE2 0%, #4A00E0 100%); }
+
+    .table-container {
+        background: #ffffff;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .custom-table thead th {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-weight: 600;
+        border-bottom: 2px solid #e9ecef;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+    }
+
+    .custom-table tbody tr {
+        transition: background-color 0.2s ease;
+    }
+
+    .custom-table tbody tr:hover {
+        background-color: #f1f4f8;
+    }
+
+    .custom-table td {
+        vertical-align: middle;
+        color: #555;
+    }
+
+    .badge-outflow {
+        background-color: #e0f3ff;
+        color: #007bff;
+        font-weight: 500;
+        padding: 6px 12px;
+        border-radius: 20px;
+    }
+</style>
+
+<div class="container mb-5">
+
+    <!-- Section Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="fw-bold text-dark">Hydrological Network</h2>
+            <p class="text-muted">Detailed information about water bodies in the region.</p>
+        </div>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="row mb-5">
+        <!-- Card 1: Total Count -->
+        <div class="col-md-4 mb-3">
+            <div class="card info-card shadow-sm h-100 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon-wrapper bg-gradient-blue me-3">
+                        🌊
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Rivers</h6>
+                        <h3 class="fw-bold mb-0">@totalRivers</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Longest River -->
+        <div class="col-md-4 mb-3">
+            <div class="card info-card shadow-sm h-100 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon-wrapper bg-gradient-green me-3">
+                        📏
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Longest River</h6>
+                        <h3 class="fw-bold mb-0">@(longestRiver?.Name ?? "N/A")</h3>
+                        <small class="text-success">@(longestRiver?.LengthKm ?? 0) km</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Total Length -->
+        <div class="col-md-4 mb-3">
+            <div class="card info-card shadow-sm h-100 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon-wrapper bg-gradient-purple me-3">
+                        🗺️
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Network Length</h6>
+                        <h3 class="fw-bold mb-0">@totalLength.ToString("N2") <span class="fs-6 text-muted">km</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="table-container">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="fw-bold mb-0">Rivers List</h5>
+                    <button class="btn btn-outline-primary btn-sm px-3 rounded-pill">
+                        Add New River
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table custom-table table-borderless align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col" width="10%"># ID</th>
+                                <th scope="col" width="30%">Name</th>
+                                <th scope="col" width="20%">Length (km)</th>
+                                <th scope="col" width="30%">Outflow</th>
+                                <th scope="col" width="10%" class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                foreach (var river in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span class="text-muted fw-bold">#@river.RiverId</span>
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold text-dark">@river.Name</span>
+                                        </td>
+                                        <td>
+                                            @river.LengthKm.ToString("N2") km
+                                        </td>
+                                        <td>
+                                            @if (!string.IsNullOrWhiteSpace(river.Outflow))
+                                            {
+                                                <span class="badge-outflow">@river.Outflow</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted fst-italic">Unknown</span>
+                                            }
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="btn-group">
+                                                <a href="#" class="btn btn-sm btn-light text-primary" title="Edit">✏️</a>
+                                                <a href="#" class="btn btn-sm btn-light text-danger" title="Delete">🗑️</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center py-5 text-muted">
+                                        There are currently no rivers recorded in the system.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
