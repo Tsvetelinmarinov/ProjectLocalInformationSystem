@@ -132,5 +132,22 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             repository.AddPark(parkEntity);
         }
+
+        /// <summary>
+        ///  Deletes the park with the specified ID from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the park to be deleted.
+        /// </param>
+        public void DeletePark(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidParkId);
+            }
+
+            var parkEntity = repository.FindEntityById<Park>(id);
+            repository.Delete(parkEntity);
+        }
     }
 }

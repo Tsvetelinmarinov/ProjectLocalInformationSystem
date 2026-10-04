@@ -10,5 +10,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         ParkDTO FindParkById(int id);
         void UpdatePark(ParkDTO parkDTO);
         void AddPark(ParkDTO parkDTO);
+        void DeletePark(int id);
     }
 }
