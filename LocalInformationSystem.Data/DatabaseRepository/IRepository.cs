@@ -15,6 +15,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         City FindCityById(int id);
         Landmark FindLandmarkById(int id);
         void AddLandmark(Landmark landmark);
+        void DeleteLandmark(Landmark landmark);
 
         // For MountainsService.
         IEnumerable<Mountain> GetAllMountains();
