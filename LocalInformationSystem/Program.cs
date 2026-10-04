@@ -40,6 +40,7 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IProvinceService, ProvinceService>();
 builder.Services.AddScoped<ICitiesService, CitiesService>();
 builder.Services.AddScoped<IMountainsService, MountainsService>();
+builder.Services.AddScoped<IRiversService, RiversService>();
 
 // AutoMapper services.
 builder.Services.AddAutoMapper(
