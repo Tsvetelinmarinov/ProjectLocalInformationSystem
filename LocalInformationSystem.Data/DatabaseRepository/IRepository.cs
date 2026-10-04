@@ -21,6 +21,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         IEnumerable<Mountain> GetAllMountains();
         Mountain FindMountainById(int id);
         Park FindParkById(int id);
+        void AddPark(Park park);
 
         // Common.
         int SaveChanges();

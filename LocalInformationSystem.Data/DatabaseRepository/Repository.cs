@@ -232,6 +232,18 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return parkEntity;
         }
 
+        /// <summary>
+        ///  Adds new park to the database.
+        /// </summary>
+        /// <param name="park">
+        ///  The park entity to be added to the database.
+        /// </param>
+        public void AddPark(Park park)
+        {
+            this._dbContext.Parks.Add(park);
+            this.SaveChanges();
+        }
+
         #endregion
         #region Common Functionality
 
