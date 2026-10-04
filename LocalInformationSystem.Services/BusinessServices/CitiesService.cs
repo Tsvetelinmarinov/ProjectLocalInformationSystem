@@ -163,5 +163,20 @@ namespace LocalInformationSystem.Services.BusinessServices
             var landmarkEntity = this._mapper.Map<Landmark>(landmarkDTO);
             this._database.AddLandmark(landmarkEntity);
         }
+
+        /// <summary>
+        ///  Deletes landmark from the database.
+        /// </summary>
+        /// <param name="landmark">
+        ///  The landmark entity to be deleted from the database.
+        /// </param>
+        public void DeleteLandmark(LandmarkDTO landmarkDTO)
+        {
+            var landmarkEntity 
+                = this._mapper.Map<Landmark>(landmarkDTO)
+                  ?? throw new InvalidOperationException(CannotMapLandmarkToLandmarkDTO);
+
+            this._database.DeleteLandmark(landmarkEntity);
+        }
     }
 }

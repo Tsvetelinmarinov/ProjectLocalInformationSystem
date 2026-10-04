@@ -142,7 +142,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         /// </param>
         public void DeleteLandmark(Landmark landmark)
         {
-            this._dbContext.Remove(landmark);
+            this._dbContext.Landmarks.Remove(landmark);
             this.SaveChanges();
         }
 

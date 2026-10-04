@@ -10,5 +10,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         LandmarkDTO FindLandmarkById(int id);
         void UpdateLandmark(LandmarkDTO landmarkDTO);
         void AddLandmark(LandmarkDTO landmarkDTO);
+        void DeleteLandmark(LandmarkDTO landmarkDTO);
     }
 }
