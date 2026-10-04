@@ -24,5 +24,7 @@
         internal const string UnableToMapParkDTOToPark = "Unable to map ParkDTO to Park.";
         internal const string InvalidParkId = "The ID of the park should not be negative or zero.";
 
+        // RiversService constants.
+        internal const string UnableToMapRiverToRiverDTO = "Unable to map River to RiverDTO.";
     }
 }
