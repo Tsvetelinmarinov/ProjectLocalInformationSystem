@@ -87,7 +87,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         {
             if (id <= 0)
             {
-                throw new InvalidOperationException(InavlidParkId);
+                throw new InvalidOperationException(InvalidParkId);
             }
 
             var parkEntity = repository.FindParkById(id);
@@ -117,6 +117,37 @@ namespace LocalInformationSystem.Services.BusinessServices
             parkEntity.UnescoSite = parkDTO.UnescoSite;
 
             _ = repository.SaveChanges();
+        }
+
+        /// <summary>
+        ///  Adds a new park to the database.
+        /// </summary>
+        /// <param name="parkDTO">
+        ///  The park DTO which corresponding entity will be added.
+        /// </param>
+        public void AddPark(ParkDTO parkDTO)
+        {
+            var parkEntity = mapper.Map<Park>(parkDTO)
+                ?? throw new InvalidOperationException(UnableToMapParkDTOToPark);
+
+            repository.AddPark(parkEntity);
+        }
+
+        /// <summary>
+        ///  Deletes the park with the specified ID from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the park to be deleted.
+        /// </param>
+        public void DeletePark(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidParkId);
+            }
+
+            var parkEntity = repository.FindEntityById<Park>(id);
+            repository.Delete(parkEntity);
         }
     }
 }

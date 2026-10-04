@@ -129,7 +129,24 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpPost]
         public IActionResult AddPark([FromForm] ParkViewModel parkModel)
         {
-            return StatusCode(StatusCodes.Status204NoContent);
+            if (this.ModelState.IsValid is false)
+            {
+                this.TempData["Mountains"] = service.GetAllMountains();
+                return View(parkModel);
+            }
+
+            var parkDTO = mapper.Map<ParkDTO>(parkModel)
+                ?? throw new InvalidOperationException(UnableToMapParkViewModelToParkDTO);
+
+            service.AddPark(parkDTO);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult DeletePark([FromRoute] int id)
+        {
+            service.DeletePark(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

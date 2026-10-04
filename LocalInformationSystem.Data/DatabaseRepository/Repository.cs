@@ -122,6 +122,30 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return city;
         }
 
+        /// <summary>
+        ///  Adds new landmark to the database.
+        /// </summary>
+        /// <param name="landmark">
+        ///  The landmark entity to be added to the database.
+        /// </param>
+        public void AddLandmark(Landmark landmark)
+        {
+            this._dbContext.Landmarks.Add(landmark);
+            this.SaveChanges();
+        }
+
+        /// <summary>
+        ///  Deletes landmark from the database.
+        /// </summary>
+        /// <param name="landmark">
+        ///  The landmark entity to be deleted from the database.
+        /// </param>
+        public void DeleteLandmark(Landmark landmark)
+        {
+            this._dbContext.Landmarks.Remove(landmark);
+            this.SaveChanges();
+        }
+
         #endregion
         #region Mountains Service
 
@@ -209,14 +233,14 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         /// <summary>
-        ///  Adds new landmark to the database.
+        ///  Adds new park to the database.
         /// </summary>
-        /// <param name="landmark">
-        ///  The landmark entity to be added to the database.
+        /// <param name="park">
+        ///  The park entity to be added to the database.
         /// </param>
-        public void AddLandmark(Landmark landmark)
+        public void AddPark(Park park)
         {
-            this._dbContext.Landmarks.Add(landmark);
+            this._dbContext.Parks.Add(park);
             this.SaveChanges();
         }
 
