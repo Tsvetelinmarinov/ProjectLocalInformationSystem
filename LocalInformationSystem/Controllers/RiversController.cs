@@ -11,6 +11,7 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            // ReSharper disable once InconsistentNaming
             var riverDTOs = service.GetAllRivers();
 
             var riverViewModels 
@@ -18,6 +19,12 @@ namespace LocalInformationSystem.Web.Controllers
                   ?? throw new InvalidOperationException(UnableToMapRiverDTOsToViewModels);
 
             return View(riverViewModels);
+        }
+
+        [HttpGet]
+        public IActionResult AddRiver()
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,69 @@
+﻿@model RiverViewModel
+
+@{
+    ViewData["Title"] = "Add New River";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-gradient bg-primary text-white p-4 rounded-top-4">
+                    <h3 class="mb-0 fw-bold">
+                        <i class="bi bi-water me-2"></i>Add New River
+                    </h3>
+                    <p class="mb-0 text-white-50 small mt-1">Please, fill the provided fields with the information about the new river</p>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    
+                    <form asp-controller="Rivers" asp-action="AddRiver" method="post" class="needs-validation" novalidate>
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 mb-4" role="alert"></div>
+
+                        <!-- River Name -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="Name" class="form-control rounded-3" placeholder="River name" required />
+                            <label asp-for="Name" class="text-muted">
+                                <i class="bi bi-tag me-1"></i> River name
+                            </label>
+                            <span asp-validation-for="Name" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <!-- Length in km -->
+                        <div class="form-floating mb-3">
+                            <input asp-for="LengthKm" type="number" step="0.01" class="form-control rounded-3" placeholder="Length (km)" required />
+                            <label asp-for="LengthKm" class="text-muted">
+                                <i class="bi bi-rulers me-1"></i> Length (km)
+                            </label>
+                            <span asp-validation-for="LengthKm" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <!-- Outflow -->
+                        <div class="form-floating mb-4">
+                            <input asp-for="Outflow" class="form-control rounded-3" placeholder="Outflow (Optional)" />
+                            <label asp-for="Outflow" class="text-muted">
+                                <i class="bi bi-arrow-right-circle me-1"></i> Outflow (Optional)
+                            </label>
+                            <span asp-validation-for="Outflow" class="text-danger small mt-1 d-block"></span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex gap-3 pt-2">
+                            <button type="submit" class="btn btn-primary btn-lg flex-grow-1 rounded-3 shadow-sm py-3 fw-semibold">
+                                <i class="bi bi-check-lg me-2"></i>Add River
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary btn-lg rounded-3 py-3 px-4 fw-semibold">
+                                <i class="bi bi-arrow-left me-1"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Client-side validation loading (jQuery Validation) -->
+    <partial name="_ValidationScriptsPartial" />
+}
