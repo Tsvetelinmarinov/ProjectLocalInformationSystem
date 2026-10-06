@@ -139,6 +139,26 @@
         internal const string MountainAreaInvalidRange = "The area of the mountain should be between {1} and {2} square kilometres";
 
         #endregion
+        #region RiverViewModel
+
+        internal const int RiverNameMinLen = 2;
+        internal const int RiverNameMaxLen = 100;
+        internal const int RiverOutflowNameMinLen = 2;
+        internal const int RiverOutflowNameMaxLen = 200;
+        internal const double RiverLengthMin = 0.01;
+        internal const double RiverLengthMax = 3000.00;
+        
+        internal const string RiverNameIsRequired = "River name is required";
+        internal const string InvalidRiverNameLength = "The length of the river name should be between {1} and {2} characters";
+        internal const string RiverNameRegExValidator = @"(?<FirstName>[\p{Lu}\p{L}]*)(?<OtherNames>[ -]\p{L}*)*";
+        internal const string InvalidRiverName = "The name of the river should start with uppercase letter";
+        internal const string RiverLengthIsRequired = "River length is required";
+        internal const string InvalidRiverLength = "River length should be between {1} and {2} kilometres";
+
+        internal const string InvalidRiverOutflowNameLength =
+            "The outflow name of the river shoud be at least {1} characters";
+
+        #endregion
 
         #endregion
     }
