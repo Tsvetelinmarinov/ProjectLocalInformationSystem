@@ -26,5 +26,7 @@ namespace LocalInformationSystem.Web.Controllers
         {
             return View();
         }
+        
+        
     }
 }

@@ -298,11 +298,38 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return entity;
         }
 
+        /// <summary>
+        ///  Deletes entity from the database.
+        /// </summary>
+        /// <param name="entity">
+        /// The entity to be deleted.
+        /// </param>
+        /// <typeparam name="TEntity">
+        ///  The data type of the entity.
+        /// </typeparam>
         public void Delete<TEntity>(TEntity entity)
             where TEntity : class
         {
             _ = this._dbContext.Remove(entity);
             _ = this.SaveChanges();
+        }
+
+        /// <summary>
+        ///  Adds entity to the database.
+        /// </summary>
+        /// <param name="entity">
+        /// The entity to be added.
+        /// </param>
+        /// <typeparam name="TEntity">
+        /// The data type of the entity.
+        /// </typeparam>
+        public void AddEntity<TEntity>(TEntity entity)
+            where TEntity : class
+        {
+            // ReSharper disable once SuggestVarOrType_Elsewhere
+            DbSet<TEntity> set = this._dbContext.Set<TEntity>();
+            set.Add(entity);
+            this.SaveChanges();
         }
 
         /// <summary>
