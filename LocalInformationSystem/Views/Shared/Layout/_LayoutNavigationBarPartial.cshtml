@@ -1,42 +1,34 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+﻿@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var isHomePage = string.Equals(currentController, "Home", StringComparison.OrdinalIgnoreCase);
+}
+
+<nav id="mainNav" class="navbar navbar-expand-lg navbar-dark site-navbar">
     <div class="container">
-        <!-- Име на сайта -->
         <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
-            <i class="bi bi-flag-fill text-danger me-2"></i>Explore Bulgaria
+            <i class="bi bi-flag-fill me-2"></i>Explore Bulgaria
         </a>
 
-        <!-- Бутон за мобилен изглед (Hamburger menu) -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Менюта и Опции -->
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <!-- Бутон Home -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">
+                    <a class="nav-link @(isHomePage ? "active" : "")" aria-current="@(isHomePage ? "page" : null)" asp-controller="Home" asp-action="Index">
                         <i class="bi bi-house-door me-1"></i> Home
                     </a>
                 </li>
-
-                <!-- Dropdown меню за Provinces -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="provincesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle @(!isHomePage ? "active" : "")" href="#" id="provincesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Explore
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="provincesDropdown">
                         <li><a class="dropdown-item" asp-controller="Province" asp-action="Index">Provinces</a></li>
-                        <li><hr class="dropdown-divider"></li>
-
                         <li><a class="dropdown-item" asp-controller="Cities" asp-action="Index">Cities</a></li>
-                        <li><hr class="dropdown-divider"/></li>
-
                         <li><a class="dropdown-item" asp-controller="Mountains" asp-action="Index">Mountains</a></li>
-                        <li><hr class="dropdown-divider"/></li>
-        
                         <li><a class="dropdown-item" asp-controller="Rivers" asp-action="Index">Rivers</a></li>
-                        <li><hr class="dropdown-divider"/></li>
                     </ul>
                 </li>
             </ul>

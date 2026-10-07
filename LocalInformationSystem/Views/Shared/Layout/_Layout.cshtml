@@ -16,14 +16,15 @@
         <link href="~/css/forms.css" rel="stylesheet" />
         <!-- Additional CSS section -->
         @await RenderSectionAsync("Design", required: false)
+        <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <partial name="Layout/_LayoutNavigationBarPartial" />
         
         <!-- View Container -->
-        <div class="container-fluid">
-            <main role="main">
+        <div class="container-fluid site-content-shell">
+            <main role="main" class="site-main">
                 @RenderBody()
             </main>
         </div>
