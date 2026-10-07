@@ -6,7 +6,7 @@
 <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark site-navbar">
     <div class="container">
         <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
-            <i class="bi bi-flag-fill me-2"></i>Explore Bulgaria
+            <i class="bi bi-flag-fill me-2" aria-hidden="true"></i>Explore Bulgaria
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,18 +17,18 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link @(isHomePage ? "active" : "")" aria-current="@(isHomePage ? "page" : null)" asp-controller="Home" asp-action="Index">
-                        <i class="bi bi-house-door me-1"></i> Home
+                        <i class="bi bi-house-door me-1" aria-hidden="true"></i> Home
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle @(!isHomePage ? "active" : "")" href="#" id="provincesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Explore
+                        <i class="bi bi-compass me-1" aria-hidden="true"></i>Explore
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="provincesDropdown">
-                        <li><a class="dropdown-item" asp-controller="Province" asp-action="Index">Provinces</a></li>
-                        <li><a class="dropdown-item" asp-controller="Cities" asp-action="Index">Cities</a></li>
-                        <li><a class="dropdown-item" asp-controller="Mountains" asp-action="Index">Mountains</a></li>
-                        <li><a class="dropdown-item" asp-controller="Rivers" asp-action="Index">Rivers</a></li>
+                        <li><a class="dropdown-item" asp-controller="Province" asp-action="Index"><i class="bi bi-map me-2" aria-hidden="true"></i>Provinces</a></li>
+                        <li><a class="dropdown-item" asp-controller="Cities" asp-action="Index"><i class="bi bi-buildings me-2" aria-hidden="true"></i>Cities</a></li>
+                        <li><a class="dropdown-item" asp-controller="Mountains" asp-action="Index"><i class="bi bi-triangle me-2" aria-hidden="true"></i>Mountains</a></li>
+                        <li><a class="dropdown-item" asp-controller="Rivers" asp-action="Index"><i class="bi bi-water me-2" aria-hidden="true"></i>Rivers</a></li>
                     </ul>
                 </li>
             </ul>
