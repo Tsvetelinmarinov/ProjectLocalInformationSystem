@@ -32,6 +32,7 @@
         #region RiversController
 
         internal const string UnableToMapRiverDTOsToViewModels = "Something went wrong while mapping the river DTO`s to ViewModels.";
+        internal const string UnableToMapRiverViewModelToRiverDTO = "Unable to map RiverViewModel to RiverDTO.";
 
         #endregion
         #region Validation Constants For The View Models

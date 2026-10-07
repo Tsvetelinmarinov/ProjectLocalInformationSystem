@@ -326,9 +326,11 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         public void AddEntity<TEntity>(TEntity entity)
             where TEntity : class
         {
-            // ReSharper disable once SuggestVarOrType_Elsewhere
-            DbSet<TEntity> set = this._dbContext.Set<TEntity>();
-            set.Add(entity);
+           /*Entry not needed*/ _ = this
+                ._dbContext
+                .Set<TEntity>()
+                .Add(entity);
+            
             this.SaveChanges();
         }
 

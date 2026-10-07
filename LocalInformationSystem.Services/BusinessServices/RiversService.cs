@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using static LocalInformationSystem.Services.Common.ServiceConstants;
 
+// ReSharper disable SuggestVarOrType_SimpleTypes
 namespace LocalInformationSystem.Services.BusinessServices
 {
     public class RiversService(IRepository repository, IMapper mapper) : IRiversService
@@ -21,6 +23,18 @@ namespace LocalInformationSystem.Services.BusinessServices
                 ?? throw new InvalidOperationException(UnableToMapRiverToRiverDTO);
 
             return riverDTOs;
+        }
+
+        /// <summary>
+        ///  Adds new river to the database.
+        /// </summary>
+        /// <param name="riverDto">
+        /// The RiverDTO with the new information.
+        /// </param>
+        public void AddRiver(RiverDTO riverDto)
+        {
+            River riverEntity = mapper.Map<River>(riverDto);
+            repository.AddEntity(riverEntity);
         }
     }
 }

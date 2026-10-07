@@ -16,12 +16,12 @@
                 </div>
                 <div class="card-body p-4 p-md-5">
                     
-                    <form asp-controller="Rivers" asp-action="AddRiver" method="post" class="needs-validation" novalidate>
+                    <form asp-controller="Rivers" asp-action="AddRiver" method="post" class="">
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 mb-4" role="alert"></div>
-
+                        
                         <!-- River Name -->
                         <div class="form-floating mb-3">
-                            <input asp-for="Name" class="form-control rounded-3" placeholder="River name" required />
+                            <input asp-for="Name" class="form-control rounded-3" placeholder="River name"/>
                             <label asp-for="Name" class="text-muted">
                                 <i class="bi bi-tag me-1"></i> River name
                             </label>
@@ -30,7 +30,7 @@
 
                         <!-- Length in km -->
                         <div class="form-floating mb-3">
-                            <input asp-for="LengthKm" type="number" step="0.01" class="form-control rounded-3" placeholder="Length (km)" required />
+                            <input asp-for="LengthKm" type="number" step="0.01" class="form-control rounded-3" placeholder="Length (km)" />
                             <label asp-for="LengthKm" class="text-muted">
                                 <i class="bi bi-rulers me-1"></i> Length (km)
                             </label>
@@ -56,7 +56,6 @@
                             </a>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
