@@ -45,6 +45,14 @@ namespace LocalInformationSystem.Web.Controllers
             this.TempData["SuccessAddingMessage"] = $"River {riverModel.Name} is successfully added!";
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult DeleteRiver([FromRoute] int id)
+        {
+            service.DeleteRiver(id);
+            this.TempData["SuccessDelete"] = "River successfully deleted!";
+
+            return RedirectToAction(nameof(Index));
+        }
     }
-    
 }
