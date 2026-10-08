@@ -36,5 +36,22 @@ namespace LocalInformationSystem.Services.BusinessServices
             River riverEntity = mapper.Map<River>(riverDto);
             repository.AddEntity(riverEntity);
         }
+
+        /// <summary>
+        ///  Deletes a river from the database by its ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the river to delete.
+        /// </param>
+        public void DeleteRiver(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidRiverId);
+            }
+
+            var riverEntity = repository.FindEntityById<River>(id);
+            repository.Delete(riverEntity);
+        }
     }
 }
