@@ -54,5 +54,11 @@ namespace LocalInformationSystem.Web.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult EditRiver([FromRoute] int id)
+        {
+            return BadRequest();
+        }
     }
 }
