@@ -61,7 +61,7 @@
         </div>
     </div>
     
-    <!-- This span shows the result of adding or deleting a river --->
+    <!-- This span/s shows the result of adding, deleting or updating a river -->
     @if (this.TempData.ContainsKey("SuccessAddingMessage"))
     {
         <span class="text-bg-success">@this.TempData["SuccessAddingMessage"]</span>
@@ -69,6 +69,10 @@
     else if(this.TempData.ContainsKey("SuccessDelete"))
     {
         <span class="text-bg-danger">@this.TempData["SuccessDelete"]</span>
+    }
+    else if (this.TempData.ContainsKey("SuccessUpdating"))
+    {
+        <span class="text-bg-success">@this.TempData["SuccessUpdating"]</span>
     }
 
     <!-- Data Table -->
