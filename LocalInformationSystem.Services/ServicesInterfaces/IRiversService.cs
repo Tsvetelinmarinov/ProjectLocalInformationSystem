@@ -7,5 +7,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         IEnumerable<RiverDTO> GetAllRivers();
         void AddRiver(RiverDTO riverDto);
         void DeleteRiver(int id);
+        RiverDTO FindRiverById(int id);
     }
 }

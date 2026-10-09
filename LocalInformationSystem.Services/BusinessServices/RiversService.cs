@@ -53,5 +53,30 @@ namespace LocalInformationSystem.Services.BusinessServices
             var riverEntity = repository.FindEntityById<River>(id);
             repository.Delete(riverEntity);
         }
+
+        /// <summary>
+        ///  Retrieves a river by its ID and returns it as a RiverDTO.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the river to retrieve.
+        /// </param>
+        /// <returns>
+        ///  The RiverDTO representing the retrieved river.
+        /// </returns>
+        public RiverDTO FindRiverById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidRiverId);
+            }
+
+            River riverEntity = repository.FindEntityById<River>(id);
+
+            RiverDTO riverDto 
+                = mapper.Map<RiverDTO>(riverEntity)
+                  ?? throw new InvalidOperationException(UnableToMapRiverToRiverDTO);
+
+            return riverDto;
+        }
     }
 }
