@@ -58,7 +58,12 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpGet]
         public IActionResult EditRiver([FromRoute] int id)
         {
-            return BadRequest();
+            RiverDTO riverDto = service.FindRiverById(id);
+
+            RiverViewModel riverModel = mapper.Map<RiverViewModel>(riverDto)
+                ?? throw new InvalidOperationException(UnableToMapRiverDTOToRiverViewModel);
+
+            return View(riverModel);
         }
     }
 }
