@@ -78,5 +78,22 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             return riverDto;
         }
+
+        /// <summary>
+        ///  Updates river.
+        /// </summary>
+        /// <param name="riverDto">
+        ///  The RiverDTO with the new data.
+        /// </param>
+        public void UpdateRiver(RiverDTO riverDto)
+        {
+            River currentRiver = repository.FindEntityById<River>(riverDto.RiverId);
+
+            currentRiver.Name = riverDto.Name;
+            currentRiver.LengthKm = riverDto.LengthKm;
+            currentRiver.Outflow = riverDto.Outflow;
+
+            repository.SaveChanges();
+        }
     }
 }

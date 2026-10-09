@@ -8,5 +8,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         void AddRiver(RiverDTO riverDto);
         void DeleteRiver(int id);
         RiverDTO FindRiverById(int id);
+        void UpdateRiver(RiverDTO riverDto);
     }
 }
