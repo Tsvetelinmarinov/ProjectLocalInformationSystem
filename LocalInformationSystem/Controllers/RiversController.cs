@@ -65,5 +65,29 @@ namespace LocalInformationSystem.Web.Controllers
 
             return View(riverModel);
         }
+
+        [HttpPost]
+        public IActionResult EditRiver(
+            [FromRoute] int id,
+            [FromForm] RiverViewModel riverModel
+        ){
+            if (id != riverModel.RiverId)
+            {
+                return BadRequest();
+            }
+
+            if (this.ModelState.IsValid is false)
+            {
+                return View(riverModel);
+            }
+
+            RiverDTO riverDto = mapper.Map<RiverDTO>(riverModel)
+                ?? throw new InvalidOperationException(UnableToMapRiverViewModelToRiverDTO);
+
+            service.UpdateRiver(riverDto);
+            this.TempData["SuccessUpdating"] = $"Successfully updated river {riverDto.Name}!";
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
