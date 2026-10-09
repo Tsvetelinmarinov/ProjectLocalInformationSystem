@@ -245,6 +245,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         }
 
         #endregion
+        #region Rivers Service
+
+        /// <summary>
+        ///  Retrieves all the rivers from the database.
+        /// </summary>
+        /// <returns>
+        ///  IEnumerable collection of rivers.
+        /// </returns>
+        public IEnumerable<River> GetAllRivers()
+        {
+            var rivers = this._dbContext
+                .Rivers
+                .AsNoTracking()
+                .OrderBy((river) => river.Name)
+                .ThenBy((river) => river.LengthKm)
+                  ?? throw new InvalidOperationException(NoRiversFromDb);
+
+            return rivers;
+        }
+
+        #endregion
         #region Common Functionality
 
         /// <summary>
@@ -277,11 +298,40 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return entity;
         }
 
+        /// <summary>
+        ///  Deletes entity from the database.
+        /// </summary>
+        /// <param name="entity">
+        /// The entity to be deleted.
+        /// </param>
+        /// <typeparam name="TEntity">
+        ///  The data type of the entity.
+        /// </typeparam>
         public void Delete<TEntity>(TEntity entity)
             where TEntity : class
         {
             _ = this._dbContext.Remove(entity);
             _ = this.SaveChanges();
+        }
+
+        /// <summary>
+        ///  Adds entity to the database.
+        /// </summary>
+        /// <param name="entity">
+        /// The entity to be added.
+        /// </param>
+        /// <typeparam name="TEntity">
+        /// The data type of the entity.
+        /// </typeparam>
+        public void AddEntity<TEntity>(TEntity entity)
+            where TEntity : class
+        {
+           /*Entry not needed*/ _ = this
+                ._dbContext
+                .Set<TEntity>()
+                .Add(entity);
+            
+            this.SaveChanges();
         }
 
         /// <summary>

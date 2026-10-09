@@ -1,0 +1,85 @@
+﻿@model IEnumerable<RiverViewModel>
+
+@{
+    ViewData["Title"] = "Rivers Information";
+    // Calculate basic statistics based on the provided model
+    var totalRivers = Model.Count();
+    var longestRiver = Model.OrderByDescending(r => r.LengthKm).FirstOrDefault();
+    var totalLength = Model.Sum(r => r.LengthKm);
+}
+
+<div class="container mb-5">
+    <!-- Section Header -->
+    <partial name="Rivers/_RiversPageHeaderPartial"/>
+
+    <!-- Info Cards -->
+    <div class="row mb-5">
+        <!-- Card 1: Total Count -->
+        <div class="col-md-4 mb-3">
+            <div class="card info-card shadow-sm h-100 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon-wrapper bg-gradient-blue me-3">
+                        🌊
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Rivers</h6>
+                        <h3 class="fw-bold mb-0">@totalRivers</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Longest River -->
+        <div class="col-md-4 mb-3">
+            <div class="card info-card shadow-sm h-100 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon-wrapper bg-gradient-green me-3">
+                        📏
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Longest River</h6>
+                        <h3 class="fw-bold mb-0">@(longestRiver?.Name ?? "N/A")</h3>
+                        <small class="text-success">@(longestRiver?.LengthKm ?? 0) km</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Total Length -->
+        <div class="col-md-4 mb-3">
+            <div class="card info-card shadow-sm h-100 p-3">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon-wrapper bg-gradient-purple me-3">
+                        🗺️
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Total Network Length</h6>
+                        <h3 class="fw-bold mb-0">@totalLength.ToString("N2") <span class="fs-6 text-muted">km</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- This span/s shows the result of adding, deleting or updating a river -->
+    @if (this.TempData.ContainsKey("SuccessAddingMessage"))
+    {
+        <span class="text-bg-success">@this.TempData["SuccessAddingMessage"]</span>
+    }
+    else if(this.TempData.ContainsKey("SuccessDelete"))
+    {
+        <span class="text-bg-danger">@this.TempData["SuccessDelete"]</span>
+    }
+    else if (this.TempData.ContainsKey("SuccessUpdating"))
+    {
+        <span class="text-bg-success">@this.TempData["SuccessUpdating"]</span>
+    }
+
+    <!-- Data Table -->
+    <partial name="Rivers/_RiversPageTablePartial" model="@Model"/>
+
+</div>
+
+@section Design {
+    <link rel="stylesheet" href="~/css/riversPage.css"/>
+}

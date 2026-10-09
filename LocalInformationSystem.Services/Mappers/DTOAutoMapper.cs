@@ -41,6 +41,12 @@ namespace LocalInformationSystem.Services.Mappers
                 .ReverseMap();
 
             #endregion
+            #region River -> RiverDTO Mapping
+
+            CreateMap<River, RiverDTO>()
+                .ReverseMap();
+
+            #endregion
         }
     }
 }

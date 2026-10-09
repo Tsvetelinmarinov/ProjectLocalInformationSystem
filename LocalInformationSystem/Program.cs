@@ -40,6 +40,7 @@ builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddScoped<IProvinceService, ProvinceService>();
 builder.Services.AddScoped<ICitiesService, CitiesService>();
 builder.Services.AddScoped<IMountainsService, MountainsService>();
+builder.Services.AddScoped<IRiversService, RiversService>();
 
 // AutoMapper services.
 builder.Services.AddAutoMapper(
@@ -61,6 +62,10 @@ if (app.Environment.IsProduction())
 
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+else if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
