@@ -166,7 +166,24 @@
             "The outflow name of the river shoud be at least {1} characters";
 
         #endregion
+        #region HistoricalEventViewModel
 
+        internal const double EventYearMin = 681.00; //=> added .00 because should be even more clear that is double.
+        internal const double EventYearMax = int.MaxValue;
+        internal const int EventTitleMinLen = 4; //=> For me, to be a valid title, it should be at leat four characters.
+        internal const int EventTitleMaxLen = 100;
+        internal const int EventDescriptionMinLen = 10;
+        internal const int EventDescriptionMaxLen = 500;
+
+        internal const string EventYearIsRequired = "The year of the event is required";
+        internal const string InvalidEventYear = "The year of the event cannot be less that 681";
+        internal const string EventTitleIsRequired = "The title of the event is required";
+        internal const string InvalidTitleLength = "The length of the event title should be between {1} and {2} characters";
+        internal const string EventTitleRegExValidator = @"(?<EventName>[\p{Lu}\d\-]*[\p{L}\d\-]*)";
+        internal const string EventTitleShouldBeUppercase = "The title of the historical event shoud start with uppercase letter";
+        internal const string InvalidEventDescriptionLength = "The description shoud me at least {1} characters and not more that {2}";
+
+        #endregion
         #endregion
     }
 }

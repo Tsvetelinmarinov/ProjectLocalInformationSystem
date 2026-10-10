@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using static LocalInformationSystem.Web.Common.WebConstants;
 
 namespace LocalInformationSystem.Web.ViewModels;
 
@@ -9,10 +10,30 @@ public class HistoricalEventViewModel
 {
     public int EventId { get; set; }
 
+    [Required(ErrorMessage = EventYearIsRequired)]
+    [Range(
+        EventYearMin,
+        EventYearMax,
+        ErrorMessage = InvalidEventYear
+    )]
     public int EventYear { get; set; }
 
-    [StringLength(200)]
+    [Required(ErrorMessage = EventTitleIsRequired)]
+    [StringLength(
+        EventTitleMaxLen,
+        MinimumLength = EventTitleMinLen,
+        ErrorMessage = InvalidTitleLength
+    )]
+    [RegularExpression(
+        EventTitleRegExValidator,
+        ErrorMessage = EventTitleShouldBeUppercase
+    )]
     public string Title { get; set; } = null!;
 
+    [StringLength(
+        EventDescriptionMaxLen,
+        MinimumLength = EventDescriptionMinLen,
+        ErrorMessage = InvalidEventDescriptionLength
+    )]
     public string? Description { get; set; }
 }
