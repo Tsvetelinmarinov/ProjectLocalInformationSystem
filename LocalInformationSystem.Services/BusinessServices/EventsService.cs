@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using static LocalInformationSystem.Services.Common.ServiceConstants;
@@ -9,7 +9,7 @@ namespace LocalInformationSystem.Services.BusinessServices
     /// <summary>
     ///  Holds buissnes logic for the EventsController.
     /// </summary>
-    public class EventsService(IRepository repo, IMapper mapper) : IEventsService
+    public class EventsService(IEventRepository repo, IMapper mapper) : IEventsService
     {
         /// <summary>
         ///  Retrieves all the historical events from the database.

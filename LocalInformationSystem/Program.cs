@@ -3,7 +3,8 @@
  */
 
 using LocalInformationSystem.Data.DatabaseContext;
-using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
+using LocalInformationSystem.Data.DatabaseRepositories.Repositories;
 using LocalInformationSystem.Services.BusinessServices;
 using LocalInformationSystem.Services.Mappers;
 using LocalInformationSystem.Services.ServicesInterfaces;
@@ -18,7 +19,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Controllers and views services.
 builder.Services.AddControllersWithViews();
 
-// DbContext and repository services.
+// DbContext service.
 builder.Services.AddDbContext<BgDatabaseContext>((dbContextOptionsBuilder) =>
 {
     dbContextOptionsBuilder.UseSqlServer(
@@ -34,7 +35,13 @@ builder.Services.AddDbContext<BgDatabaseContext>((dbContextOptionsBuilder) =>
         }
     );
 });
-builder.Services.AddScoped<IRepository, Repository>();
+
+// Repositories services.
+builder.Services.AddScoped<IProvinceRepository, ProvinceRepository>();
+builder.Services.AddScoped<ICitiesRepository, CitiesRepository>();
+builder.Services.AddScoped<IMountainRepository, MountainRepository>();
+builder.Services.AddScoped<IRiverRepository, RiverRepository>();
+builder.Services.AddScoped<IEventRepository, EventRepository>();
 
 // Services(Service Layer).
 builder.Services.AddScoped<IProvinceService, ProvinceService>();
