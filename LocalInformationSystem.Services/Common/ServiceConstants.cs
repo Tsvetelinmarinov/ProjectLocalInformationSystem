@@ -27,5 +27,8 @@
         // RiversService constants.
         internal const string UnableToMapRiverToRiverDTO = "Unable to map River to RiverDTO.";
         internal const string InvalidRiverId = "The ID of the river should not be negative or zero.";
+
+        // EventsService constants.
+        internal const string UnableToMapEventToEventDTO = "Unable to map HistoricalEvent to HistoricalEventDTO.";
     }
 }
