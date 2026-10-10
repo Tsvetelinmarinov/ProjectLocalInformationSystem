@@ -11,7 +11,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Interfaces
         
 
         // For RiversService.
-        IEnumerable<River> GetAllRivers();
+        
 
         // For EventsService.
         IEnumerable<HistoricalEvent> GetAllEvents();

@@ -1,57 +1,13 @@
 ﻿using LocalInformationSystem.Data.DatabaseContext;
 using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
 using LocalInformationSystem.Data.Entities;
-
 using Microsoft.EntityFrameworkCore;
-
 using static LocalInformationSystem.Data.Common.Constants;
 
 namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
 {
-    /// <summary>
-    ///  Communicates with the database context and serves the services.
-    /// </summary>
-    public class Repository : IRepository
+    public class RiverRepository(BgDatabaseContext dbContext) : IRiverRepository
     {
-        #region Private Fields
-
-        // Database context.
-        private readonly BgDatabaseContext _dbContext;
-
-        #endregion
-        #region Constructor
-
-        /// <summary>
-        ///  Constructs new Repository with the context provided from the IoC container.
-        /// </summary>
-        /// <param name="dbContext">The database context for this repository.</param>
-#pragma warning disable IDE0290 // Use primary constructor
-        public Repository(BgDatabaseContext dbContext)
-        {
-            this._dbContext = dbContext;
-        }
-#pragma warning restore IDE0290
-
-        #endregion
-        #region Functionality
-
-        #region Provinces Service
-
-       
-
-        #endregion
-        #region Cities Service
-
-        
-
-        #endregion
-        #region Mountains Service
-
-    
-
-        #endregion
-        #region Rivers Service
-
         /// <summary>
         ///  Retrieves all the rivers from the database.
         /// </summary>
@@ -60,7 +16,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         /// </returns>
         public IEnumerable<River> GetAllRivers()
         {
-            var rivers = this._dbContext
+            var rivers = dbContext
                 .Rivers
                 .AsNoTracking()
                 .OrderBy((river) => river.Name)
@@ -70,30 +26,6 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
             return rivers;
         }
 
-        #region Events Service
-
-        /// <summary>
-        ///  Retrieves all the historical events from the database.
-        /// </summary>
-        /// <returns>
-        ///  <see cref="IEnumerable{HistoricalEvent}"/> with all the events.
-        /// </returns>
-        public IEnumerable<HistoricalEvent> GetAllEvents()
-        {
-            var events = this._dbContext
-                .HistoricalEvents
-                .AsNoTracking()
-                .OrderBy((_event) => _event.EventYear)
-                .ThenBy((_event) => _event.Title)
-                 ?? throw new InvalidOperationException(NoEventsFromDb);
-
-            return events;
-        }
-
-        #endregion
-        #endregion
-        #region Common Functionality
-
         /// <summary>
         ///  Saves changes made to the entities.
         /// </summary>
@@ -101,7 +33,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         ///  Total changes saved(total record affected).
         /// </returns>
         public int SaveChanges()
-            => this._dbContext.SaveChanges();
+            => dbContext.SaveChanges();
 
         /// <summary>
         ///  Retrieves entity in from the database by its ID.
@@ -118,7 +50,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         public TEntity FindEntityById<TEntity>(int id)
             where TEntity : class
         {
-            var entity = this._dbContext.Find<TEntity>([id])
+            var entity = dbContext.Find<TEntity>([id])
                 ?? throw new InvalidOperationException(NoSuchEntityInDb);
 
             return entity;
@@ -136,7 +68,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         public void Delete<TEntity>(TEntity entity)
             where TEntity : class
         {
-            _ = this._dbContext.Remove(entity);
+            _ = dbContext.Remove(entity);
             _ = this.SaveChanges();
         }
 
@@ -152,11 +84,11 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         public void AddEntity<TEntity>(TEntity entity)
             where TEntity : class
         {
-           /*Entry not needed*/ _ = this
-                ._dbContext
-                .Set<TEntity>()
-                .Add(entity);
-            
+            /*Entry not needed*/
+            _ = dbContext
+            .Set<TEntity>()
+            .Add(entity);
+
             this.SaveChanges();
         }
 
@@ -166,11 +98,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-            this._dbContext.Dispose();
+            dbContext.Dispose();
         }
-
-        #endregion
-
-        #endregion
     }
 }
