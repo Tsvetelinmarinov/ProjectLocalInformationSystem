@@ -36,6 +36,11 @@
         internal const string UnableToMapRiverDTOToRiverViewModel = "Unable to map RiverDTO to RiverViewModel.";
 
         #endregion
+        #region EventsController
+
+        internal const string UnableToMapEventDTOToEventViewModel = "Unable to map HistoricalEventDTO to HistoricalEventViewModel.";
+
+        #endregion
         #region Validation Constants For The View Models
 
         #region ProvinceViewModel
