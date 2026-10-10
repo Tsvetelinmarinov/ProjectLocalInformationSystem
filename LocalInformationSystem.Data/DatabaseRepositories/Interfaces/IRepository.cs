@@ -8,10 +8,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Interfaces
        
 
         // For MountainsService.
-        IEnumerable<Mountain> GetAllMountains();
-        Mountain FindMountainById(int id);
-        Park FindParkById(int id);
-        void AddPark(Park park);
+        
 
         // For RiversService.
         IEnumerable<River> GetAllRivers();
