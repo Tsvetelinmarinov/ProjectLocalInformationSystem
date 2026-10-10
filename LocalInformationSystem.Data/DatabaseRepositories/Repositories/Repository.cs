@@ -42,69 +42,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         #endregion
         #region Cities Service
 
-        /// <summary>
-        ///  Retrieves all the cities from the database.
-        /// </summary>
-        /// <returns>Collection of the cities.</returns>
-        public IQueryable<City> GetAllCities()
-        {
-            var cities = this._dbContext
-                .Cities
-                .AsNoTracking()
-                .Include((city) => city.Landmarks)
-                .Include((city) => city.Province)
-                .OrderBy((city) => city.Name)
-                .ThenBy((city) => city.Province.Name)
-                .ThenBy((city) => city.ProvinceId)
-                ?? throw new InvalidOperationException(NoCitiesFromDb);
-
-            return cities;
-        }
-
-        /// <summary>
-        ///  Retrieves specific city from the database by its ID.
-        /// </summary>
-        /// <param name="id">
-        ///  The ID of the city
-        /// </param>
-        /// <returns>
-        ///  The city with the specified ID.
-        /// </returns>
-        public City FindCityById(int id)
-        {
-            var city = this._dbContext
-                .Cities
-                .AsNoTracking()
-                .Include((city) => city.Landmarks)
-                .FirstOrDefault((city) => city.CityId == id)
-                  ?? throw new InvalidOperationException(NoSuchCityInDb);
-
-            return city;
-        }
-
-        /// <summary>
-        ///  Adds new landmark to the database.
-        /// </summary>
-        /// <param name="landmark">
-        ///  The landmark entity to be added to the database.
-        /// </param>
-        public void AddLandmark(Landmark landmark)
-        {
-            this._dbContext.Landmarks.Add(landmark);
-            this.SaveChanges();
-        }
-
-        /// <summary>
-        ///  Deletes landmark from the database.
-        /// </summary>
-        /// <param name="landmark">
-        ///  The landmark entity to be deleted from the database.
-        /// </param>
-        public void DeleteLandmark(Landmark landmark)
-        {
-            this._dbContext.Landmarks.Remove(landmark);
-            this.SaveChanges();
-        }
+        
 
         #endregion
         #region Mountains Service

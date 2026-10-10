@@ -5,11 +5,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Interfaces
     public interface IRepository : IDisposable
     {
         // For CitiesService.
-        IQueryable<City> GetAllCities();
-        City FindCityById(int id);
-        Landmark FindLandmarkById(int id);
-        void AddLandmark(Landmark landmark);
-        void DeleteLandmark(Landmark landmark);
+       
 
         // For MountainsService.
         IEnumerable<Mountain> GetAllMountains();
