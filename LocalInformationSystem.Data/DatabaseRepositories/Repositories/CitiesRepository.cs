@@ -6,7 +6,7 @@ using static LocalInformationSystem.Data.Common.Constants;
 
 namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
 {
-    internal class CitiesRepository(BgDatabaseContext dbContext) : ICitiesRepository
+    public class CitiesRepository(BgDatabaseContext dbContext) : ICitiesRepository
     {
         /// <summary>
         ///  Retrieves all the cities from the database.
