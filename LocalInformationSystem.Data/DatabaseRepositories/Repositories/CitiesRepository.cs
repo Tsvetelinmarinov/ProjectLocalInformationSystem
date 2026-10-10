@@ -73,6 +73,19 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         }
 
         /// <summary>
+        ///  Finds landmark by his ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The name of the landmark to find.
+        /// </param>
+        /// <returns>The landmark with the specified ID.</returns>
+        public Landmark FindLandmarkById(int id)
+        {
+            var landmark = this.FindEntityById<Landmark>(id);
+            return landmark;
+        }
+
+        /// <summary>
         ///  Saves changes made to the entities.
         /// </summary>
         /// <returns>
