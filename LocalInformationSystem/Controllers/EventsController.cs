@@ -28,5 +28,11 @@ namespace LocalInformationSystem.Web.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult AddEvent([FromForm] HistoricalEventViewModel eventModel)
+        {
+            return BadRequest();
+        }
     }
 }
