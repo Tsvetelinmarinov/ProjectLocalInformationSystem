@@ -26,6 +26,9 @@ namespace LocalInformationSystem.Data.DatabaseRepository
         // For RiversService.
         IEnumerable<River> GetAllRivers();
 
+        // For EventsService.
+        IEnumerable<HistoricalEvent> GetAllEvents();
+
         // Common.
         int SaveChanges();
         TEntity FindEntityById<TEntity>(int id) where TEntity : class;

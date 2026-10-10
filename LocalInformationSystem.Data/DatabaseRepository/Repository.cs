@@ -265,6 +265,27 @@ namespace LocalInformationSystem.Data.DatabaseRepository
             return rivers;
         }
 
+        #region Events Service
+
+        /// <summary>
+        ///  Retrieves all the historical events from the database.
+        /// </summary>
+        /// <returns>
+        ///  <see cref="IEnumerable{HistoricalEvent}"/> with all the events.
+        /// </returns>
+        public IEnumerable<HistoricalEvent> GetAllEvents()
+        {
+            var events = this._dbContext
+                .HistoricalEvents
+                .AsNoTracking()
+                .OrderBy((_event) => _event.EventYear)
+                .ThenBy((_event) => _event.Title)
+                 ?? throw new InvalidOperationException(NoEventsFromDb);
+
+            return events;
+        }
+
+        #endregion
         #endregion
         #region Common Functionality
 
