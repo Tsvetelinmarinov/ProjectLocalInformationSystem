@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
 using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
@@ -8,7 +8,7 @@ using static LocalInformationSystem.Services.Common.ServiceConstants;
 // ReSharper disable SuggestVarOrType_SimpleTypes
 namespace LocalInformationSystem.Services.BusinessServices
 {
-    public class RiversService(IRepository repository, IMapper mapper) : IRiversService
+    public class RiversService(IRiverRepository repository, IMapper mapper) : IRiversService
     {
         /// <summary>
         ///  Gets all rivers.
