@@ -81,7 +81,13 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         /// <returns>The landmark with the specified ID.</returns>
         public Landmark FindLandmarkById(int id)
         {
-            var landmark = this.FindEntityById<Landmark>(id);
+            var landmark = dbContext
+                .Landmarks
+                .AsNoTracking()
+                .Include((landmark) => landmark.City)
+                .FirstOrDefault((landmark) => landmark.LandmarkId == id)
+                 ?? throw new InvalidOperationException(NoSuchLandmarkInDb);
+
             return landmark;
         }
 
