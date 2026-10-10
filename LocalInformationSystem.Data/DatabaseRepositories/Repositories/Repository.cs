@@ -1,11 +1,12 @@
 ﻿using LocalInformationSystem.Data.DatabaseContext;
+using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
 using LocalInformationSystem.Data.Entities;
 
 using Microsoft.EntityFrameworkCore;
 
 using static LocalInformationSystem.Data.Common.Constants;
 
-namespace LocalInformationSystem.Data.DatabaseRepository
+namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
 {
     /// <summary>
     ///  Communicates with the database context and serves the services.
@@ -36,48 +37,7 @@ namespace LocalInformationSystem.Data.DatabaseRepository
 
         #region Provinces Service
 
-        /// <summary>
-        ///  Retrieves all the provinces from the database.
-        /// </summary>
-        /// <returns>Collection of provinces.</returns>
-        public IEnumerable<Province> GetAllProvinces()
-        {
-            var allProvinces = this._dbContext
-                .Provinces
-                .AsNoTracking()
-                .Include((province) => province.Cities) //=> Need to get the total count of the cities per province.
-                .OrderBy((province) => province.ProvinceId)
-                .ThenBy((province) => province.Name);
-
-            if (allProvinces.Any() is false)
-            {
-                throw new InvalidOperationException(ProvinceError);
-            }
-
-            return allProvinces;
-        }
-
-        /// <summary>
-        ///  Finds specific province by its ID.
-        /// </summary>
-        /// <param name="id">
-        ///  The ID of the province.
-        /// </param>
-        /// <returns>
-        ///  The province with the specified ID.
-        ///  If there are no found province, InvalidOperationException is thrown.
-        /// </returns>
-        public Province FindProvinceById(int id)
-        {
-            var province = this._dbContext
-                .Provinces
-                .AsNoTracking()
-                .Include((province) => province.Cities)
-                .FirstOrDefault((province) => province.ProvinceId == id) 
-                  ?? throw new InvalidOperationException(ProvinceNotFound);
-
-            return province;
-        }
+       
 
         #endregion
         #region Cities Service

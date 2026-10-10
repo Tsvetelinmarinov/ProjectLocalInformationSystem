@@ -1,15 +1,9 @@
 ﻿using LocalInformationSystem.Data.Entities;
 
-namespace LocalInformationSystem.Data.DatabaseRepository
+namespace LocalInformationSystem.Data.DatabaseRepositories.Interfaces
 {
     public interface IRepository : IDisposable
     {
-        // For ProvincesService.
-        IEnumerable<Province> GetAllProvinces(); 
-
-        // For ProvinceService.
-        Province FindProvinceById(int id);       
-
         // For CitiesService.
         IQueryable<City> GetAllCities();
         City FindCityById(int id);
