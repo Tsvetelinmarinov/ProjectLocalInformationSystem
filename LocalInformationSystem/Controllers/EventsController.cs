@@ -22,5 +22,11 @@ namespace LocalInformationSystem.Web.Controllers
 
             return View(eventModels);
         }
+
+        [HttpGet]
+        public IActionResult AddEvent()
+        {
+            return View();
+        }
     }
 }
