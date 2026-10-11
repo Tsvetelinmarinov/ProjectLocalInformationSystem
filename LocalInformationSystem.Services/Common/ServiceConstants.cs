@@ -30,5 +30,6 @@
 
         // EventsService constants.
         internal const string UnableToMapEventToEventDTO = "Unable to map HistoricalEvent to HistoricalEventDTO.";
+        internal const string UnableToMapEventDTOToEvent = "Unable to map HistoricalEventDTO to HistoricalEvent";
     }
 }

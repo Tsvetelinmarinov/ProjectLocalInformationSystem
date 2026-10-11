@@ -4,6 +4,7 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
 {
     public interface IEventsService
     {
-        IEnumerable<HistoricalEventDTO> GetAllEvents(); 
+        IEnumerable<HistoricalEventDTO> GetAllEvents();
+        void AddEvent(HistoricalEventDTO eventDTO);
     }
 }

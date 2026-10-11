@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
+using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using static LocalInformationSystem.Services.Common.ServiceConstants;
@@ -11,6 +12,20 @@ namespace LocalInformationSystem.Services.BusinessServices
     /// </summary>
     public class EventsService(IEventRepository repo, IMapper mapper) : IEventsService
     {
+        /// <summary>
+        ///  Adds new event to the HistoricalEvents table.
+        /// </summary>
+        /// <param name="eventDTO">
+        ///  The HistoricalEventDTO with the new information.
+        /// </param>
+        public void AddEvent(HistoricalEventDTO eventDTO)
+        {
+            HistoricalEvent eventEntity = mapper.Map<HistoricalEvent>(eventDTO)
+                ?? throw new InvalidOperationException(UnableToMapEventDTOToEvent);
+
+            repo.AddEntity(eventEntity);
+        }
+
         /// <summary>
         ///  Retrieves all the historical events from the database.
         /// </summary>
