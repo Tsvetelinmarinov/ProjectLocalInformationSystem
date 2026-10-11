@@ -27,6 +27,23 @@ namespace LocalInformationSystem.Services.BusinessServices
         }
 
         /// <summary>
+        ///  Deletes Historical event from the database.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the HistoricalEvent.
+        /// </param>
+        public void DeleteEvent(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidEventId);
+            }
+
+            var eventEntity = repo.FindEntityById<HistoricalEvent>(id);
+            repo.Delete(eventEntity);
+        }
+
+        /// <summary>
         ///  Retrieves all the historical events from the database.
         /// </summary>
         /// <returns>
