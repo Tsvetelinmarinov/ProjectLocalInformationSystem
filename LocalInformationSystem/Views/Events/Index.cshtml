@@ -16,6 +16,12 @@
         </a>
     </div>
 
+    <!-- Span for displaying results of Add, Edit or Delete operations -->
+    @if (this.TempData.ContainsKey("SuccessAdding"))
+    {
+        <span class="text-success">@this.TempData["SuccessAdding"]</span>
+    }
+
     <!-- Table Container -->
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
         <div class="table-responsive">
