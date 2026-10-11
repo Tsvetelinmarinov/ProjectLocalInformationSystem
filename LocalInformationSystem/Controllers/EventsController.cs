@@ -45,5 +45,14 @@ namespace LocalInformationSystem.Web.Controllers
 
             return this.RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult DeleteEvent([FromRoute] int id)
+        {
+            service.DeleteEvent(id);
+            this.TempData["SuccessDelete"] = "Successfully deleted event!";
+
+            return this.RedirectToAction(nameof(Index));
+        }
     }
 }
