@@ -38,7 +38,8 @@
         #endregion
         #region EventsController
 
-        internal const string UnableToMapEventDTOToEventViewModel = "Unable to map HistoricalEventDTO to HistoricalEventViewModel.";
+        internal const string UnableToMapEventDTOToEventViewModel = "Unable to map HistoricalEventDTO to HistoricalEventViewModel";
+        internal const string UnableToMapEventViewModelToEventDTO = "Unable to map HistoricalEventViewModel to HistoricalEventDTO";
 
         #endregion
         #region Validation Constants For The View Models
@@ -179,7 +180,7 @@
         internal const string InvalidEventYear = "The year of the event cannot be less that 681";
         internal const string EventTitleIsRequired = "The title of the event is required";
         internal const string InvalidTitleLength = "The length of the event title should be between {1} and {2} characters";
-        internal const string EventTitleRegExValidator = @"(?<EventName>[\p{Lu}\d\-]*[\p{L}\d\-]*)";
+        internal const string EventTitleRegExValidator = @"(?<EventName>[\p{Lu}][\p{L}\d\ -]*)";
         internal const string EventTitleShouldBeUppercase = "The title of the historical event shoud start with uppercase letter";
         internal const string InvalidEventDescriptionLength = "The description shoud me at least {1} characters and not more that {2}";
 

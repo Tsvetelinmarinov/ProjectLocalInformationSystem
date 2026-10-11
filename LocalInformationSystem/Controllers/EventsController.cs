@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-
+using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using LocalInformationSystem.Web.ViewModels;
 
@@ -32,7 +32,18 @@ namespace LocalInformationSystem.Web.Controllers
         [HttpPost]
         public IActionResult AddEvent([FromForm] HistoricalEventViewModel eventModel)
         {
-            return BadRequest();
+            if (this.ModelState.IsValid is false)
+            {
+                return View(eventModel);
+            }
+
+            HistoricalEventDTO eventDto = mapper.Map<HistoricalEventDTO>(eventModel)
+                ?? throw new InvalidOperationException(UnableToMapEventViewModelToEventDTO);
+
+            service.AddEvent(eventDto);
+            this.TempData["SuccessAdding"] = $"Event {eventModel.Title} successfully added!";
+
+            return this.RedirectToAction(nameof(Index));
         }
     }
 }
