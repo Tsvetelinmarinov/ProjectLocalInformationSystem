@@ -44,6 +44,30 @@ namespace LocalInformationSystem.Services.BusinessServices
         }
 
         /// <summary>
+        ///  Retrieves historical event from the database by its ID.
+        /// </summary>
+        /// <param name="id">
+        ///  The ID of the event
+        /// </param>
+        /// <returns>
+        ///  <see cref="HistoricalEventDTO"/> with the specified ID.
+        /// </returns>
+        public HistoricalEventDTO FindEventById(int id)
+        {
+            if (id <= 0)
+            {
+                throw new InvalidOperationException(InvalidEventId);
+            }
+
+            var eventEntity = repo.FindEntityById<HistoricalEvent>(id);
+
+            var eventDto = mapper.Map<HistoricalEventDTO>(eventEntity)
+                ?? throw new InvalidOperationException(UnableToMapEventToEventDTO);
+
+            return eventDto;
+        }
+
+        /// <summary>
         ///  Retrieves all the historical events from the database.
         /// </summary>
         /// <returns>

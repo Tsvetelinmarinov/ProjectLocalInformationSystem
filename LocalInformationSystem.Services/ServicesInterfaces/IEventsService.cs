@@ -7,5 +7,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         IEnumerable<HistoricalEventDTO> GetAllEvents();
         void AddEvent(HistoricalEventDTO eventDTO);
         void DeleteEvent(int id);
+        HistoricalEventDTO FindEventById(int id);
     }
 }
