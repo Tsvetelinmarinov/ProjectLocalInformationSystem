@@ -4,69 +4,197 @@
     ViewData["Title"] = $"Edit Event {this.Model.Title}";
 }
 
-<div class="min-h-screen bg-slate-950 text-slate-100 flex items-center justify-center px-4 py-12 relative overflow-hidden">
-    <!-- Декоративни светещи фонови градиенти (Glow effects) -->
-    <div class="absolute -top-32 -right-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-[100px] pointer-events-none"></div>
-    <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-violet-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Персонализирани стилове за светъл Glassmorphism дизайн -->
+<style>
+    .edit-event-wrapper {
+        background-color: #f8fafc; /* Slate 50 */
+        min-height: 100vh;
+        color: #0f172a; /* Slate 900 */
+        position: relative;
+        overflow: hidden;
+    }
 
-    <div class="max-w-xl w-full bg-slate-900/60 backdrop-blur-2xl border border-slate-800/80 rounded-3xl shadow-2xl shadow-indigo-950/40 p-8 sm:p-10 relative z-10">
+    /* Меки светли Glow ефекти на фона */
+    .glow-bg-1 {
+        position: absolute;
+        top: -8rem;
+        right: -8rem;
+        width: 26rem;
+        height: 26rem;
+        background: rgba(99, 102, 241, 0.15); /* Soft Indigo */
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+    }
 
-        <!-- Заглавна част на формуляра -->
-        <div class="text-center mb-8">
-            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 mb-4 shadow-inner">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    .glow-bg-2 {
+        position: absolute;
+        bottom: -8rem;
+        left: -8rem;
+        width: 26rem;
+        height: 26rem;
+        background: rgba(168, 85, 247, 0.12); /* Soft Purple */
+        border-radius: 50%;
+        filter: blur(100px);
+        pointer-events: none;
+    }
+
+    /* Светла Glassmorphic карта */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(226, 232, 240, 0.8); /* Slate 200 */
+        border-radius: 1.5rem;
+        box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Иконка в заглавието */
+    .icon-box {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 1rem;
+        background-color: #eef2ff; /* Indigo 50 */
+        border: 1px solid #e0e7ff; /* Indigo 100 */
+        color: #4f46e5; /* Indigo 600 */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Входни полета */
+    .custom-input {
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        border: 1px solid #cbd5e1 !important; /* Slate 300 */
+        color: #0f172a !important;
+        border-radius: 0.75rem !important;
+        padding: 0.85rem 1rem !important;
+        font-size: 0.9rem !important;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .custom-input::placeholder {
+            color: #94a3b8 !important; /* Slate 400 */
+        }
+
+        .custom-input:focus {
+            background-color: #ffffff !important;
+            border-color: #6366f1 !important;
+            box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.15) !important;
+            color: #0f172a !important;
+        }
+
+    /* Бутон за запазване (Градиент) */
+    .btn-gradient {
+        background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+        border: none;
+        color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+        box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3);
+        transition: all 0.2s ease-in-out;
+    }
+
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+            color: #ffffff;
+            box-shadow: 0 12px 24px -5px rgba(79, 70, 229, 0.45);
+        }
+
+    /* Бутон за отказ */
+    .btn-outline-custom {
+        border: 1px solid #cbd5e1;
+        color: #475569;
+        border-radius: 0.75rem;
+        padding: 0.75rem 1.25rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+        text-decoration: none;
+        background-color: #ffffff;
+        transition: all 0.2s ease-in-out;
+    }
+
+        .btn-outline-custom:hover {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            border-color: #94a3b8;
+        }
+
+    /* Грешки при валидация */
+    .validation-summary-errors {
+        background-color: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #dc2626;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        font-size: 0.875rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .validation-summary-valid {
+        display: none;
+    }
+</style>
+
+<div class="edit-event-wrapper d-flex align-items-center justify-content-center px-3 py-5">
+    <!-- Glow фонови акценти -->
+    <div class="glow-bg-1"></div>
+    <div class="glow-bg-2"></div>
+
+    <div class="glass-card p-4 p-sm-5 w-100 position-relative" style="max-width: 580px; z-index: 10;">
+
+        <!-- Заглавна част -->
+        <div class="text-center mb-4">
+            <div class="icon-box mb-3 shadow-sm">
+                <svg class="bi" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">@this.Model.Title</h2>
-            <p class="text-sm text-slate-400 mt-2">Fill the required fields and click Save Changes</p>
+            <h2 class="h3 fw-bold text-dark mb-1">@this.Model.Title</h2>
+            <p class="text-muted small mb-0">Fill the required fields and click Save Changes</p>
         </div>
 
-        <form asp-action="EditEvent" method="post" class="space-y-6">
+        <form asp-action="EditEvent" method="post">
             <!-- Валидационен обобщен блок -->
-            <div asp-validation-summary="ModelOnly" class="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-medium"></div>
+            <div asp-validation-summary="ModelOnly"></div>
 
             <!-- Скрит идентификатор -->
             <input type="hidden" asp-for="EventId" />
 
             <!-- Поле: Година на събитието -->
-            <div class="space-y-2">
-                <label asp-for="EventYear" class="block text-xs font-semibold uppercase tracking-wider text-slate-300">Event Year</label>
-                <div class="relative">
-                    <input asp-for="EventYear" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-sm shadow-sm" placeholder="напр. 1878" />
-                </div>
-                <span asp-validation-for="EventYear" class="block text-xs text-red-400 font-medium mt-1"></span>
+            <div class="mb-3">
+                <label asp-for="EventYear" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide">Event Year</label>
+                <input asp-for="EventYear" class="form-control custom-input" placeholder="напр. 1878" />
+                <span asp-validation-for="EventYear" class="text-danger small d-block mt-1"></span>
             </div>
 
             <!-- Поле: Заглавие -->
-            <div class="space-y-2">
-                <div class="flex justify-between items-center">
-                    <label asp-for="Title" class="block text-xs font-semibold uppercase tracking-wider text-slate-300">Title</label>
-                    <span class="text-[11px] text-indigo-400 font-medium">With uppercase letter</span>
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label asp-for="Title" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide mb-0">Title</label>
+                    <span class="small fw-medium" style="color: #6366f1; font-size: 0.75rem;">With uppercase letter</span>
                 </div>
-                <div class="relative">
-                    <input asp-for="Title" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-sm shadow-sm uppercase" placeholder="напр. ОСВОБОЖДЕНИЕТО НА БЪЛГАРИЯ" />
-                </div>
-                <span asp-validation-for="Title" class="block text-xs text-red-400 font-medium mt-1"></span>
+                <input asp-for="Title" class="form-control custom-input text-uppercase" placeholder="напр. ОСВОБОЖДЕНИЕТО НА БЪЛГАРИЯ" />
+                <span asp-validation-for="Title" class="text-danger small d-block mt-1"></span>
             </div>
 
             <!-- Поле: Описание (Опционално) -->
-            <div class="space-y-2">
-                <label asp-for="Description" class="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-                    Description <span class="text-slate-500 font-normal lowercase">(optional)</span>
+            <div class="mb-4">
+                <label asp-for="Description" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide">
+                    Description <span class="text-muted fw-normal text-lowercase">(optional)</span>
                 </label>
-                <div class="relative">
-                    <textarea asp-for="Description" rows="4" class="w-full bg-slate-900/80 border border-slate-700/80 rounded-xl px-4 py-3.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 text-sm shadow-sm resize-none" placeholder="Въведете детайлно описание на историческото събитие..."></textarea>
-                </div>
-                <span asp-validation-for="Description" class="block text-xs text-red-400 font-medium mt-1"></span>
+                <textarea asp-for="Description" rows="4" class="form-control custom-input" style="resize: none;" placeholder="Въведете детайлно описание на историческото събитие..."></textarea>
+                <span asp-validation-for="Description" class="text-danger small d-block mt-1"></span>
             </div>
 
             <!-- Бутони за действие -->
-            <div class="flex items-center justify-end space-x-4 pt-4 border-t border-slate-800/80">
-                <a asp-action="Index" class="px-5 py-3 rounded-xl border border-slate-700/80 text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200 text-sm font-medium">
+            <div class="d-flex align-items-center justify-content-end gap-3 pt-3 border-top border-slate-200">
+                <a asp-action="Index" class="btn btn-outline-custom">
                     Cancel
                 </a>
-                <button type="submit" class="px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-medium text-sm shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/40 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-slate-950 transition-all duration-200">
+                <button type="submit" class="btn btn-gradient">
                     Save Changes
                 </button>
             </div>
@@ -75,5 +203,5 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial"/>
+    <partial name="_ValidationScriptsPartial" />
 }
