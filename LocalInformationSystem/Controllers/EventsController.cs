@@ -54,5 +54,16 @@ namespace LocalInformationSystem.Web.Controllers
 
             return this.RedirectToAction(nameof(Index));
         }
+
+        [HttpGet]
+        public IActionResult EditEvent([FromRoute] int id)
+        {
+            var eventDto = service.FindEventById(id);
+
+            var eventModel = mapper.Map<HistoricalEventViewModel>(eventDto)
+                ?? throw new InvalidOperationException(UnableToMapEventDTOToEventViewModel);
+
+            return View(eventModel);
+        }
     }
 }
