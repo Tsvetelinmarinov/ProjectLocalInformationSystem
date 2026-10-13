@@ -1,4 +1,4 @@
-﻿using LocalInformationSystem.Data.DatabaseRepository;
+﻿using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using static LocalInformationSystem.Services.Common.ServiceConstants;
@@ -19,7 +19,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         #region Private Fields And Constructor
 
         // Database repository.
-        private readonly IRepository _base;
+        private readonly IProvinceRepository _base;
 
         // Auto mapper for mapping Entity -> ServiceDTO.
         private readonly IMapper _mapper;
@@ -30,7 +30,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// </summary>
         /// <param name="database">The repository</param>
 #pragma warning disable IDE0290 // Use primary constructor.
-        public ProvinceService(IRepository database, IMapper mapper)
+        public ProvinceService(IProvinceRepository database, IMapper mapper)
         {
             this._base = database;
             this._mapper = mapper;

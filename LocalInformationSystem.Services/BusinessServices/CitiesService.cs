@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-
-using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
 using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
@@ -17,7 +16,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         #region Private Fields
 
         // Repository.
-        private readonly IRepository _database;
+        private readonly ICitiesRepository _database;
 
         // Auto mapper for Entity -> EntityDTO.
         private readonly IMapper _mapper;
@@ -26,7 +25,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         #region Constructor
 
 #pragma warning disable IDE0290 // Use primary constructor
-        public CitiesService(IRepository database, IMapper autoMapper)
+        public CitiesService(ICitiesRepository database, IMapper autoMapper)
         {
             this._database = database;
             this._mapper = autoMapper;

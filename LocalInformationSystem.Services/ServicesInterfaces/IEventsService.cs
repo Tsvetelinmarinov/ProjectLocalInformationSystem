@@ -1,0 +1,13 @@
+﻿using LocalInformationSystem.Services.DataTransferObjects;
+
+namespace LocalInformationSystem.Services.ServicesInterfaces
+{
+    public interface IEventsService
+    {
+        IEnumerable<HistoricalEventDTO> GetAllEvents();
+        void AddEvent(HistoricalEventDTO eventDTO);
+        void DeleteEvent(int id);
+        HistoricalEventDTO FindEventById(int id);
+        bool UpdateEvent(HistoricalEventDTO eventDto);
+    }
+}

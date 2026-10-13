@@ -1,0 +1,130 @@
+﻿.edit-event-wrapper {
+    background-color: #f8fafc; /* Slate 50 */
+    min-height: 100vh;
+    color: #0f172a; /* Slate 900 */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Меки светли Glow ефекти на фона */
+.glow-bg-1 {
+    position: absolute;
+    top: -8rem;
+    right: -8rem;
+    width: 26rem;
+    height: 26rem;
+    background: rgba(99, 102, 241, 0.15); /* Soft Indigo */
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.glow-bg-2 {
+    position: absolute;
+    bottom: -8rem;
+    left: -8rem;
+    width: 26rem;
+    height: 26rem;
+    background: rgba(168, 85, 247, 0.12); /* Soft Purple */
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+/* Светла Glassmorphic карта */
+.glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(226, 232, 240, 0.8); /* Slate 200 */
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);
+}
+
+/* Иконка в заглавието */
+.icon-box {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 1rem;
+    background-color: #eef2ff; /* Indigo 50 */
+    border: 1px solid #e0e7ff; /* Indigo 100 */
+    color: #4f46e5; /* Indigo 600 */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Входни полета */
+.custom-input {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #cbd5e1 !important; /* Slate 300 */
+    color: #0f172a !important;
+    border-radius: 0.75rem !important;
+    padding: 0.85rem 1rem !important;
+    font-size: 0.9rem !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.custom-input::placeholder {
+    color: #94a3b8 !important; /* Slate 400 */
+}
+
+.custom-input:focus {
+    background-color: #ffffff !important;
+    border-color: #6366f1 !important;
+    box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.15) !important;
+    color: #0f172a !important;
+}
+
+/* Бутон за запазване (Градиент) */
+.btn-gradient {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+    border: none;
+    color: #ffffff;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.3);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+    color: #ffffff;
+    box-shadow: 0 12px 24px -5px rgba(79, 70, 229, 0.45);
+}
+
+/* Бутон за отказ */
+.btn-outline-custom {
+    border: 1px solid #cbd5e1;
+    color: #475569;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-decoration: none;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-custom:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    border-color: #94a3b8;
+}
+
+/* Грешки при валидация */
+.validation-summary-errors {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+}
+
+.validation-summary-valid {
+    display: none;
+}

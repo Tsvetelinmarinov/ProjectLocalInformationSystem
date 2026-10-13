@@ -22,6 +22,9 @@
         // Rivers methods constants.
         internal const string NoRiversFromDb = "No rivers available! Something went wrong with the database!";
 
+        // Historical Events methods constants.
+        internal const string NoEventsFromDb = "No historical events available! Something went wrong with the database.";
+
         // Common constants.
         internal const string NoSuchEntityInDb = "Specified entity not found in the database.";
     }

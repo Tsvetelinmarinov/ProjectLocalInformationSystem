@@ -1,0 +1,77 @@
+﻿@model HistoricalEventViewModel
+
+@{
+    ViewData["Title"] = $"Edit Event {this.Model.Title}";
+}
+
+<!-- Персонализирани стилове за светъл Glassmorphism дизайн -->
+@section Design {
+    <link rel="stylesheet" href="~/css/editEventPage.css"/>
+}
+
+<div class="edit-event-wrapper d-flex align-items-center justify-content-center px-3 py-5">
+    <!-- Glow фонови акценти -->
+    <div class="glow-bg-1"></div>
+    <div class="glow-bg-2"></div>
+
+    <div class="glass-card p-4 p-sm-5 w-100 position-relative" style="max-width: 580px; z-index: 10;">
+
+        <!-- Заглавна част -->
+        <div class="text-center mb-4">
+            <div class="icon-box mb-3 shadow-sm">
+                <svg class="bi" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+            </div>
+            <h2 class="h3 fw-bold text-dark mb-1">@this.Model.Title</h2>
+            <p class="text-muted small mb-0">Fill the required fields and click Save Changes</p>
+        </div>
+
+        <form asp-action="EditEvent" method="post">
+            <!-- Валидационен обобщен блок -->
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <!-- Скрит идентификатор -->
+            <input type="hidden" asp-for="EventId" />
+
+            <!-- Поле: Година на събитието -->
+            <div class="mb-3">
+                <label asp-for="EventYear" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide">Event Year</label>
+                <input asp-for="EventYear" class="form-control custom-input" placeholder="for example 1933..." />
+                <span asp-validation-for="EventYear" class="text-danger small d-block mt-1"></span>
+            </div>
+
+            <!-- Поле: Заглавие -->
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <label asp-for="Title" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide mb-0">Title</label>
+                </div>
+                <input asp-for="Title" class="form-control custom-input" placeholder="for example founding of Bulgaria" />
+                <span asp-validation-for="Title" class="text-danger small d-block mt-1"></span>
+            </div>
+
+            <!-- Поле: Описание (Опционално) -->
+            <div class="mb-4">
+                <label asp-for="Description" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide">
+                    Description <span class="text-muted fw-normal text-lowercase">(optional)</span>
+                </label>
+                <textarea asp-for="Description" rows="4" class="form-control custom-input" style="resize: none;" placeholder="Description..."></textarea>
+                <span asp-validation-for="Description" class="text-danger small d-block mt-1"></span>
+            </div>
+
+            <!-- Бутони за действие -->
+            <div class="d-flex align-items-center justify-content-end gap-3 pt-3 border-top border-slate-200">
+                <a asp-action="Index" class="btn btn-outline-custom">
+                    Cancel
+                </a>
+                <button type="submit" class="btn btn-gradient">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

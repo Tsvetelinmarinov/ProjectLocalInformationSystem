@@ -47,6 +47,13 @@ namespace LocalInformationSystem.Services.Mappers
                 .ReverseMap();
 
             #endregion
+
+            #region HistoricalEvent -> HistoricalEventDTO Mapping
+
+            CreateMap<HistoricalEvent, HistoricalEventDTO>()
+                .ReverseMap();
+
+            #endregion
         }
     }
 }

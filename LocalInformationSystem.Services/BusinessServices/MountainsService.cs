@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-
-using LocalInformationSystem.Data.DatabaseRepository;
+using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
 using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
@@ -12,7 +11,7 @@ namespace LocalInformationSystem.Services.BusinessServices
     /// <summary>
     ///  Communicates with the database repository and serves the MountainsController.
     /// </summary>
-    public class MountainsService(IRepository repository, IMapper mapper) : IMountainsService
+    public class MountainsService(IMountainRepository repository, IMapper mapper) : IMountainsService
     {
         /// <summary>
         ///  Retrieves all the mountains from the database.
