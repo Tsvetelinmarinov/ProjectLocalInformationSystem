@@ -37,7 +37,7 @@
             <!-- Поле: Година на събитието -->
             <div class="mb-3">
                 <label asp-for="EventYear" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide">Event Year</label>
-                <input asp-for="EventYear" class="form-control custom-input" placeholder="напр. 1878" />
+                <input asp-for="EventYear" class="form-control custom-input" placeholder="for example 1933..." />
                 <span asp-validation-for="EventYear" class="text-danger small d-block mt-1"></span>
             </div>
 
@@ -45,9 +45,8 @@
             <div class="mb-3">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <label asp-for="Title" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide mb-0">Title</label>
-                    <span class="small fw-medium" style="color: #6366f1; font-size: 0.75rem;">With uppercase letter</span>
                 </div>
-                <input asp-for="Title" class="form-control custom-input text-uppercase" placeholder="напр. ОСВОБОЖДЕНИЕТО НА БЪЛГАРИЯ" />
+                <input asp-for="Title" class="form-control custom-input" placeholder="for example founding of Bulgaria" />
                 <span asp-validation-for="Title" class="text-danger small d-block mt-1"></span>
             </div>
 
@@ -56,7 +55,7 @@
                 <label asp-for="Description" class="form-label text-uppercase fw-semibold text-secondary small tracking-wide">
                     Description <span class="text-muted fw-normal text-lowercase">(optional)</span>
                 </label>
-                <textarea asp-for="Description" rows="4" class="form-control custom-input" style="resize: none;" placeholder="Въведете детайлно описание на историческото събитие..."></textarea>
+                <textarea asp-for="Description" rows="4" class="form-control custom-input" style="resize: none;" placeholder="Description..."></textarea>
                 <span asp-validation-for="Description" class="text-danger small d-block mt-1"></span>
             </div>
 
