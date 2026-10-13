@@ -25,6 +25,10 @@
     {
         <span class="text-danger">@this.TempData["SuccessDelete"]</span>
     }
+    else if (this.TempData.ContainsKey("SuccessUpdateEvent"))
+    {
+        <span class="text-success">@this.TempData["SuccessUpdateEvent"]</span>
+    }
 
     <!-- Table Container -->
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
