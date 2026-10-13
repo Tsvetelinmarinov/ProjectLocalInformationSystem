@@ -83,5 +83,34 @@ namespace LocalInformationSystem.Services.BusinessServices
 
             return eventDtos;
         }
+
+        /// <summary>
+        ///  Updates existing historical event.
+        /// </summary>
+        /// <param name="eventDto">
+        ///  The <see cref="HistoricalEventDTO"/> with the new information.
+        /// </param>
+        /// <returns>
+        ///  True if successfully updating the entity otherwise throws <see cref="InvalidOperationException"/>.
+        /// </returns>
+        public bool UpdateEvent(HistoricalEventDTO eventDto)
+        {
+            var eventEntity = repo.FindEntityById<HistoricalEvent>(eventDto.EventId);
+
+            try
+            {
+                eventEntity.Title = eventDto.Title;
+                eventEntity.Description = eventDto.Description;
+                eventEntity.EventYear = eventDto.EventYear;
+
+                repo.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                throw new InvalidOperationException(UnableToUpdateEvent);
+            }
+        }
     }
 }

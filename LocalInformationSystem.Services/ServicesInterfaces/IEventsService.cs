@@ -8,5 +8,6 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
         void AddEvent(HistoricalEventDTO eventDTO);
         void DeleteEvent(int id);
         HistoricalEventDTO FindEventById(int id);
+        bool UpdateEvent(HistoricalEventDTO eventDto);
     }
 }
