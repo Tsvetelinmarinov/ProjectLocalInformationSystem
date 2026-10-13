@@ -65,5 +65,22 @@ namespace LocalInformationSystem.Web.Controllers
 
             return View(eventModel);
         }
+
+        [HttpPost]
+        public IActionResult EditEvent([FromForm] HistoricalEventViewModel eventModel)
+        {
+            if (this.ModelState.IsValid is false)
+            {
+                return View(eventModel);
+            }
+
+            var eventDto = mapper.Map<HistoricalEventDTO>(eventModel)
+                ?? throw new InvalidOperationException(UnableToMapEventViewModelToEventDTO);
+
+            service.UpdateEvent(eventDto);
+            this.TempData["SuccessUpdateEvent"] = $"Event {eventDto.Title} is successfully updated!";
+
+            return this.RedirectToAction(nameof(Index));
+        }
     }
 }
