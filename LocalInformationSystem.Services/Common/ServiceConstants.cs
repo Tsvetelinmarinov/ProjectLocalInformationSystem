@@ -6,6 +6,7 @@
         internal const string ProvinceError = "Error while retrieving the provinces from the database.";
         internal const string UnsuccessfullyMappingOfProvince = "AutoMapper could not map Province to ProvinceDTO.";
         internal const string InvalidProvinceID = "The ID of the province should not be less than or equal to zero.";
+        internal const string InvalidProvinceSortOption = "The sorting option is unrecognized.";
 
 
         // CitiesService constants.
