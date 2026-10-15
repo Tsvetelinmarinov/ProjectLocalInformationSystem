@@ -44,10 +44,7 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// </returns>
         public IEnumerable<ProvinceDTO> GetAllProvinces(string sortingKeyword)
         {
-            if (string.IsNullOrWhiteSpace(sortingKeyword))
-            {
-                throw new InvalidOperationException(InvalidProvinceSortOption);
-            }
+            sortingKeyword ??= "name_asc"; //=> By default sort by name A-Z.
 
             // Check if the sorting keyword is correct.
             bool isRecognizedSortingOption = sortingKeyword switch
