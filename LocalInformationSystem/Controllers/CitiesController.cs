@@ -40,9 +40,9 @@ namespace LocalInformationSystem.Web.Controllers
         #endregion
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string? sortingKeyword)
         {
-            var citiesDTOs = this._service.GetAllCities();
+            var citiesDTOs = this._service.GetAllCities(sortingKeyword);
 
             if (citiesDTOs is null || citiesDTOs.Any() is false)
             {
