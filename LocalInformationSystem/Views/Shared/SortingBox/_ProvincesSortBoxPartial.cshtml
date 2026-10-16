@@ -10,12 +10,12 @@
         <ul class="dropdown-menu dropdown-menu-end shadow border-0 py-">
             <li><h6 class="dropdown-header text-uppercase fs-8 text-muted">Sort by</h6></li>
             <li>
-                <a class="dropdown-item py-2" asp-action="Index" asp-route-sortingKeyword="name_asc">
+                <a class="dropdown-item py-2" asp-controller="Province" asp-action="Index" asp-route-sortingKeyword="name_asc">
                     <i class="bi bi-sort-alpha-down me-2 text-muted"></i> Name (A-Z)
                 </a>
             </li>
             <li>
-                <a class="dropdown-item py-2" asp-action="Index" asp-route-sortingKeyword="name_desc">
+                <a class="dropdown-item py-2" asp-controller="Province" asp-action="Index" asp-route-sortingKeyword="name_desc">
                     <i class="bi bi-sort-alpha-up-alt me-2 text-muted"></i> Name (Z-A)
                 </a>
             </li>
@@ -23,12 +23,12 @@
                 <hr class="dropdown-divider" />
             </li>
             <li>
-                <a class="dropdown-item py-2" asp-action="Index" asp-route-sortingKeyword="pop_asc">
+                <a class="dropdown-item py-2" asp-controller="Province" asp-action="Index" asp-route-sortingKeyword="pop_asc">
                     <i class="bi bi-sort-numeric-down me-2 text-muted"></i>Population (Ascending)
                 </a>
             </li>
             <li>
-                <a class="dropdown-item py-2" asp-action="Index" asp-route-sortingKeyword="pop_desc">
+                <a class="dropdown-item py-2" asp-controller="Province" asp-action="Index" asp-route-sortingKeyword="pop_desc">
                     <i class="bi bi-sort-numeric-up-alt me-2 text-muted"></i>Population (Descending)
                 </a>
             </li>
