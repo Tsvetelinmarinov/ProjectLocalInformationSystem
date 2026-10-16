@@ -118,7 +118,7 @@ namespace LocalInformationSystem.Web.Controllers
         public IActionResult EditLandmark(int id)
         {
             var landmarkDTO = this._service.FindLandmarkById(id);
-            var citiesDTOs = this._service.GetAllCities();
+            var citiesDTOs = this._service.GetAllCities("name_asc" /*always that*/);
             this.ViewBag.Cities = citiesDTOs;
 
             var landmarkModel
@@ -140,7 +140,7 @@ namespace LocalInformationSystem.Web.Controllers
 
             if (this.ModelState.IsValid is false)
             {
-                this.TempData["Cities"] = this._service.GetAllCities();
+                this.TempData["Cities"] = this._service.GetAllCities("name_asc" /*always that*/);
                 return View(landmark);
             }
 
@@ -157,7 +157,7 @@ namespace LocalInformationSystem.Web.Controllers
         public IActionResult AddLandmark(int? cityId)
         {
             var viewModel = new LandmarkViewModel { CityId = cityId };
-            this.ViewBag.Cities = this._service.GetAllCities();
+            this.ViewBag.Cities = this._service.GetAllCities("name_asc" /*always that*/);
             return View(viewModel);
         }
 
