@@ -4,7 +4,7 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Interfaces
 {
     public interface ICitiesRepository : IRepository
     {
-        IQueryable<City> GetAllCities();
+        IQueryable<City> GetAllCities(string sortingKeyword);
         City FindCityById(int id);
         Landmark FindLandmarkById(int id);
         void AddLandmark(Landmark landmark);
