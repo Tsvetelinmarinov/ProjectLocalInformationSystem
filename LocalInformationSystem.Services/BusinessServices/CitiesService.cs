@@ -40,10 +40,10 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// <returns>
         ///  Collection of the cities.
         /// </returns>
-        public IEnumerable<CityDTO> GetAllCities()
+        public IEnumerable<CityDTO> GetAllCities(string sortingKeyword)
         {
             var result = this._database
-                .GetAllCities();
+                .GetAllCities(sortingKeyword);
 
             if (result is null || result.Any() is false)
             {

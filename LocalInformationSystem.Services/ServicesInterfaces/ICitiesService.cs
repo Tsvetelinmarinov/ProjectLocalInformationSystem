@@ -4,7 +4,7 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
 {
     public interface ICitiesService
     {
-        IEnumerable<CityDTO> GetAllCities();
+        IEnumerable<CityDTO> GetAllCities(string sortingKeyword);
         CityDTO FindCityById(int id);
         void UpdateCity(CityDTO newCity);
         LandmarkDTO FindLandmarkById(int id);
