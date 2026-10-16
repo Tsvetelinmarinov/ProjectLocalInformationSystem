@@ -40,8 +40,28 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// <returns>
         ///  Collection of the cities.
         /// </returns>
-        public IEnumerable<CityDTO> GetAllCities(string sortingKeyword)
+        public IEnumerable<CityDTO> GetAllCities(string? sortingKeyword)
         {
+            sortingKeyword ??= "name_asc"; // If null -> sort by name A-Z by default.
+
+            // Check if the sorting option is from the available options.
+            // The only case the sortingKeyword will have value different than
+            // the four options bellow is when someone personally change it from the
+            // Developer tools of the browser or with other tool/way.
+            bool isValidSortingOption = sortingKeyword switch
+            {
+                "name_asc" => true,
+                "name_desc" => true,
+                "pop_asc" => true,
+                "pop_desc" => true,
+                /*def*/ _ => false
+            };
+
+            if (isValidSortingOption is false)
+            {
+                throw new InvalidOperationException(InvalidProvinceSortOption /*Valid error message no matters the name*/);
+            }
+
             var result = this._database
                 .GetAllCities(sortingKeyword);
 
