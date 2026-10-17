@@ -5,6 +5,7 @@ using LocalInformationSystem.Data.Entities;
 using static LocalInformationSystem.Data.Common.Constants;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
 {
@@ -14,19 +15,28 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         ///  Retrieves all the provinces from the database.
         /// </summary>
         /// <returns>Collection of provinces.</returns>
-        public IEnumerable<Province> GetAllProvinces()
+        public IEnumerable<Province> GetAllProvinces(string sortingKeyword)
         {
             var allProvinces = dbContext
                 .Provinces
                 .AsNoTracking()
-                .Include((province) => province.Cities) //=> Need to get the total count of the cities per province.
-                .OrderBy((province) => province.ProvinceId)
-                .ThenBy((province) => province.Name);
+                .Include((province) => province.Cities) //=> Need to get the total count of the cities per province.           
+                .ToList();
 
             if (allProvinces.Any() is false)
             {
                 throw new InvalidOperationException(ProvinceError);
             }
+
+            allProvinces = sortingKeyword switch
+            {
+                "name_asc" => [.. allProvinces.OrderBy((province) => province.Name)],
+                "name_desc" => [.. allProvinces.OrderByDescending((province) => province.Name)],
+                "pop_asc" => [.. allProvinces.OrderBy((province) => province.Population)],
+                "pop_desc" => [.. allProvinces.OrderByDescending((province) => province.Population)],
+                /*never here*/_ => [.. allProvinces.OrderBy((province) => province.Name)]
+            };
+
 
             return allProvinces;
         }

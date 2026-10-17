@@ -12,17 +12,35 @@ namespace LocalInformationSystem.Data.DatabaseRepositories.Repositories
         ///  Retrieves all the cities from the database.
         /// </summary>
         /// <returns>Collection of the cities.</returns>
-        public IQueryable<City> GetAllCities()
+        public IQueryable<City> GetAllCities(string sortingKeyword)
         {
             var cities = dbContext
                 .Cities
                 .AsNoTracking()
                 .Include((city) => city.Landmarks)
                 .Include((city) => city.Province)
-                .OrderBy((city) => city.Name)
-                .ThenBy((city) => city.Province.Name)
-                .ThenBy((city) => city.ProvinceId)
-                ?? throw new InvalidOperationException(NoCitiesFromDb);
+                .AsQueryable()
+                 ?? throw new InvalidOperationException(NoCitiesFromDb);
+
+#pragma warning disable IDE0066 // Convert switch statement to expression
+            switch (sortingKeyword)
+            {
+                case "name_asc":
+                    cities = cities.OrderBy((city) => city.Name);
+                    break;
+                case "name_desc":
+                    cities = cities.OrderByDescending((city) => city.Name);
+                    break;
+                case "pop_asc":
+                    cities = cities.OrderBy((city) => city.Population);
+                    break;
+                case "pop_desc":
+                    cities = cities.OrderByDescending((city) => city.Population);
+                    break;
+                default:
+                throw new InvalidOperationException(SortOptionSecretMessage);
+            }
+#pragma warning restore IDE0066
 
             return cities;
         }

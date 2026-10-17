@@ -13,6 +13,7 @@
         internal const string NoCitiesFromDb = "Error while retrieving information about the cities from the database!";
         internal const string NoSuchCityInDb = "No city with specified ID was found in the database.";
         internal const string NoSuchLandmarkInDb = "No landmark with specified ID was found in the database.";
+        internal const string SortOptionSecretMessage = "I will never get here, because it`s impossible!?";
 
         // Mountains methods constants.
         internal const string NoMountainsFromDb = "No mountains available! Something went wrong with the database!";

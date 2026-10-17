@@ -4,7 +4,7 @@ namespace LocalInformationSystem.Services.ServicesInterfaces
 {
     public interface IProvinceService
     {
-        IEnumerable<ProvinceDTO> GetAllProvinces();
+        IEnumerable<ProvinceDTO> GetAllProvinces(string sortingKeyword);
         ProvinceDTO FindProvinceById(int id);
         void Update(ProvinceDTO provinceDTO);
     }

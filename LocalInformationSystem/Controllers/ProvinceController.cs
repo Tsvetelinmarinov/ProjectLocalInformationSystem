@@ -36,9 +36,9 @@ namespace LocalInformationSystem.Web.Controllers
         #region Actions
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string sortingKeyword)
         {
-            var provinceDTOs = this._service.GetAllProvinces();
+            var provinceDTOs = this._service.GetAllProvinces(sortingKeyword);
 
             if (provinceDTOs is null || provinceDTOs.Any() is false)
             {

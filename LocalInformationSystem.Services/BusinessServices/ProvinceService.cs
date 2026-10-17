@@ -1,13 +1,9 @@
-﻿using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
+﻿using AutoMapper;
+using LocalInformationSystem.Data.DatabaseRepositories.Interfaces;
+using LocalInformationSystem.Data.Entities;
 using LocalInformationSystem.Services.DataTransferObjects;
 using LocalInformationSystem.Services.ServicesInterfaces;
 using static LocalInformationSystem.Services.Common.ServiceConstants;
-
-
-using AutoMapper;
-
-using System.Runtime.CompilerServices;
-using LocalInformationSystem.Data.Entities;
 
 namespace LocalInformationSystem.Services.BusinessServices
 {
@@ -46,10 +42,27 @@ namespace LocalInformationSystem.Services.BusinessServices
         /// <returns>
         ///  <see cref="IEnumerable{ProvinceDTO}"/> with all the provinces.
         /// </returns>
-        public IEnumerable<ProvinceDTO> GetAllProvinces()
+        public IEnumerable<ProvinceDTO> GetAllProvinces(string sortingKeyword)
         {
+            sortingKeyword ??= "name_asc"; //=> By default sort by name A-Z.
+
+            // Check if the sorting keyword is correct.
+            bool isRecognizedSortingOption = sortingKeyword switch
+            {
+                "name_asc"  => true,
+                "name_desc" => true,
+                "pop_asc"   => true,
+                "pop_desc"  => true,
+                /*def*/ _   => false
+            };
+
+            if (isRecognizedSortingOption is false)
+            {
+                throw new InvalidOperationException(InvalidProvinceSortOption);
+            }
+
             var provinceEntities = this._base
-                .GetAllProvinces() 
+                .GetAllProvinces(sortingKeyword) 
                 ?? throw new InvalidOperationException(ProvinceError);
 
             var provinceDTOs = this._mapper.Map<List<ProvinceDTO>>(provinceEntities);
